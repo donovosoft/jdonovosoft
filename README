@@ -1,0 +1,10 @@
+/*!
+ * doNovoSoft JavaScript Library v1.1.5 BETA
+ * http://www.donovosoft.com/
+ *
+ * Copyright 2011, Mauricio Barrera
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * Require for JAlert and JQuestion the jquery and jquery-ui libraries 
+ * Date: Tue Oct 18 2011
+ *
+ */
