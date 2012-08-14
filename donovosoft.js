@@ -29,6 +29,9 @@ JAlert.prototype = {
 		jQuery("#generic_alert").dialog("option", "title", this.title);
 		jQuery("#generic_alert").dialog("option", "resizable", this.resizable);
 		jQuery("#generic_alert").dialog("open");
+		jQuery("#generic_alert").bind("dialogclose", function() {
+			this.after.call(null, null);
+		});
 	},
 	get : function(what) {
 		return this[what];
@@ -231,37 +234,63 @@ donovosoft.fn = donovosoft.prototype = {
 				this.setDate(this.getDate() + days);
 			}
 		};
-		Array.prototype.size = function(){
+		Array.prototype.size = function() {
 			return this.length;
 		};
 
+	},
+	addClass : function(element,clasz){
+		element.className += " "+clasz;
+	},
+	hasClass: function(element,clasz){
+		if(element.className.match(new RegExp('(\\s|^)' + clasz + '(\\s|$)')) != null){
+			return true;
+		}
+		return false;
+	},
+	removeClass: function(element,clasz){
+		if ($_.hasClass(element, clasz)) {
+            var reg = new RegExp('(\\s|^)' + clasz + '(\\s|$)');
+            element.className = element.className.replace(reg, ' ');
+        }
 	},
 	alert : function(message, funcion) {
 		var a = new JAlert();
 		a.resizable = false;
 		a.width = 400;
-		a.after = funcion;
+		a["after"] = funcion;
 		a.mensaje = message.toString();
 		a.open();
 	},
-	$$_ : function(tag) {
+	$$_ : function(tag, filtro) {
 		var arreglo = new Array();
 		var nodes = (document.all) ? document.all : document
 				.getElementsByTagName(tag);
 		for ( var x = 0; x < nodes.length; x++) {
-			arreglo.push(nodes[x]);
+			if (filtro == null) {
+				arreglo.push(nodes[x]);
+			} else {
+				for ( var key in filtro) {
+					if (nodes[x][key] == null || nodes[x][key] != filtro[key]) {
+						return arreglo;
+					}
+				}
+				arreglo.push(nodes[x]);
+			}
 		}
 		return arreglo;
 	},
 	checkAll : function(bool) {
-		var checks = this.$$_("input");
+		var checks = this.$$_("input", {
+			type : "checkbox"
+		});
 		for ( var x = 0; x < checks.length; x++) {
 			if (checks[x].checked != null) {
 				checks[x].checked = bool;
 			}
 		}
 	},
-	Cookie : function(){
+	Cookie : function() {
 		var name;
 		var value;
 		var domain;
@@ -273,12 +302,18 @@ donovosoft.fn = donovosoft.prototype = {
 				var items = document.cookie.split(";");
 				$_.forEach(items, function(item, index) {
 					var cookie = document.cookie.split("=");
-					this.cookie = {name:cookie[0],value:cookie[1]};
+					this.cookie = {
+						name : cookie[0],
+						value : cookie[1]
+					};
 					cookies.push(this.cookie);
 				});
 			} else {
 				var cookie = document.cookie.split("=");
-				this.cookie = {name:cookie[0],value:cookie[1]};
+				this.cookie = {
+					name : cookie[0],
+					value : cookie[1]
+				};
 				cookies.push(this.cookie);
 			}
 			return cookies;
@@ -286,18 +321,33 @@ donovosoft.fn = donovosoft.prototype = {
 			return null;
 		}
 	},
-	getCookie : function(name){
-		$_.forEach(this.getCookies(),function(cookie,pos){
-			if(name == cookie.name){
+	getCookie : function(name) {
+		$_.forEach(this.getCookies(), function(cookie, pos) {
+			if (name == cookie.name) {
 				return cookie;
 			}
 		});
 	},
-	setCookie : function(name,value,exp){
-		var exdate=new Date();
+	setCookie : function(name, value, exp) {
+		var exdate = new Date();
 		exdate.setDate(exdate.getDate() + exp);
-		var c_value=escape(value);
-		document.cookie=+name + "=" + c_value;
+		var c_value = escape(value);
+		document.cookie = name + "=" + c_value;
+	},
+	clearCombo : function(combobox, limit) {
+		for ( var i = combobox.length - 1; i >= limit; i--) {
+			combobox.remove(i);
+		}
+	},
+	comboAddOption : function(combobox, properties) {
+		var elOptNew = document.createElement('option');
+		elOptNew.text = properties.label;
+		elOptNew.value = properties.value;
+		try {
+			combobox.add(elOptNew, null);
+		} catch (ex) {
+			combobox.add(elOptNew);
+		}
 	},
 	colors : {
 		aqua : [ 0, 255, 255 ],
@@ -345,6 +395,7 @@ donovosoft.fn = donovosoft.prototype = {
 		yellow : [ 255, 255, 0 ],
 		transparent : [ 255, 255, 255 ]
 	},
+	
 	keys : {
 		backspace : 8,
 		tab : 9,
@@ -378,18 +429,92 @@ donovosoft.fn = donovosoft.prototype = {
 		f11 : 122,
 		f12 : 123
 	},
-	$ : function() {
+	addCell : function(row,properties,funcion){
+		var td = row.insertCell(-1);
+		for ( var key in properties) {
+			td[key] = properties[key];
+		}
+		funcion.call(null,td);
+	},
+	deleteRow : function(table,rowIndex,funcion){
+		var row = table.rows[rowIndex];
+		table.deleteRow(rowIndex);
+		if(funcion != null)
+			funcion.call(null,row);
+	},
+	addRow : function(table,fields,funcion){
+		var row = table.insertRow(table.rows.length);
+		$_.forEach(fields,function(field,index){
+			$_.addCell(row,field.properties,field.funcion);
+		});
+		funcion.call(null,row);
+	},
+	clearRows : function(table){
+		var x=table.rows.length;
+		while(table.rows.length > 0){
+			x--;
+			table.deleteRow(x);
+		}
+	},
+	extend : function(obj) {
+		var newobj = {};
+		newobj.prototype = obj;
+		newobj.constructor = newobj;
+		for ( var key in obj) {
+			newobj[key] = obj[key];
+		}
+		return newobj;
+	},
+	findElement : function(element) {
+		var tmp = null;
 		if (new String(element).contains("#")) {
 			var ele = new String(element).replace("#", '');
 			var nodes = (document.all) ? document.all : document
 					.getElementsByTagName("*");
 			for ( var x = 0; x < nodes.length; x++) {
-				if (nodes[x].className == ele)
-					return nodes[x];
+				if (nodes[x].className == ele) {
+					tmp = nodes[x];
+					break;
+				}
 			}
 		} else {
-			return document.getElementById(new String(element).toString());
+			tmp = document.getElementById(new String(element).toString());
 		}
+		var object = {};
+		if (tmp != null) {
+			object = $_.extend(tmp);
+			object.prototype.addClass = function(clasz){
+				$_.addClass(object,clasz);
+			};
+			object.prototype.hasClass = function(clasz){
+				return $_.hasClass(object,clasz);
+			};
+			object.prototype.removeClass = function(clasz){
+				$_.removeClass(object,clasz);
+			};
+			if (tmp.nodeName.toLowerCase() == "select") {
+				object.prototype.clear = function(limit) {
+					$_.clearCombo(tmp, limit);
+				};
+				object.prototype.addOption = function(properties) {
+					$_.comboAddOption(tmp, properties);
+				};
+			}else if(tmp.nodeName.toLowerCase() == "tbody" || tmp.nodeName.toLowerCase() == "thead" || tmp.nodeName.toLowerCase() =="table"){
+				object.prototype.clear = function(){
+					$_.clearRows(tmp);
+				};
+				object.prototype.addRow = function(fields,funcion){
+					$_.addRow(object,fields,funcion);
+				};
+				object.prototype.deleteRow = function(rowIndex,funcion){
+					$_.deleteRow(object,rowIndex,funcion);
+				};
+				object.prototype.deleteLastRow = function(funcion){
+					$_.deleteRow(object,(object.rows.length - 1),funcion);
+				};
+			}
+		}
+		return object.prototype;
 	},
 	ajax : function() {
 		// not implemented yet...
