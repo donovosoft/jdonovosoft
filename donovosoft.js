@@ -1,5 +1,5 @@
 /*!
- * doNovoSoft JavaScript Library v1.1.5 BETA
+ * doNovoSoft JavaScript Library v1.2.1
  * http://www.donovosoft.com/
  *
  * Copyright 2011, Mauricio Barrera
@@ -8,75 +8,19 @@
  * Date: Tue Oct 18 2011
  *
  */
-// / The following code needs the jQueryUI plugins
-var JAlert = function() {
-};
-var JQuestion = function() {
-};
-
-JAlert.prototype = {
-	title : "::..iFactmeX..::",
-	width : "400px",
-	mensaje : "<center>Aviso Generico</center>",
-	after : function() {
-	},
-	show : "blind",
-	hide : "explode",
-	resizable : false,
-	open : function() {
-		var div = document.getElementById("generic_alert");
-		div.innerHTML = "<center>" + this.mensaje + "</center>";
-		jQuery("#generic_alert").dialog("option", "title", this.title);
-		jQuery("#generic_alert").dialog("option", "resizable", this.resizable);
-		jQuery("#generic_alert").dialog("open");
-		jQuery("#generic_alert").bind("dialogclose", function() {
-			this.after.call(null, null);
-		});
-	},
-	get : function(what) {
-		return this[what];
-	},
-	set : function(option, what) {
-		this[what] = option;
-	}
-
-};
-
-JQuestion.prototype = {
-	title : "::..iFactmeX..::",
-	width : "300px",
-	question : "Are you insane??",
-	after : null,
-	buttons : new Array(),
-	show : "blind",
-	hide : "explode",
-	resizable : false,
-	open : function() {
-		var div = document.getElementById("generic_question");
-		div.innerHTML = "<center>" + this.question + "</center>";
-		jQuery("#generic_question").dialog("option", "title", this.title);
-		jQuery("#generic_question").dialog("option", "buttons", this.buttons);
-		jQuery("#generic_question").dialog("option", "show", this.show);
-		jQuery("#generic_question").dialog("option", "hide", this.hide);
-		jQuery("#generic_question").dialog("option", "resizable",
-				this.resizable);
-		jQuery("#generic_question").dialog("open");
-	},
-	close : function() {
-		jQuery("#generic_question").dialog("close");
-	}
-};
-// / Core
+/// Core
 var donovosoft = function() {
 };
 donovosoft.fn = donovosoft.prototype = {
-	version : "1.1.5 BETA",
+	version : "1.2.1",
+	globals : {},
 	browser : ({
 		// Some info about your browser
 		title : navigator.appName,
 		coockies : navigator.cookieEnabled,
 		supportHTML5 : function() {
-
+			if (this.supportGPS())
+				return true;
 		},
 		size : function() {
 			return "[" + window.screen.width + "," + window.screen.height + "]";
@@ -102,9 +46,68 @@ donovosoft.fn = donovosoft.prototype = {
 				}
 			}
 			return false;
+		},
+		online : function() {
+			return window.navigator.onLine;
+		},
+		url : function() {
+			return location.href;
+		},
+		setHomePage : function(url) {
+			if (url == null) {
+				url = this.url();
+			}
+			if (document.all) {
+				document.body.style.behavior = 'url(#default#homepage)';
+				document.body.setHomePage(url);
+			} else if (window.sidebar) {
+				if (window.netscape) {
+					try {
+						netscape.security.PrivilegeManager
+								.enablePrivilege("UniversalXPConnect");
+					} catch (e) {
+					}
+				}
+				var prefs = Components.classes['@mozilla.org/preferences-service;1']
+						.getService(Components.interfaces.nsIPrefBranch);
+				prefs.setCharPref('browser.startup.homepage', url);
+			}
 		}
-
 	}),
+	crono : function(params) {
+		var t = null;
+		var delay = params.delay;
+		var work = params.work;
+		var limit = params.limit;
+		var times = 0;
+		function timed() {
+			work.call(null);
+			times++;
+			if (limit > 0 && times == limit) {
+				clearTimeout(t);
+			} else {
+				t = setTimeout(function() {
+					timed();
+				}, delay * 1000);
+			}
+		}
+		var _crono = {
+			isRunning : function() {
+				if (t != null) {
+					return true;
+				} else {
+					return false;
+				}
+			},
+			start : function() {
+				timed();
+			},
+			stop : function() {
+				clearTimeout(t);
+			}
+		};
+		return _crono;
+	},
 	toJSON : function(cadena) {
 		if (typeof cadena == "string") {
 			var obj = null;
@@ -226,41 +229,46 @@ donovosoft.fn = donovosoft.prototype = {
 			var end = this.substring(position + 1, -1);
 			return cadena + newChar + end;
 		};
+		// //////Number extend//////
 		Number.prototype.round = function() {
 			return Math.round(this);
 		};
+		Number.prototype.toRad = function() {
+			return this * Math.PI / 180;
+		};
+		Number.prototype.toDeg = function() {
+			return this * 180 / Math.PI;
+		};
+		Number.prototype.toBrng = function() {
+			return (this.toDeg() + 360) % 360;
+		};
+		// ///// Date Object Extend /////////
 		Date.prototype.addDay = function(days) {
 			if (!isNaN(days)) {
 				this.setDate(this.getDate() + days);
 			}
 		};
+		// ////// Array Object Extend ////////////////
 		Array.prototype.size = function() {
 			return this.length;
 		};
-
+		this.globals["doAjaxStart"] = this.registerEvent('doAjaxStart');
+		this.globals["doAjaxFinish"] = this.registerEvent('doAjaxFinish');
 	},
-	addClass : function(element,clasz){
-		element.className += " "+clasz;
+	addClass : function(element, clasz) {
+		element.className += " " + clasz;
 	},
-	hasClass: function(element,clasz){
-		if(element.className.match(new RegExp('(\\s|^)' + clasz + '(\\s|$)')) != null){
+	hasClass : function(element, clasz) {
+		if (element.className.match(new RegExp('(\\s|^)' + clasz + '(\\s|$)')) != null) {
 			return true;
 		}
 		return false;
 	},
-	removeClass: function(element,clasz){
+	removeClass : function(element, clasz) {
 		if ($_.hasClass(element, clasz)) {
-            var reg = new RegExp('(\\s|^)' + clasz + '(\\s|$)');
-            element.className = element.className.replace(reg, ' ');
-        }
-	},
-	alert : function(message, funcion) {
-		var a = new JAlert();
-		a.resizable = false;
-		a.width = 400;
-		a["after"] = funcion;
-		a.mensaje = message.toString();
-		a.open();
+			var reg = new RegExp('(\\s|^)' + clasz + '(\\s|$)');
+			element.className = element.className.replace(reg, ' ');
+		}
 	},
 	$$_ : function(tag, filtro) {
 		var arreglo = new Array();
@@ -290,49 +298,52 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 		}
 	},
-	Cookie : function() {
-		var name;
-		var value;
-		var domain;
-	},
-	getCookies : function() {
-		if (typeof document.cookie != "undefined") {
-			var cookies = new Array();
-			if (new String(document.cookie).contains(';')) {
-				var items = document.cookie.split(";");
-				$_.forEach(items, function(item, index) {
-					var cookie = document.cookie.split("=");
-					this.cookie = {
-						name : cookie[0],
-						value : cookie[1]
-					};
-					cookies.push(this.cookie);
+	cookie : function(params) {
+		var name = params.name;
+		var value = params.value;
+		var domain = params.domain;
+		var _cookie = {
+			getCookies : function() {
+				if (typeof document.cookie != "undefined") {
+					var cookies = new Array();
+					if (new String(document.cookie).contains(';')) {
+						var items = document.cookie.split(";");
+						$_.forEach(items, function(item, index) {
+							var cookie = document.cookie.split("=");
+							this.cookie = {
+								name : cookie[0],
+								value : cookie[1]
+							};
+							cookies.push(this.cookie);
+						});
+					} else {
+						var galleta = document.cookie.split("=");
+						var mycookie = {
+							name : galleta[0],
+							value : galleta[1]
+						};
+						cookies.push(mycookie);
+					}
+					return cookies;
+				} else {
+					return null;
+				}
+			},
+			getCookie : function(name) {
+				$_.forEach(this.getCookies(), function(cookie, pos) {
+					if (name == cookie.name) {
+						return cookie;
+					}
 				});
-			} else {
-				var cookie = document.cookie.split("=");
-				this.cookie = {
-					name : cookie[0],
-					value : cookie[1]
-				};
-				cookies.push(this.cookie);
+			},
+			setCookie : function(name, value, exp) {
+				var exdate = new Date();
+				exdate.setDate(exdate.getDate() + exp);
+				var c_value = escape(value);
+				document.cookie = name + "=" + c_value;
 			}
-			return cookies;
-		} else {
-			return null;
-		}
-	},
-	getCookie : function(name) {
-		$_.forEach(this.getCookies(), function(cookie, pos) {
-			if (name == cookie.name) {
-				return cookie;
-			}
-		});
-	},
-	setCookie : function(name, value, exp) {
-		var exdate = new Date();
-		exdate.setDate(exdate.getDate() + exp);
-		var c_value = escape(value);
-		document.cookie = name + "=" + c_value;
+		};
+		return _cookie;
 	},
 	clearCombo : function(combobox, limit) {
 		for ( var i = combobox.length - 1; i >= limit; i--) {
@@ -395,7 +406,7 @@ donovosoft.fn = donovosoft.prototype = {
 		yellow : [ 255, 255, 0 ],
 		transparent : [ 255, 255, 255 ]
 	},
-	
+
 	keys : {
 		backspace : 8,
 		tab : 9,
@@ -427,34 +438,112 @@ donovosoft.fn = donovosoft.prototype = {
 		f9 : 120,
 		f10 : 121,
 		f11 : 122,
-		f12 : 123
+		f12 : 123,
+		zero : 48,
+		one : 49,
+		two : 50,
+		three : 51,
+		four : 52,
+		five : 53,
+		six : 54,
+		seven : 55,
+		eight : 56,
+		nine : 57
 	},
-	addCell : function(row,properties,funcion){
+	addCell : function(row, properties, funcion) {
 		var td = row.insertCell(-1);
 		for ( var key in properties) {
 			td[key] = properties[key];
 		}
-		funcion.call(null,td);
+		funcion.call(null, td);
 	},
-	deleteRow : function(table,rowIndex,funcion){
+	deleteRow : function(table, rowIndex, funcion, ref) {
 		var row = table.rows[rowIndex];
-		table.deleteRow(rowIndex);
-		if(funcion != null)
-			funcion.call(null,row);
-	},
-	addRow : function(table,fields,funcion){
-		var row = table.insertRow(table.rows.length);
-		$_.forEach(fields,function(field,index){
-			$_.addCell(row,field.properties,field.funcion);
-		});
-		funcion.call(null,row);
-	},
-	clearRows : function(table){
-		var x=table.rows.length;
-		while(table.rows.length > 0){
-			x--;
-			table.deleteRow(x);
+		if (ref != null) {
+			table.deleteRow.call(ref, rowIndex);
+		} else {
+			table.deleteRow(rowIndex);
 		}
+		if (funcion != null)
+			funcion.call(null, row);
+	},
+	addRow : function(table, fields, funcion) {
+		var row = table.insertRow(table.rows.length);
+		$_.forEach(fields, function(field, index) {
+			$_.addCell(row, field.properties, field.funcion);
+		});
+		funcion.call(null, row);
+	},
+	clearRows : function(table, ref) {
+		var x = table.rows.length;
+		while (x > 0) {
+			x--;
+			if (ref != null) {
+				table.deleteRow.call(ref, x);
+			} else {
+				table.deleteRow(x);
+			}
+		}
+	},
+	addEvent : function(name, element, funcion) {
+		if (!$_.browser.isIE()) {
+			element.addEventListener(name, funcion, false);
+		} else {
+			element.attachEvent('on' + name, funcion);
+		}
+	},
+	click : function(element, funcion) {
+		$_.addEvent('click', element, funcion);
+	},
+	addKeyEvent : function(element, keycode, funcion) {
+		if (element == null)
+			element = document;
+		$_.addEvent('keyup', element, function(event) {
+			var nav4 = window.Event ? true : false;
+			// NOTE: Backspace = 8, Enter = 13, '0' = 48, '9' = 57
+			var key = nav4 ? event.which : event.keyCode;
+			if (key == keycode) {
+				funcion.call(this);
+			}
+		});
+	},
+	enter : function(element, funcion) {
+		$_.addKeyEvent(element, $_.keys.enter, funcion);
+	},
+	addElement : function(tag, properties, parentNode, ref) {
+		if (parentNode == null) {
+			parentNode = document;
+		}
+		var element = document.createElement(tag);
+		for ( var key in properties) {
+			element[key] = properties[key];
+		}
+
+		if (ref != null && $_.browser.isIE() == false) {
+			parentNode.appendChild.call(ref, element);
+		} else {
+			parentNode.appendChild(element);
+		}
+	},
+	registerEvent : function(name) {
+		var event;
+		if (document.createEvent) {
+			event = document.createEvent('Events');
+			event.initEvent(name, true, true);
+		} else {
+			event = document.createEventObject();
+		}
+		return event;
+	},
+	trigger : function(event, params) {
+		if (document.createEvent) {
+			document.dispatchEvent(this.globals[event]);
+		} else {
+			document.fireEvent("on" + event.toLowerCase(), this.globals[event]);
+		}
+	},
+	onLoad : function(funcion) {
+		window.onload = funcion;
 	},
 	extend : function(obj) {
 		var newobj = {};
@@ -483,14 +572,20 @@ donovosoft.fn = donovosoft.prototype = {
 		var object = {};
 		if (tmp != null) {
 			object = $_.extend(tmp);
-			object.prototype.addClass = function(clasz){
-				$_.addClass(object,clasz);
+			object.prototype.addClass = function(clasz) {
+				$_.addClass(this, clasz);
 			};
-			object.prototype.hasClass = function(clasz){
-				return $_.hasClass(object,clasz);
+			object.prototype.hasClass = function(clasz) {
+				return $_.hasClass(this, clasz);
 			};
-			object.prototype.removeClass = function(clasz){
-				$_.removeClass(object,clasz);
+			object.prototype.removeClass = function(clasz) {
+				$_.removeClass(this, clasz);
+			};
+			object.prototype.addElement = function(tag, properties) {
+				$_.addElement(tag, properties, object, this);
+			};
+			object.prototype.click = function(funcion) {
+				$_.click(this, funcion);
 			};
 			if (tmp.nodeName.toLowerCase() == "select") {
 				object.prototype.clear = function(limit) {
@@ -499,25 +594,81 @@ donovosoft.fn = donovosoft.prototype = {
 				object.prototype.addOption = function(properties) {
 					$_.comboAddOption(tmp, properties);
 				};
-			}else if(tmp.nodeName.toLowerCase() == "tbody" || tmp.nodeName.toLowerCase() == "thead" || tmp.nodeName.toLowerCase() =="table"){
-				object.prototype.clear = function(){
-					$_.clearRows(tmp);
+			} else if (tmp.nodeName.toLowerCase() == "tbody"
+					|| tmp.nodeName.toLowerCase() == "thead"
+					|| tmp.nodeName.toLowerCase() == "table") {
+				object.prototype.clear = function() {
+					$_.clearRows(tmp, this);
 				};
-				object.prototype.addRow = function(fields,funcion){
-					$_.addRow(object,fields,funcion);
+				object.prototype.addRow = function(fields, funcion) {
+					$_.addRow(object, fields, funcion);
 				};
-				object.prototype.deleteRow = function(rowIndex,funcion){
-					$_.deleteRow(object,rowIndex,funcion);
+				object.prototype.deleteRow = function(rowIndex, funcion) {
+					$_.deleteRow(object, rowIndex, funcion, this);
 				};
-				object.prototype.deleteLastRow = function(funcion){
-					$_.deleteRow(object,(object.rows.length - 1),funcion);
+				object.prototype.deleteLastRow = function(funcion) {
+					$_.deleteRow(object, (object.rows.length - 1), funcion,
+							this);
 				};
 			}
 		}
 		return object.prototype;
 	},
-	ajax : function() {
-		// not implemented yet...
+	ajax : function(object) {
+		// Creando objeto ajax
+		var objectAjax = null;
+		var params = null;
+		// Para IE
+		try {
+			objetoAjax = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				objetoAjax = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (E) {
+				objetoAjax = false;
+			}
+		}
+		var contenido = 0;
+		// Para todos los demas
+		if (!objectAjax && typeof XMLHttpRequest != 'undefined') {
+			objectAjax = new XMLHttpRequest();
+		}
+		if (object.method.toLowerCase() == 'get') {
+			object.url = object.url + "?";
+			for ( var key in object.data) {
+				object.url += key + "=" + object.data[key] + "&";
+			}
+		} else {
+			params = new String("");
+			for ( var key in object.data) {
+				params += key + "=" + object.data[key] + "&";
+				contenido++;
+			}
+		}
+		objectAjax.open(object.method, object.url);
+		// definiendo un content type default
+		if (object.contentType != null) {
+			objectAjax.setRequestHeader('Content-Type', object.contentType);
+		} else {
+			objectAjax.setRequestHeader('Content-Type',
+					"application/x-www-form-urlencoded; charset=UTF-8");
+		}
+		if (contenido > 0) {
+			objectAjax.setRequestHeader("Content-length", contenido);
+			objectAjax.setRequestHeader("Connection", "close");
+		}
+		objectAjax.onreadystatechange = function() {
+			$_.trigger("doAjaxStart", null);
+			if (objectAjax.readyState == 4 && objectAjax.status == 200) {
+				if (objectAjax.responseText) {
+					$_.trigger("doAjaxFinish", null);
+					object.success.call(null, objectAjax.responseText);
+				} else {
+					$_.trigger("doAjaxFail", null);
+				}
+			}
+		};
+		objectAjax.send(params);
 	}
 
 };
