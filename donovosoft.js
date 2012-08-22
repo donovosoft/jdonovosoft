@@ -143,11 +143,20 @@ donovosoft.fn = donovosoft.prototype = {
 		glow : function(element, params) {
 			if (element != null) {
 				element.style[params.property] = params.lastColor;
-				$_.Effects.fadeOut(element,{speed : params.speed,
-						success : function() {
-							$_.Effects.fadeOut(element,{speed : params.speed,
-									success : function() {element.style[params.property] = params.firstColor;
-											$_.Effects
+				$_.Effects
+						.fadeOut(
+								element,
+								{
+									speed : params.speed,
+									success : function() {
+										$_.Effects
+												.fadeOut(
+														element,
+														{
+															speed : params.speed,
+															success : function() {
+																element.style[params.property] = params.firstColor;
+																$_.Effects
 																		.fadeOut(
 																				element,
 																				{
@@ -161,8 +170,9 @@ donovosoft.fn = donovosoft.prototype = {
 																											speed : params.speed,
 																											success : function() {
 																												element.style[params.property] = params.firstColor;
-																												if(params.success != null)
-																													params.success.call(null);
+																												if (params.success != null)
+																													params.success
+																															.call(null);
 																											}
 																										});
 																					}
@@ -220,9 +230,76 @@ donovosoft.fn = donovosoft.prototype = {
 				}, 33);
 			}
 		},
+		easing : function(minValue, maxValue, totalSteps, actualStep,powrr) {
+			var delta = maxValue - minValue;
+			var stepp = minValue
+					+ (Math.pow(((1 / totalSteps) * actualStep), powrr) * delta);
+			return Math.ceil(stepp);
+		},
 		explode : function(element, params) {
 			// Not implemented Yet
-		}
+		},
+		animateResize : function(element, params) {
+			var changeInterval = null;
+			if (changeInterval) {
+				window.clearInterval(changeInterval);
+			}
+			var actStep = 0;
+			var steps = params.steps;
+			var intervals = params.intervals;
+			var startWidth = params.startWidth;
+			var endWidth = params.endWidth;
+			var powr = params.powr;
+			var attrModify = params.attribute;			
+			// private function for easing
+			// set Interval
+			changeInterval = window.setInterval(function() {
+				element.setAttribute(attrModify,$_.Effects.easing(startWidth, endWidth, steps,
+						actStep, powr));
+				element.style[attrModify] = element.getAttribute(attrModify)+ "px";
+				actStep++;
+				if (actStep > steps)
+					window.clearInterval(changeInterval);
+			}, intervals);
+		},
+		expand : function(element, params) {
+			if (element != null) {
+				$_.Effects.animateResize(element, {
+					startWidth :  element.width,
+					endWidth : element.width * params.expand,
+					steps : params.speed,
+					powr : 0.5,
+					attribute : params.attribute,
+					intervals: 10
+				});
+			}
+		},
+		reduce : function(element,params){
+			if (element != null) {
+				$_.Effects.animateResize(element, {
+					startWidth : element.width,
+					endWidth :element.width / params.collapse,
+					steps : params.speed,
+					powr : 0.5,
+					attribute : params.attribute,
+					intervals: 10
+				});
+			}
+		},
+		dissapear : function(element,params){
+			if (element != null) {
+				$_.Effects.animateResize(element, {
+					startWidth :element[params.attribute] ,
+					endWidth : 0,
+					steps : params.speed,
+					powr : 0.5,
+					attribute : params.attribute,
+					intervals: 10
+				});
+			}
+		},
+		
+		
 	}),
 	toJSON : function(cadena) {
 		if (typeof cadena == "string") {
@@ -243,11 +320,10 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 		}
 	},
-	toggle : function(element){
-		if (element.style.display != 'none' ) {
+	toggle : function(element) {
+		if (element.style.display != 'none') {
 			element.style.display = 'none';
-		}
-		else {
+		} else {
 			element.style.display = '';
 		}
 	},
@@ -376,18 +452,30 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 			return Math.round(this * format) / format;
 		};
+		Number.prototype.factorial = function() {
+			if (this <= 1) {
+				return 1;
+			} else {
+				var fact = 1;
+				for ( var n = this; n > 1; n--) {
+					fact *= n;
+				}
+				return fact;
+			}
+
+		};
 		// ///// Date Object Extend /////////
 		Date.prototype.addDay = function(days) {
 			if (!isNaN(days)) {
 				this.setDate(this.getDate() + days);
 			}
 		};
-		Date.prototype.addMonth = function(months){
+		Date.prototype.addMonth = function(months) {
 			if (!isNaN(months)) {
 				this.setMonth(this.getMonth() + months);
 			}
 		};
-		Date.prototype.addYear = function(years){
+		Date.prototype.addYear = function(years) {
 			if (!isNaN(months)) {
 				this.setYear(this.getYear() + years);
 			}
@@ -405,20 +493,25 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 			return result;
 		};
-		Array.prototype.inArray = function(object){
+		Array.prototype.set = function(property, value) {
+			for ( var i = 0; i < this.length; i++) {
+				this[i][property] = value;
+			}
+		};
+		Array.prototype.inArray = function(object) {
 			var i;
-			for (i=0; i < this.length; i++) {
+			for (i = 0; i < this.length; i++) {
 				if (this[i] === value) {
 					return true;
 				}
 			}
 			return false;
-		},
-		Array.prototype.indexOf = function(s) {
-			for (var x=0;x<this.length;x++) if(this[x] == s) return x;	
+		}, Array.prototype.indexOf = function(s) {
+			for ( var x = 0; x < this.length; x++)
+				if (this[x] == s)
+					return x;
 			return -1;
-		},
-		this.globals["doAjaxStart"] = this.registerEvent('doAjaxStart');
+		}, this.globals["doAjaxStart"] = this.registerEvent('doAjaxStart');
 		this.globals["doAjaxFinish"] = this.registerEvent('doAjaxFinish');
 	},
 	addClass : function(element, clasz) {
@@ -667,6 +760,15 @@ donovosoft.fn = donovosoft.prototype = {
 			return;
 		}
 	},
+	rightClick : function(element, funcion) {
+		if (element == null)
+			element = document;
+		$_.addEvent('mousedown', element, function(event) {
+			if ((event.button == 2) || (event.button == 3)) {
+				funcion.call(this);
+			}
+		});
+	},
 	click : function(element, funcion) {
 		$_.addEvent('click', element, funcion);
 	},
@@ -766,8 +868,8 @@ donovosoft.fn = donovosoft.prototype = {
 			object.prototype.position = function() {
 				$_.findPosition(this);
 			};
-			object.prototype.glow = function(params){
-				$_.Effects.glow(object,params);
+			object.prototype.glow = function(params) {
+				$_.Effects.glow(object, params);
 			};
 			if (tmp.nodeName.toLowerCase() == "select") {
 				object.prototype.clear = function(limit) {
