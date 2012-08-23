@@ -265,8 +265,8 @@ donovosoft.fn = donovosoft.prototype = {
 		expand : function(element, params) {
 			if (element != null) {
 				$_.Effects.animateResize(element, {
-					startWidth :  element.width,
-					endWidth : element.width * params.expand,
+					startWidth :  params.start,
+					endWidth :  params.start * params.expand,
 					steps : params.speed,
 					powr : 0.5,
 					attribute : params.attribute,
@@ -297,9 +297,7 @@ donovosoft.fn = donovosoft.prototype = {
 					intervals: 10
 				});
 			}
-		},
-		
-		
+		}
 	}),
 	toJSON : function(cadena) {
 		if (typeof cadena == "string") {
@@ -327,6 +325,13 @@ donovosoft.fn = donovosoft.prototype = {
 			element.style.display = '';
 		}
 	},
+	toogleRead : function(element){
+		if (element.readOnly == true) {
+			element.readonly = false;
+		} else {
+			element.readonly = true;
+		}
+	},
 	init : function() {
 		// Extending native objects...
 		String.prototype.ltrim = function() {
@@ -339,7 +344,6 @@ donovosoft.fn = donovosoft.prototype = {
 				s = s.substring(j, i);
 			}
 			return s;
-
 		};
 		String.prototype.rtrim = function() {
 			var whitespace = new String(" \t\n\r");
@@ -480,6 +484,9 @@ donovosoft.fn = donovosoft.prototype = {
 				this.setYear(this.getYear() + years);
 			}
 		};
+		Date.prototype.now = function(){
+			return new Date().getTime();
+		};
 		// ////// Array Object Extend ////////////////
 		Array.prototype.size = function() {
 			return this.length;
@@ -506,12 +513,40 @@ donovosoft.fn = donovosoft.prototype = {
 				}
 			}
 			return false;
-		}, Array.prototype.indexOf = function(s) {
+		};
+		Array.prototype.indexOf = function(s) {
 			for ( var x = 0; x < this.length; x++)
 				if (this[x] == s)
 					return x;
 			return -1;
-		}, this.globals["doAjaxStart"] = this.registerEvent('doAjaxStart');
+		};
+		Array.prototype.merge = function(added){
+				var i = this.length,
+					j = 0;
+
+				if ( typeof added.length === "number" ) {
+					for ( var l = added.length; j < l; j++ ) {
+						this[ i++ ] = added[ j ];
+					}
+
+				} else {
+					while ( added[j] !== undefined ) {
+						this[ i++ ] = added[ j++ ];
+					}
+				}
+				return this.length;
+		};
+		Array.prototype.grep = function(callback){
+			var ret = new Array();
+			for(var i=0;i<this.length;i++){
+				if(callback.call(this,this[i],i)){
+					ret.push(this[i]);
+				}
+			}
+			return ret;
+		};
+		
+		this.globals["doAjaxStart"] = this.registerEvent('doAjaxStart');
 		this.globals["doAjaxFinish"] = this.registerEvent('doAjaxFinish');
 	},
 	addClass : function(element, clasz) {
@@ -528,6 +563,10 @@ donovosoft.fn = donovosoft.prototype = {
 			var reg = new RegExp('(\\s|^)' + clasz + '(\\s|$)');
 			element.className = element.className.replace(reg, ' ');
 		}
+	},
+	replaceClass: function(element,clasz,newclasz){
+		this.removeClass(element, clasz);
+		this.addClass(element, newclasz);
 	},
 	$$_ : function(tag, filtro) {
 		var arreglo = new Array();
@@ -665,7 +704,6 @@ donovosoft.fn = donovosoft.prototype = {
 		yellow : [ 255, 255, 0 ],
 		transparent : [ 255, 255, 255 ]
 	},
-
 	keys : {
 		backspace : 8,
 		tab : 9,
@@ -848,6 +886,32 @@ donovosoft.fn = donovosoft.prototype = {
 			tmp = document.getElementById(new String(element).toString());
 		}
 		var object = {};
+		//Fixing IE6/7 functions
+		function _getAttribute(element,attr){
+			var ret = null;
+			if(element.getAttribute){
+				ret = element.getAttribute(attr);
+				if(ret == null || ret == undefined){
+					ret = element[attr];
+				}
+			}else{
+				ret = element.getAttributeNode( attr );
+			}
+			return ret;
+		}
+		
+		function _setAttribute(element,key,value){
+			if(element.setAttribute){
+				element.setAttribute(key,value);
+			}else{
+				var ret = elem.getAttributeNode(key);
+				if ( !ret ) {
+					ret = document.createAttribute(key);
+					elem.setAttributeNode(ret);
+				}
+				ret.nodeValue = value+"";
+			}
+		}
 		if (tmp != null) {
 			object = $_.extend(tmp);
 			object.prototype.addClass = function(clasz) {
@@ -870,6 +934,12 @@ donovosoft.fn = donovosoft.prototype = {
 			};
 			object.prototype.glow = function(params) {
 				$_.Effects.glow(object, params);
+			};
+			object.prototype.getAttribute = function(attr){
+				return _getAttribute(tmp,attr);
+			};
+			object.prototype.setAttribute = function(key,value){
+				_setAttribute(tmp,key,value);
 			};
 			if (tmp.nodeName.toLowerCase() == "select") {
 				object.prototype.clear = function(limit) {
