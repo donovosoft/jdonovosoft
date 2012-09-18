@@ -294,13 +294,10 @@ donovosoft.fn = donovosoft.prototype = {
 			var endWidth = params.endWidth;
 			var powr = params.powr;
 			var attrModify = params.attribute;
-			// private function for easing
-			// set Interval
 			changeInterval = window.setInterval(function() {
-				element.setAttribute(attrModify, $_.Effects.easing(startWidth,
+				element.setAttribute(attrModify,$_.Effects.easing(startWidth,
 						endWidth, steps, actStep, powr));
-				element.style[attrModify] = element.getAttribute(attrModify)
-						+ "px";
+				element.style[attrModify] = element.getAttribute(attrModify)+ "px";
 				actStep++;
 				if (actStep > steps)
 					window.clearInterval(changeInterval);
@@ -368,6 +365,40 @@ donovosoft.fn = donovosoft.prototype = {
 			return null;
 		}
 	},
+	/***
+	 * Beta Drawing
+	 * @param params
+	 */
+	Drawing: (function(params){
+		var ctx = params.element.getContext("2d");
+		function init(){
+			var added = null;
+			var mousemove = function(event){
+				added = "yes";
+		    	ctx.lineTo(event.clientX,(event.clientY-50));
+		    	ctx.stroke();
+		    };
+			var listener = function(e){
+				ctx.beginPath();
+			    ctx.lineWidth="5";
+			    ctx.strokeStyle="green"; // Green path
+			    //ctx.moveTo(e.clientX,e.clientY);
+			    //ctx.lineTo(e.clientX,e.clientY);
+		    	//ctx.stroke();
+			    if(added == null){
+			    	$_.addEvent("mousemove",params.element,mousemove);
+			    }
+			};
+			$_.addEvent("mousedown",params.element,listener);
+			$_.addEvent("mouseup",params.element,function(event){
+					added = null;
+					ctx.stroke();
+			    	$_.removeEvent("mousemove",mousemove);
+			    	$_.removeEvent("mousedown",this);
+			});
+		}
+		init();
+	}),
 	/**
 	 * Loop for each element in the array and execute the function expressed the
 	 * first argument is the element in the array and the second argument is the
@@ -449,16 +480,25 @@ donovosoft.fn = donovosoft.prototype = {
 		/**
 		 * 
 		 */
-		String.prototype.match = function(exp){
-			var regex = new RegExp(exp);
-			return regex.test(this);
+		String.prototype.regex = function(exp){
+			var regex = null;
+			if(exp != null){
+			if(typeof(exp) == 'string')
+				regex = new RegExp(exp);
+			else{
+				regex = exp;
+				return regex.test(this);
+			}
+			}else{
+				return null;
+			}
 		};
 		/**
 		 * Return true if the String is representing an email address
 		 */
 		String.prototype.isEmail = function() {
 			var pattern = "^[\\w-_\.]*[\\w-_\.]\@[\\w]\.+[\\w]+[\\w]$";
-			return this.match(pattern);
+			return this.regex(pattern);
 		};
 		/**
 		 * Replace html characters from the string
@@ -743,7 +783,7 @@ donovosoft.fn = donovosoft.prototype = {
 	 * @returns {Boolean}
 	 */
 	hasClass : function(element, clasz) {
-		if (element.className.match(new RegExp('(\\s|^)' + clasz + '(\\s|$)')) != null) {
+		if (new String(element.className).regex('(\\s|^)' + clasz + '(\\s|$)') != null) {
 			return true;
 		}
 		return false;
@@ -813,7 +853,7 @@ donovosoft.fn = donovosoft.prototype = {
 						error = 1;
 					}
 				}else{
-					if(!(new String(item.value).match(item.getAttribute("match")))){
+					if(!(new String(item.value).regex(item.getAttribute("match")))){
 						error = 1;
 					}
 				}
@@ -844,11 +884,15 @@ donovosoft.fn = donovosoft.prototype = {
 			if (filtro == null) {
 				arreglo.push(nodes[x]);
 			} else {
+				var t;
 				for ( var key in filtro) {
 					if (nodes[x][key] != null && nodes[x][key] == filtro[key]) {
-						arreglo.push(nodes[x]);
-					}
+						t=true;
+					}else
+						t=false;
 				}
+				if(t)
+				arreglo.push(nodes[x]);
 			}
 		}
 		return arreglo;
@@ -1072,6 +1116,12 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 		}
 	},
+	/**
+	 * 
+	 * @param name
+	 * @param element
+	 * @param funcion
+	 */
 	addEvent : function(name, element, funcion) {
 		if (funcion != null && typeof funcion == 'function') {
 			if (element.addEventListener) {
@@ -1084,6 +1134,21 @@ donovosoft.fn = donovosoft.prototype = {
 				element['on' + name] = funcion;
 				return;
 			}
+		}
+	},
+	removeEvent: function(name,element,funcion){
+		if (element.removeEventListener) {
+			element.removeEventListener(name,element);
+			return;
+		} else if (element.dettachEvent) {
+			element.dettachEvent('on' + name, null);
+			return;
+		} else {
+			element['on' + name] = null;
+			return;
+		}
+		if (funcion != null && typeof funcion == 'function') {
+			funcion.call(null);
 		}
 	},
 	/**
@@ -1130,7 +1195,7 @@ donovosoft.fn = donovosoft.prototype = {
 		});
 	},
 	enter : function(element, funcion) {
-		if (funcion == null && typeof funcion == 'function') {
+		if (funcion != null && typeof funcion == 'function') {
 			if (element == null)
 				element = document;
 			$_.addKeyEvent(element, $_.keys.enter, funcion);
