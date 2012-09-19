@@ -186,14 +186,10 @@ donovosoft.fn = donovosoft.prototype = {
 		glow : function(element, params) {
 			if (element != null) {
 				element.style[params.property] = params.lastColor;
-				$_.Effects
-						.fadeOut(
-								element,
-								{
-									speed : params.speed,
-									success : function() {
-										$_.Effects
-												.fadeOut(
+				$_.Effects.fadeOut(
+						element,{speed : params.speed,
+							success : function() {
+								$_.Effects.fadeOut(
 														element,
 														{
 															speed : params.speed,
@@ -366,11 +362,25 @@ donovosoft.fn = donovosoft.prototype = {
 		}
 	},
 	/***
-	 * Beta Drawing
+	 * Beta Drawing ;) Inspired by Eve
+	 * 
+	 * how to use it, html5 support is needed (So...IE sucks!):
+	 * var draw = $_.Drawing({
+	 *		element: document.getElementById("canvas"),
+	 *		lineWidth: document.getElementById("size").value,
+	 *		lineColor: document.getElementById("color").value
+	 *	});
+	 *	draw.clear(); draw.save();
+	 *	Just an example:
+	 *	<canvas id="canvas" width="400" height="400" style="border:1px solid #c3c3c3;">
+	 *   </canvas>
+     *
 	 * @param params
 	 */
 	Drawing: (function(params){
 		var ctx = params.element.getContext("2d");
+		var lineColor = params.lineColor;
+		var lineWidth = params.lineWidth;
 		function init(){
 			var added = null;
 			var mousemove = function(event){
@@ -380,24 +390,47 @@ donovosoft.fn = donovosoft.prototype = {
 		    };
 			var listener = function(e){
 				ctx.beginPath();
-			    ctx.lineWidth="5";
-			    ctx.strokeStyle="green"; // Green path
-			    //ctx.moveTo(e.clientX,e.clientY);
-			    //ctx.lineTo(e.clientX,e.clientY);
-		    	//ctx.stroke();
+			    ctx.lineWidth=lineWidth;
+			    ctx.strokeStyle=lineColor;
 			    if(added == null){
 			    	$_.addEvent("mousemove",params.element,mousemove);
 			    }
+			    added = "yes";
 			};
 			$_.addEvent("mousedown",params.element,listener);
 			$_.addEvent("mouseup",params.element,function(event){
-					added = null;
-					ctx.stroke();
-			    	$_.removeEvent("mousemove",mousemove);
-			    	$_.removeEvent("mousedown",this);
-			});
+				added = null;
+				ctx.stroke();
+				ctx.closePath();
+		    	$_.removeEvent("mousemove",params.element,mousemove);
+	    	});
 		}
 		init();
+		
+		var draw = {
+			clear: function (funcion){
+				ctx.clearRect(0, 0, params.element.width, params.element.height);
+				if(funcion != null && typeof funcion == 'function'){
+					funcion.call();
+				}
+			},
+			save: function(format,funcion){
+				if(format.toLower()!='png' && format.toLower() != "jpg" && format.toLower() != 'gif')
+					return;
+				window.open(params.element.toDataURL("image/"+format+";base64"));
+			},
+			rotate: function(angle,funcion){
+				ctx.rotate(new Number(angle).toRad());
+				if(funcion != null && typeof funcion == 'function')
+					funcion.call(null);
+			},
+			loadPicture: function(src,properties,funcion){
+				var obj = ctx.drawImage(src,properties.posx,properties.posy,properties.swidth,properties.shieght);
+				if(funcion != null && typeof funcion == 'function')
+					funcion.call(obj,null);
+			}
+		};
+		return draw;
 	}),
 	/**
 	 * Loop for each element in the array and execute the function expressed the
@@ -1138,17 +1171,14 @@ donovosoft.fn = donovosoft.prototype = {
 	},
 	removeEvent: function(name,element,funcion){
 		if (element.removeEventListener) {
-			element.removeEventListener(name,element);
+			element.removeEventListener(name,funcion);
 			return;
 		} else if (element.dettachEvent) {
-			element.dettachEvent('on' + name, null);
+			element.dettachEvent('on' + name, funcion);
 			return;
 		} else {
 			element['on' + name] = null;
 			return;
-		}
-		if (funcion != null && typeof funcion == 'function') {
-			funcion.call(null);
 		}
 	},
 	/**
