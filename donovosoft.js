@@ -5,26 +5,47 @@
  * Copyright 2011, Mauricio Barrera
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * Date: Tue Oct 18 2011
- *
+ * 
+ *@autor Mauricio Barrera 
  */
 /// Core
 var donovosoft = function() {
 };
+/**
+ * The core functions
+ * @module Core
+ */
 donovosoft.fn = donovosoft.prototype = {
+		/**
+		 * Readonly version , just informative
+		 * @property version
+		 * @type {String}
+		 */
 	version : "1.2.1",
 	// reserved space for global vars
 	globals : {},
 	/**
 	 * Browser object extending more functions and info of your browser
+	 * @class Browser
 	 */
 	browser : ({
 		// Some info about your browser
 		title : navigator.appName,
 		cockies : navigator.cookieEnabled,
+		/**
+		 * True if the current browser supports HTML5 functions
+		 * @method supportHTML5
+		 * @returns {Boolean}
+		 */
 		supportHTML5 : function() {
 			if (this.supportGPS())
 				return true;
 		},
+		/**
+		 * Return the size of your current window
+		 * @method size
+		 * @returns {String}
+		 */
 		size : function() {
 			return "[" + window.screen.width + "," + window.screen.height + "]";
 		},
@@ -36,6 +57,11 @@ donovosoft.fn = donovosoft.prototype = {
 			} else
 				return false;
 		},
+		/**
+		 * Returns true if you browser supports canvas
+		 * @method supportCanvas
+		 * @returns {Boolean}
+		 */
 		supportCanvas : function() {
 			if (window.canvas != null) {
 				return true;
@@ -43,7 +69,11 @@ donovosoft.fn = donovosoft.prototype = {
 				return false;
 			}
 		},
-		// @return boolean
+		/**
+		 * Returns true if your browser is any version of IE
+		 * @method isIE
+		 * @returns {Boolean}
+		 */
 		isIE : function() {
 			var a = this.title.split(' ');
 			for ( var x = 0; x < a.length; x++) {
@@ -55,16 +85,16 @@ donovosoft.fn = donovosoft.prototype = {
 		},
 		/**
 		 * Return true if the browser detects an Internet Connection
-		 * 
-		 * @returns boolean
+		 * @method online
+		 * @returns {boolean}
 		 */
 		online : function() {
 			return window.navigator.onLine;
 		},
 		/**
 		 * Return the current location of the page
-		 * 
-		 * @returns
+		 * @method url
+		 * @returns {String}
 		 */
 		url : function() {
 			return location.href;
@@ -88,8 +118,8 @@ donovosoft.fn = donovosoft.prototype = {
 		},
 		/**
 		 * Set the especified url as home page on any browser
-		 * 
-		 * @param url
+		 * @method setHomePage
+		 * @param url {String}
 		 */
 		setHomePage : function(url) {
 			if (url == null) {
@@ -121,16 +151,17 @@ donovosoft.fn = donovosoft.prototype = {
 			return [ curtop ];
 		}
 	},
-	/*
+	/**
 	 * A cronometer params accepted: delay: the time in seconds to execute the
 	 * function work: the function to call
 	 * 
 	 * Return the object crono without activity use:
-	 * 
 	 * var cron = $_.crono({delay:10,work:function(){alert('Some')}});
 	 * cron.start() // To start the service cron.isRunning() // returns true if
 	 * the cron is actually running cron.stop() // stop the service
-	 * 
+	 * @class Crono
+	 * @param params {Object}
+	 * @returns {Object}
 	 */
 	crono : function(params) {
 		var t = null;
@@ -150,6 +181,11 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 		}
 		var _crono = {
+				/**
+				 * Returns true if the Crono instance is active or is actually running
+				 * @method isRunning
+				 * @returns {Boolean}
+				 */
 			isRunning : function() {
 				if (t != null) {
 					return true;
@@ -157,6 +193,10 @@ donovosoft.fn = donovosoft.prototype = {
 					return false;
 				}
 			},
+			/**
+			 * Start the activity of the Crono object
+			 * @method start
+			 */
 			start : function() {
 				timed();
 			},
@@ -170,9 +210,10 @@ donovosoft.fn = donovosoft.prototype = {
 	 * Function that set a property with the value specified in an array of
 	 * elements
 	 * 
-	 * @param property
-	 * @param value
-	 * @param elements
+	 * 
+	 * @param property {String}
+	 * @param value {String}
+	 * @param elements {Array}
 	 */
 	set : function(property, value, elements) {
 		for ( var x = 0; x < elements.length; x++) {
@@ -181,8 +222,28 @@ donovosoft.fn = donovosoft.prototype = {
 	},
 	/**
 	 * The Effects object
+	 * @class Effects
+	 * 
 	 */
 	Effects : ({
+		/**
+		 * Glow the element according to the params the properties accepted are:
+		 * 
+		 * property: The property of the object to glow
+		 * speed: The time of the event in milisecs
+		 * firstColor: set the init color of the element before glowing it
+		 * lastColor: the color of the element after the glow
+		 * success: function to execute when the event finish
+		 * 
+		 * Example:
+		 * 
+		 * var element = document.getElementById('element');
+		 * $_.Effects.glow(element,{speed:1000:success:function(){alert ('OK');}});
+		 * 
+		 * @method glow
+		 * @param element {Element}
+		 * @param params {Object}
+		 */
 		glow : function(element, params) {
 			if (element != null) {
 				element.style[params.property] = params.lastColor;
@@ -222,7 +283,15 @@ donovosoft.fn = donovosoft.prototype = {
 								});
 			}
 		},
+		/***
+		 * Make a fade to the element 
+		 * 
+		 * @method fadeOut
+		 * @param element {Element}
+		 * @param params {Object}
+		 */
 		fadeOut : function(element, params) {
+			//Private function to animate
 			function animateFade(lastTick) {
 				var curTick = new Date().getTime();
 				var elapsedTicks = curTick - lastTick;
@@ -269,15 +338,27 @@ donovosoft.fn = donovosoft.prototype = {
 				}, 33);
 			}
 		},
+		/**
+		 * 
+		 * @method easing
+		 * @param minValue {Number}
+		 * @param maxValue {Number
+		 * @param totalSteps {Number
+		 * @param actualStep {Number
+		 * @param powrr {Number}
+		 * @returns {Number}
+		 */
 		easing : function(minValue, maxValue, totalSteps, actualStep, powrr) {
 			var delta = maxValue - minValue;
 			var stepp = minValue
 					+ (Math.pow(((1 / totalSteps) * actualStep), powrr) * delta);
 			return Math.ceil(stepp);
 		},
-		explode : function(element, params) {
-			// Not implemented Yet
-		},
+		/**
+		 * @method animateResize
+		 * @param element {Element}
+		 * @param params {Object}
+		 */
 		animateResize : function(element, params) {
 			var changeInterval = null;
 			if (changeInterval) {
@@ -286,8 +367,8 @@ donovosoft.fn = donovosoft.prototype = {
 			var actStep = 0;
 			var steps = params.steps;
 			var intervals = params.intervals;
-			var startWidth = params.startWidth;
-			var endWidth = params.endWidth;
+			var startWidth = params.start;
+			var endWidth = params.end;
 			var powr = params.powr;
 			var attrModify = params.attribute;
 			changeInterval = window.setInterval(function() {
@@ -299,6 +380,11 @@ donovosoft.fn = donovosoft.prototype = {
 					window.clearInterval(changeInterval);
 			}, intervals);
 		},
+		/**
+		 * @method expand
+		 * @param element {Element}
+		 * @param params {Object}
+		 */
 		expand : function(element, params) {
 			if (element != null) {
 				$_.Effects.animateResize(element, {
@@ -311,6 +397,13 @@ donovosoft.fn = donovosoft.prototype = {
 				});
 			}
 		},
+		/**
+		 * 
+		 * @method reduce
+		 * @param element {Element}
+		 * @param params {Object}
+		 * 
+		 */
 		reduce : function(element, params) {
 			if (element != null) {
 				$_.Effects.animateResize(element, {
@@ -324,11 +417,12 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 		},
 		/**
-		 * Animate an object until it hides
+		 * Animate an object until it hides with this properties:
+		 * {attribute: 'width'/'height',speed:seconds}
 		 * 
-		 * @param element
-		 * @param params
-		 *            {attribute: 'width'/'hieght',speed:seconds}
+		 * @param element {Element}
+		 * @param params {Object}
+		 * @method dissapear
 		 */
 		dissapear : function(element, params) {
 			if (element != null) {
@@ -346,8 +440,9 @@ donovosoft.fn = donovosoft.prototype = {
 	/**
 	 * Try to create a JSON object from a string
 	 * 
-	 * @param cadena
-	 * @returns
+	 * @method toJSON
+	 * @param reference {String}
+	 * @returns {JSON Object}
 	 */
 	toJSON : function(cadena) {
 		if (typeof cadena == "string") {
@@ -370,12 +465,11 @@ donovosoft.fn = donovosoft.prototype = {
 	 *		lineWidth: document.getElementById("size").value,
 	 *		lineColor: document.getElementById("color").value
 	 *	});
-	 *	draw.clear(); draw.save();
 	 *	Just an example:
-	 *	<canvas id="canvas" width="400" height="400" style="border:1px solid #c3c3c3;">
-	 *   </canvas>
+	 *	<canvas id="canvas" width="400" height="400" style="border:1px solid #c3c3c3;"></canvas>
      *
-	 * @param params
+	 * @param params {Object}
+	 * @class Drawing
 	 */
 	Drawing: (function(params){
 		var ctx = params.element.getContext("2d");
@@ -408,16 +502,30 @@ donovosoft.fn = donovosoft.prototype = {
 		init();
 		
 		var draw = {
+				/**
+				 * @method clear
+				 * @param funcion {Function}
+				 */
 			clear: function (funcion){
 				ctx.clearRect(0, 0, params.element.width, params.element.height);
 				if(funcion != null && typeof funcion == 'function'){
 					funcion.call();
 				}
 			},
+			/**
+			 * 
+			 * @method save
+			 * @param format image format (PNG,JPG,GIF)
+			 * @param funcion {Function}
+			 */
 			save: function(format,funcion){
 				if(format.toLower()!='png' && format.toLower() != "jpg" && format.toLower() != 'gif')
 					return;
-				window.open(params.element.toDataURL("image/"+format+";base64"));
+				var image = params.element.toDataURL("image/"+format+";base64");
+				if(funcion != null && typeof funcion=='function'){
+					funcion.call(image,null);
+				}
+				//window.open(image);
 			},
 			rotate: function(angle,funcion){
 				ctx.rotate(new Number(angle).toRad());
