@@ -13,19 +13,22 @@ var donovosoft = function() {
 };
 /**
  * The core functions
+ * 
  * @module Core
  */
 donovosoft.fn = donovosoft.prototype = {
-		/**
-		 * Readonly version , just informative
-		 * @property version
-		 * @type {String}
-		 */
+	/**
+	 * Readonly version , just informative
+	 * 
+	 * @property version
+	 * @type {String}
+	 */
 	version : "1.2.1",
 	// reserved space for global vars
 	globals : {},
 	/**
 	 * Browser object extending more functions and info of your browser
+	 * 
 	 * @class Browser
 	 */
 	browser : ({
@@ -34,6 +37,7 @@ donovosoft.fn = donovosoft.prototype = {
 		cockies : navigator.cookieEnabled,
 		/**
 		 * True if the current browser supports HTML5 functions
+		 * 
 		 * @method supportHTML5
 		 * @returns {Boolean}
 		 */
@@ -43,6 +47,7 @@ donovosoft.fn = donovosoft.prototype = {
 		},
 		/**
 		 * Return the size of your current window
+		 * 
 		 * @method size
 		 * @returns {String}
 		 */
@@ -50,7 +55,7 @@ donovosoft.fn = donovosoft.prototype = {
 			return "[" + window.screen.width + "," + window.screen.height + "]";
 		},
 		// method to test if your browser supports location gps
-		// NOT YET TESTED
+		// NOT TESTED YET
 		supportGPS : function() {
 			if (window.navigator != null) {
 				return true;
@@ -59,6 +64,7 @@ donovosoft.fn = donovosoft.prototype = {
 		},
 		/**
 		 * Returns true if you browser supports canvas
+		 * 
 		 * @method supportCanvas
 		 * @returns {Boolean}
 		 */
@@ -71,6 +77,7 @@ donovosoft.fn = donovosoft.prototype = {
 		},
 		/**
 		 * Returns true if your browser is any version of IE
+		 * 
 		 * @method isIE
 		 * @returns {Boolean}
 		 */
@@ -85,6 +92,7 @@ donovosoft.fn = donovosoft.prototype = {
 		},
 		/**
 		 * Return true if the browser detects an Internet Connection
+		 * 
 		 * @method online
 		 * @returns {boolean}
 		 */
@@ -93,6 +101,7 @@ donovosoft.fn = donovosoft.prototype = {
 		},
 		/**
 		 * Return the current location of the page
+		 * 
 		 * @method url
 		 * @returns {String}
 		 */
@@ -118,8 +127,10 @@ donovosoft.fn = donovosoft.prototype = {
 		},
 		/**
 		 * Set the especified url as home page on any browser
+		 * 
 		 * @method setHomePage
-		 * @param url {String}
+		 * @param url
+		 *            {String}
 		 */
 		setHomePage : function(url) {
 			if (url == null) {
@@ -155,12 +166,14 @@ donovosoft.fn = donovosoft.prototype = {
 	 * A cronometer params accepted: delay: the time in seconds to execute the
 	 * function work: the function to call
 	 * 
-	 * Return the object crono without activity use:
-	 * var cron = $_.crono({delay:10,work:function(){alert('Some')}});
-	 * cron.start() // To start the service cron.isRunning() // returns true if
-	 * the cron is actually running cron.stop() // stop the service
+	 * Return the object crono without activity use: var cron =
+	 * $_.crono({delay:10,work:function(){alert('Some')}}); cron.start() // To
+	 * start the service cron.isRunning() // returns true if the cron is
+	 * actually running cron.stop() // stop the service
+	 * 
 	 * @class Crono
-	 * @param params {Object}
+	 * @param params
+	 *            {Object}
 	 * @returns {Object}
 	 */
 	crono : function(params) {
@@ -181,11 +194,13 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 		}
 		var _crono = {
-				/**
-				 * Returns true if the Crono instance is active or is actually running
-				 * @method isRunning
-				 * @returns {Boolean}
-				 */
+			/**
+			 * Returns true if the Crono instance is active or is actually
+			 * running
+			 * 
+			 * @method isRunning
+			 * @returns {Boolean}
+			 */
 			isRunning : function() {
 				if (t != null) {
 					return true;
@@ -195,6 +210,7 @@ donovosoft.fn = donovosoft.prototype = {
 			},
 			/**
 			 * Start the activity of the Crono object
+			 * 
 			 * @method start
 			 */
 			start : function() {
@@ -211,9 +227,12 @@ donovosoft.fn = donovosoft.prototype = {
 	 * elements
 	 * 
 	 * 
-	 * @param property {String}
-	 * @param value {String}
-	 * @param elements {Array}
+	 * @param property
+	 *            {String}
+	 * @param value
+	 *            {String}
+	 * @param elements
+	 *            {Array}
 	 */
 	set : function(property, value, elements) {
 		for ( var x = 0; x < elements.length; x++) {
@@ -222,6 +241,7 @@ donovosoft.fn = donovosoft.prototype = {
 	},
 	/**
 	 * The Effects object
+	 * 
 	 * @class Effects
 	 * 
 	 */
@@ -229,28 +249,34 @@ donovosoft.fn = donovosoft.prototype = {
 		/**
 		 * Glow the element according to the params the properties accepted are:
 		 * 
-		 * property: The property of the object to glow
-		 * speed: The time of the event in milisecs
-		 * firstColor: set the init color of the element before glowing it
-		 * lastColor: the color of the element after the glow
+		 * property: The property of the object to glow speed: The time of the
+		 * event in milisecs firstColor: set the init color of the element
+		 * before glowing it lastColor: the color of the element after the glow
 		 * success: function to execute when the event finish
 		 * 
 		 * Example:
 		 * 
 		 * var element = document.getElementById('element');
-		 * $_.Effects.glow(element,{speed:1000:success:function(){alert ('OK');}});
+		 * $_.Effects.glow(element,{speed:1000:success:function(){alert
+		 * ('OK');}});
 		 * 
 		 * @method glow
-		 * @param element {Element}
-		 * @param params {Object}
+		 * @param element
+		 *            {Element}
+		 * @param params
+		 *            {Object}
 		 */
 		glow : function(element, params) {
 			if (element != null) {
 				element.style[params.property] = params.lastColor;
-				$_.Effects.fadeOut(
-						element,{speed : params.speed,
-							success : function() {
-								$_.Effects.fadeOut(
+				$_.Effects
+						.fadeOut(
+								element,
+								{
+									speed : params.speed,
+									success : function() {
+										$_.Effects
+												.fadeOut(
 														element,
 														{
 															speed : params.speed,
@@ -283,15 +309,17 @@ donovosoft.fn = donovosoft.prototype = {
 								});
 			}
 		},
-		/***
-		 * Make a fade to the element 
+		/***********************************************************************
+		 * Make a fade to the element
 		 * 
 		 * @method fadeOut
-		 * @param element {Element}
-		 * @param params {Object}
+		 * @param element
+		 *            {Element}
+		 * @param params
+		 *            {Object}
 		 */
 		fadeOut : function(element, params) {
-			//Private function to animate
+			// Private function to animate
 			function animateFade(lastTick) {
 				var curTick = new Date().getTime();
 				var elapsedTicks = curTick - lastTick;
@@ -341,11 +369,16 @@ donovosoft.fn = donovosoft.prototype = {
 		/**
 		 * 
 		 * @method easing
-		 * @param minValue {Number}
-		 * @param maxValue {Number
-		 * @param totalSteps {Number
-		 * @param actualStep {Number
-		 * @param powrr {Number}
+		 * @param minValue
+		 *            {Number}
+		 * @param maxValue
+		 *            {Number
+		 * @param totalSteps
+		 *            {Number
+		 * @param actualStep
+		 *            {Number
+		 * @param powrr
+		 *            {Number}
 		 * @returns {Number}
 		 */
 		easing : function(minValue, maxValue, totalSteps, actualStep, powrr) {
@@ -356,8 +389,10 @@ donovosoft.fn = donovosoft.prototype = {
 		},
 		/**
 		 * @method animateResize
-		 * @param element {Element}
-		 * @param params {Object}
+		 * @param element
+		 *            {Element}
+		 * @param params
+		 *            {Object}
 		 */
 		animateResize : function(element, params) {
 			var changeInterval = null;
@@ -372,9 +407,10 @@ donovosoft.fn = donovosoft.prototype = {
 			var powr = params.powr;
 			var attrModify = params.attribute;
 			changeInterval = window.setInterval(function() {
-				element.setAttribute(attrModify,$_.Effects.easing(startWidth,
+				element.setAttribute(attrModify, $_.Effects.easing(startWidth,
 						endWidth, steps, actStep, powr));
-				element.style[attrModify] = element.getAttribute(attrModify)+ "px";
+				element.style[attrModify] = element.getAttribute(attrModify)
+						+ "px";
 				actStep++;
 				if (actStep > steps)
 					window.clearInterval(changeInterval);
@@ -382,14 +418,16 @@ donovosoft.fn = donovosoft.prototype = {
 		},
 		/**
 		 * @method expand
-		 * @param element {Element}
-		 * @param params {Object}
+		 * @param element
+		 *            {Element}
+		 * @param params
+		 *            {Object}
 		 */
 		expand : function(element, params) {
 			if (element != null) {
 				$_.Effects.animateResize(element, {
-					startWidth : params.start,
-					endWidth : params.start * params.expand,
+					start : params.start,
+					end : params.start * params.expand,
 					steps : params.speed,
 					powr : 0.5,
 					attribute : params.attribute,
@@ -400,8 +438,10 @@ donovosoft.fn = donovosoft.prototype = {
 		/**
 		 * 
 		 * @method reduce
-		 * @param element {Element}
-		 * @param params {Object}
+		 * @param element
+		 *            {Element}
+		 * @param params
+		 *            {Object}
 		 * 
 		 */
 		reduce : function(element, params) {
@@ -417,11 +457,13 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 		},
 		/**
-		 * Animate an object until it hides with this properties:
-		 * {attribute: 'width'/'height',speed:seconds}
+		 * Animate an object until it hides with this properties: {attribute:
+		 * 'width'/'height',speed:seconds}
 		 * 
-		 * @param element {Element}
-		 * @param params {Object}
+		 * @param element
+		 *            {Element}
+		 * @param params
+		 *            {Object}
 		 * @method dissapear
 		 */
 		dissapear : function(element, params) {
@@ -441,7 +483,8 @@ donovosoft.fn = donovosoft.prototype = {
 	 * Try to create a JSON object from a string
 	 * 
 	 * @method toJSON
-	 * @param reference {String}
+	 * @param reference
+	 *            {String}
 	 * @returns {JSON Object}
 	 */
 	toJSON : function(cadena) {
@@ -456,95 +499,151 @@ donovosoft.fn = donovosoft.prototype = {
 			return null;
 		}
 	},
-	/***
+	/***************************************************************************
 	 * Beta Drawing ;) Inspired by Eve
 	 * 
-	 * how to use it, html5 support is needed (So...IE sucks!):
-	 * var draw = $_.Drawing({
-	 *		element: document.getElementById("canvas"),
-	 *		lineWidth: document.getElementById("size").value,
-	 *		lineColor: document.getElementById("color").value
-	 *	});
-	 *	Just an example:
-	 *	<canvas id="canvas" width="400" height="400" style="border:1px solid #c3c3c3;"></canvas>
-     *
-	 * @param params {Object}
+	 * how to use it, html5 support is needed (So...IE sucks!): var draw =
+	 * $_.Drawing({ element: document.getElementById("canvas"), lineWidth: 10,
+	 * lineColor: #FFFFFFF });
+	 * 
+	 * @param params
+	 *            {Object}
 	 * @class Drawing
 	 */
-	Drawing: (function(params){
+	Drawing : (function(params) {
 		var ctx = params.element.getContext("2d");
 		var lineColor = params.lineColor;
 		var lineWidth = params.lineWidth;
-		function init(){
+		var angle = 0;
+		function position(e) {
+			var x;
+			var y;
+			if (e.pageX || e.pageY) {
+				x = e.pageX;
+				y = e.pageY;
+			} else {
+				x = e.clientX + document.body.scrollLeft
+						+ document.documentElement.scrollLeft;
+				y = e.clientY + document.body.scrollTop
+						+ document.documentElement.scrollTop;
+			}
+			// Convert to coordinates relative to the canvas
+			x -= params.element.offsetLeft;
+			y -= params.element.offsetTop;
+			return [ x, y ];
+		}
+		var mousemove = null;
+		var listener = null;
+		function init() {
 			var added = null;
-			var mousemove = function(event){
+			mousemove = function(event) {
+				event.preventDefault();
 				added = "yes";
-		    	ctx.lineTo(event.clientX,(event.clientY-50));
-		    	ctx.stroke();
-		    };
-			var listener = function(e){
-				ctx.beginPath();
-			    ctx.lineWidth=lineWidth;
-			    ctx.strokeStyle=lineColor;
-			    if(added == null){
-			    	$_.addEvent("mousemove",params.element,mousemove);
-			    }
-			    added = "yes";
+				var pos = position(event);
+				ctx.lineTo(pos[0], pos[1]);
+				ctx.stroke();
 			};
-			$_.addEvent("mousedown",params.element,listener);
-			$_.addEvent("mouseup",params.element,function(event){
+			listener = function(e) {
+				e.preventDefault();
+				ctx.beginPath();
+				ctx.lineWidth = lineWidth;
+				ctx.strokeStyle = lineColor;
+				if (added == null) {
+					$_.addEvent("mousemove", params.element, mousemove);
+				}
+				added = "yes";
+			};
+			$_.addEvent("mousedown", params.element, listener);
+			$_.addEvent("mouseup", params.element, function(event) {
+				event.preventDefault();
 				added = null;
 				ctx.stroke();
 				ctx.closePath();
-		    	$_.removeEvent("mousemove",params.element,mousemove);
-	    	});
+				$_.removeEvent("mousemove", params.element, mousemove);
+			});
 		}
 		init();
-		
-		var draw = {
-				/**
-				 * @method clear
-				 * @param funcion {Function}
-				 */
-			clear: function (funcion){
-				ctx.clearRect(0, 0, params.element.width, params.element.height);
-				if(funcion != null && typeof funcion == 'function'){
+
+		var _draw = {
+			/**
+			 * @method clear
+			 * @param funcion
+			 *            {Function}
+			 */
+			clear : function(funcion) {
+				ctx
+						.clearRect(0, 0, params.element.width,
+								params.element.height);
+				if (funcion != null && typeof funcion == 'function') {
 					funcion.call();
 				}
 			},
 			/**
 			 * 
 			 * @method save
-			 * @param format image format (PNG,JPG,GIF)
-			 * @param funcion {Function}
+			 * @param format
+			 *            image format (PNG,JPG,GIF)
+			 * @param funcion
+			 *            {Function}
 			 */
-			save: function(format,funcion){
-				if(format.toLower()!='png' && format.toLower() != "jpg" && format.toLower() != 'gif')
+			save : function(format, funcion) {
+				if (format.toLower() != 'png' && format.toLower() != "jpg"
+						&& format.toLower() != 'gif')
 					return;
-				var image = params.element.toDataURL("image/"+format+";base64");
-				if(funcion != null && typeof funcion=='function'){
-					funcion.call(image,null);
+				var image = params.element.toDataURL("image/" + format
+						+ ";base64");
+				if (funcion != null && typeof funcion == 'function') {
+					funcion.call(image, null);
 				}
-				//window.open(image);
+				// window.open(image);
 			},
-			rotate: function(angle,funcion){
+			getAngle : function(){
+				return angle;
+			},
+			/**
+			 * @method rotate
+			 * @param angle
+			 *            {Number}
+			 * @param funcion
+			 *            {Function}
+			 */
+			rotate : function(angle, funcion) {
+				//angle = new Number(angle);
+				
 				ctx.rotate(new Number(angle).toRad());
-				if(funcion != null && typeof funcion == 'function')
+				if (funcion != null && typeof funcion == 'function')
 					funcion.call(null);
 			},
-			loadPicture: function(src,properties,funcion){
-				var obj = ctx.drawImage(src,properties.posx,properties.posy,properties.swidth,properties.shieght);
-				if(funcion != null && typeof funcion == 'function')
-					funcion.call(obj,null);
+			/**
+			 * 
+			 * @param src
+			 *            {Element}
+			 * @param properties
+			 *            {Object}
+			 * @param funcion
+			 *            {Function}
+			 */
+			loadPicture : function(src, properties, funcion) {
+				var obj = ctx.drawImage(src, properties.posx, properties.posy,
+						properties.swidth, properties.shieght);
+				if (funcion != null && typeof funcion == 'function')
+					funcion.call(obj, null);
+			},
+
+			setProperties : function(param) {
+				lineWidth = param.lineWidth;
+				lineColor = param.lineColor;
 			}
+
 		};
-		return draw;
+		return _draw;
 	}),
 	/**
 	 * Loop for each element in the array and execute the function expressed the
 	 * first argument is the element in the array and the second argument is the
 	 * position of the element on the array.
 	 * 
+	 * @method
 	 * @param array
 	 * @param funcion
 	 */
@@ -559,6 +658,7 @@ donovosoft.fn = donovosoft.prototype = {
 	 * Toggle the element's visibility from hidden to visible or from visible to
 	 * hidden
 	 * 
+	 * @method
 	 * @param element
 	 */
 	toggle : function(element) {
@@ -572,6 +672,7 @@ donovosoft.fn = donovosoft.prototype = {
 	 * Toggle the element's access from readonly to normal or viceversa
 	 * 
 	 * @param element
+	 * @method
 	 */
 	toogleRead : function(element) {
 		if (element.readOnly == true) {
@@ -584,6 +685,9 @@ donovosoft.fn = donovosoft.prototype = {
 		// Extending native objects...
 		/**
 		 * Delete any space,tab or new line character on the left of the string
+		 * 
+		 * @method ltrim
+		 * @extends {String}
 		 */
 		String.prototype.ltrim = function() {
 			var whitespace = new String(" \t\n\r");
@@ -598,6 +702,8 @@ donovosoft.fn = donovosoft.prototype = {
 		};
 		/**
 		 * Delete any space,tab or new line character on the right of the string
+		 * 
+		 * @method rtrim
 		 */
 		String.prototype.rtrim = function() {
 			var whitespace = new String(" \t\n\r");
@@ -614,28 +720,33 @@ donovosoft.fn = donovosoft.prototype = {
 		/**
 		 * Delete any space,tab or new line character on the left and the right
 		 * of the string
+		 * 
+		 * @method trim
 		 */
 		String.prototype.trim = function() {
 			return this.ltrim().rtrim();
 		};
 		/**
 		 * 
+		 * @method regex
 		 */
-		String.prototype.regex = function(exp){
+		String.prototype.regex = function(exp) {
 			var regex = null;
-			if(exp != null){
-			if(typeof(exp) == 'string')
-				regex = new RegExp(exp);
-			else{
-				regex = exp;
-				return regex.test(this);
-			}
-			}else{
+			if (exp != null) {
+				if (typeof (exp) == 'string')
+					regex = new RegExp(exp);
+				else {
+					regex = exp;
+					return regex.test(this);
+				}
+			} else {
 				return null;
 			}
 		};
 		/**
 		 * Return true if the String is representing an email address
+		 * 
+		 * @method isEmail
 		 */
 		String.prototype.isEmail = function() {
 			var pattern = "^[\\w-_\.]*[\\w-_\.]\@[\\w]\.+[\\w]+[\\w]$";
@@ -643,6 +754,8 @@ donovosoft.fn = donovosoft.prototype = {
 		};
 		/**
 		 * Replace html characters from the string
+		 * 
+		 * @method escapeHTML
 		 */
 		String.prototype.escapeHTML = function() {
 			return this.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
@@ -650,6 +763,9 @@ donovosoft.fn = donovosoft.prototype = {
 		};
 		/**
 		 * Turn the string into an array of characters
+		 * 
+		 * @method toArray
+		 * @returns {Array}
 		 */
 		String.prototype.toArray = function() {
 			return this.split('');
@@ -657,7 +773,8 @@ donovosoft.fn = donovosoft.prototype = {
 		/**
 		 * Clean html content from the string
 		 * 
-		 * @returns
+		 * @method stripTags
+		 * @returns {String}
 		 */
 		String.prototype.stripTags = function() {
 			return this.replace(/<([^>]+)>/g, '');
@@ -665,7 +782,9 @@ donovosoft.fn = donovosoft.prototype = {
 		/**
 		 * Return true if the text exists on the string
 		 * 
+		 * @method contains
 		 * @param text
+		 *            {String}
 		 * @returns {Boolean}
 		 */
 		String.prototype.contains = function(text) {
@@ -677,6 +796,10 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 			return false;
 		};
+		/**
+		 * @method encode
+		 * @returns {String}
+		 */
 		String.prototype.encode = function() {
 			var string = this.replace(/\r\n/g, "\n");
 			var utftext = "";
@@ -698,6 +821,10 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 			return string;
 		};
+		/**
+		 * @method decode
+		 * @returns {String}
+		 */
 		String.prototype.decode = function() {
 			var string = "";
 			var i = 0;
@@ -723,6 +850,15 @@ donovosoft.fn = donovosoft.prototype = {
 			return string;
 
 		};
+		/**
+		 * 
+		 * @method replaceChar
+		 * @param position
+		 *            {String}
+		 * @param newChar
+		 *            {String}
+		 * @returns {String}
+		 */
 		String.prototype.replaceChar = function(position, newChar) {
 			var cadena = this.substring(0, position);
 			var end = this.substring(position + 1, -1);
@@ -731,6 +867,9 @@ donovosoft.fn = donovosoft.prototype = {
 		// //////Number extend//////
 		/**
 		 * Round the number according to the round from the Math Object
+		 * 
+		 * @method round
+		 * @returns {Number}
 		 */
 		Number.prototype.round = function() {
 			return Math.round(this);
@@ -738,6 +877,7 @@ donovosoft.fn = donovosoft.prototype = {
 		/**
 		 * Return the number expressed on Rad
 		 * 
+		 * @method toRad
 		 * @returns {Number}
 		 */
 		Number.prototype.toRad = function() {
@@ -746,6 +886,7 @@ donovosoft.fn = donovosoft.prototype = {
 		/**
 		 * Return the number expressed on Deg
 		 * 
+		 * @method toDeg
 		 * @returns {Number}
 		 */
 		Number.prototype.toDeg = function() {
@@ -754,6 +895,7 @@ donovosoft.fn = donovosoft.prototype = {
 		/**
 		 * Return the number expressed on Brng
 		 * 
+		 * @method toBrng
 		 * @returns {Number}
 		 */
 		Number.prototype.toBrng = function() {
@@ -762,6 +904,7 @@ donovosoft.fn = donovosoft.prototype = {
 		/**
 		 * Format the number to express the number with the decimals expressed
 		 * 
+		 * @method roundTo
 		 * @returns {Number}
 		 */
 		Number.prototype.roundTo = function(decimals) {
@@ -774,6 +917,7 @@ donovosoft.fn = donovosoft.prototype = {
 		/**
 		 * Return the factorial of the number
 		 * 
+		 * @method factorial
 		 * @returns {Number}
 		 */
 		Number.prototype.factorial = function() {
@@ -791,6 +935,10 @@ donovosoft.fn = donovosoft.prototype = {
 		// ///// Date Object Extend /////////
 		/**
 		 * Add days to the Date expressed in the argument
+		 * 
+		 * @method addDay
+		 * @param days
+		 *            {Number}
 		 */
 		Date.prototype.addDay = function(days) {
 			if (!isNaN(days)) {
@@ -829,6 +977,7 @@ donovosoft.fn = donovosoft.prototype = {
 		/**
 		 * Set the same value to every property on the elements of the array
 		 * 
+		 * @method set
 		 * @param property
 		 * @param value
 		 */
@@ -838,8 +987,21 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 		};
 		/**
+		 * @method get
+		 * @param property
+		 * @returns {Array}
+		 */
+		Array.prototype.get = function(property) {
+			var _array = new Array();
+			for ( var i = 0; i < this.length; i++) {
+				_array.push(this[i][property]);
+			}
+			return _array;
+		};
+		/**
 		 * Determines if an object is present on the array
 		 * 
+		 * @method inArray
 		 * @param object
 		 * @returns {Boolean}
 		 */
@@ -857,7 +1019,7 @@ donovosoft.fn = donovosoft.prototype = {
 		 * argument is not present
 		 * 
 		 * @param object
-		 * @returns {Boolean}
+		 * @returns {Number}
 		 */
 		Array.prototype.indexOf = function(s) {
 			for ( var x = 0; x < this.length; x++)
@@ -959,9 +1121,15 @@ donovosoft.fn = donovosoft.prototype = {
 	children : function(element) {
 		var array = new Array();
 		if (element.hasChildNodes()) {
-			var nodes = element.childNodes;
-			for ( var i = 0; i < nodes.length; i++) {
-				array.push($_.findElement(nodes.item(i)));
+			if (new String(element.tagName).toLowerCase() != 'form') {
+				var nodes = element.childNodes;
+				for ( var i = 0; i < nodes.length; i++) {
+					array.push($_.findElement(nodes.item(i)));
+				}
+			} else {
+				for ( var i = 0; i < element.elements.length; i++) {
+					array.push($_.findElement(element.elements[i]));
+				}
 			}
 		}
 		return array;
@@ -978,7 +1146,8 @@ donovosoft.fn = donovosoft.prototype = {
 				return true;
 			else
 				return false;
-		};
+		}
+		;
 		for ( var i = 0; i < form.elements.length; i++) {
 			var error = 0;
 			var item = $_.findElement(form.elements[i]);
@@ -988,19 +1157,29 @@ donovosoft.fn = donovosoft.prototype = {
 					error = 1;
 				}
 			}
-			if(item.getAttribute("match") != null && item.getAttribute("match") != ''){
-				if(item.getAttribute("match") == 'email'){
-					if(!(new String(item.value).isEmail())){
+			if (item.getAttribute("match") != null
+					&& item.getAttribute("match") != '') {
+				if (item.getAttribute("match") == 'email') {
+					if (!(new String(item.value).isEmail())) {
 						error = 1;
 					}
-				}else{
-					if(!(new String(item.value).regex(item.getAttribute("match")))){
+				} else {
+					if (!(new String(item.value).regex(item
+							.getAttribute("match")))) {
 						error = 1;
 					}
 				}
 			}
-			if(item.getAttribute("notEqual") != null && item.getAttribute("notEqual") != ''){
-				if(item.value == item.getAttribute("notEqual")){
+			if (item.getAttribute("notEqual") != null
+					&& item.getAttribute("notEqual") != '') {
+				if (item.value == item.getAttribute("notEqual")) {
+					error = 1;
+				}
+			}
+			if (item.getAttribute("equalElement") != null
+					&& item.getAttribute("equalElement") != '') {
+				if (item.value != $_.findElement(item
+						.getAttribute("equalElement")).value) {
 					error = 1;
 				}
 			}
@@ -1028,20 +1207,25 @@ donovosoft.fn = donovosoft.prototype = {
 				var t;
 				for ( var key in filtro) {
 					if (nodes[x][key] != null && nodes[x][key] == filtro[key]) {
-						t=true;
-					}else
-						t=false;
+						t = true;
+					} else
+						t = false;
 				}
-				if(t)
-				arreglo.push(nodes[x]);
+				if (t)
+					arreglo.push(nodes[x]);
 			}
 		}
 		return arreglo;
 	},
-	checkAll : function(bool) {
-		var checks = this.$$_("input", {
-			type : "checkbox"
-		});
+	checkAll : function(bool, filter) {
+		var checks = null;
+		if (filter == null)
+			checks = this.$$_("input", {
+				type : "checkbox"
+			});
+		else {
+			checks = this.$$_("input", filter);
+		}
 		for ( var x = 0; x < checks.length; x++) {
 			if (checks[x].checked != null) {
 				checks[x].checked = bool;
@@ -1277,9 +1461,9 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 		}
 	},
-	removeEvent: function(name,element,funcion){
+	removeEvent : function(name, element, funcion) {
 		if (element.removeEventListener) {
-			element.removeEventListener(name,funcion);
+			element.removeEventListener(name, funcion);
 			return;
 		} else if (element.dettachEvent) {
 			element.dettachEvent('on' + name, funcion);
@@ -1410,7 +1594,7 @@ donovosoft.fn = donovosoft.prototype = {
 			newobj.prototype = obj;
 			newobj.constructor = newobj;
 			for ( var key in obj) {
-					newobj[key] = obj[key];
+				newobj[key] = obj[key];
 			}
 			return newobj;
 		}
@@ -1464,14 +1648,12 @@ donovosoft.fn = donovosoft.prototype = {
 			object.prototype.glow = function(params) {
 				$_.Effects.glow(object, params);
 			};
-			/*if (tmp.nodeName.toLowerCase() != "form") {
-				object.prototype.getAttribute = function(attr) {
-					return _getAttribute(tmp, attr);
-				};
-				object.prototype.setAttribute = function(key, value) {
-					_setAttribute(tmp, key, value);
-				};
-			}*/
+			/*
+			 * if (tmp.nodeName.toLowerCase() != "form") {
+			 * object.prototype.getAttribute = function(attr) { return
+			 * _getAttribute(tmp, attr); }; object.prototype.setAttribute =
+			 * function(key, value) { _setAttribute(tmp, key, value); }; }
+			 */
 			if (tmp.nodeName.toLowerCase() == "select") {
 				object.prototype.clear = function(limit) {
 					$_.clearCombo(tmp, limit);
@@ -1495,10 +1677,10 @@ donovosoft.fn = donovosoft.prototype = {
 					$_.deleteRow(object, (object.rows.length - 1), funcion,
 							this);
 				};
-				object.prototype.rows = function(){
+				object.prototype.rows = function() {
 					return object.rows;
 				};
-				object.prototype.rowSize = function(){
+				object.prototype.rowSize = function() {
 					return object.rows.length;
 				};
 			}
@@ -1556,7 +1738,11 @@ donovosoft.fn = donovosoft.prototype = {
 			if (objectAjax.readyState == 4 && objectAjax.status == 200) {
 				if (objectAjax.responseText) {
 					$_.trigger("doAjaxFinish", null);
-					object.success.call(null, objectAjax.responseText);
+					var arg = objectAjax.responseText;
+					if (object.dataType != null && object.dataType == 'json') {
+						arg = $_.toJSON(objectAjax.responseText);
+					}
+					object.success.call(null, arg);
 				} else {
 					$_.trigger("doAjaxFail", null);
 				}
