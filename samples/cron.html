@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="js/donovosoft.js"></script>
+<script type="text/javascript">
+	///Execute function after page finishes load
+	$_.onLoad(function(){
+		var setTime = function(){
+			var date = new Date();
+			$_.findElement("hour").innerHTML = date.getHours();
+			$_.findElement("min").innerHTML = date.getMinutes()
+			$_.findElement("sec").innerHTML = date.getSeconds();
+		}
+		//Crono object refresh time afte 1 second
+		var cron = $_.crono({
+			delay:1,work:setTime
+		}); 
+		cron.start();
+	});
+</script>
+<title>Sample Cron (Clock)</title>
+</head>
+<body>
+<table>
+<tr><td><span id="hour" ></span>:</td><td><span id="min" ></span>:</td><td><span id="sec" ></span></td></tr>
+</table>
+</body>
+</html>

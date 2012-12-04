@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="js/donovosoft.js"></script>
+<script type="text/javascript">
+	///Execute function after page finishes load
+	$_.onLoad(function(){
+		 /* 
+		 * $_.Drawing({ element: document.getElementById("canvas"), lineWidth: 10,
+		 * lineColor: #FFFFFFF });
+		 * 
+		 */
+		 var draw = $_.Drawing({
+			 		element: document.getElementById("canvas"),
+			 		lineWidth: 1,
+			 		lineColor: '#FFFFFFF'
+		});
+		 //Add events to buttons
+		 $_.addEvent('click',document.getElementById("limpiar"),function(){
+			draw.clear(); 
+		 });
+		 $_.addEvent('click',document.getElementById('ajustar'),function(){
+			 draw.setProperties({
+			 		lineWidth: document.getElementById('width').value,
+			 		lineColor: document.getElementById('color').value
+			  });
+		 });
+		 $_.addEvent('click',document.getElementById('guardar'),function(){
+			draw.save('gif',function(image){
+				window.open(image);
+			}); 
+		 });
+		var start = 1;
+		 $_.addEvent('click',document.getElementById('stop'),function(){
+			 	if(start == 1){
+					draw.stop();
+					start = 0
+					document.getElementById('stop').value = "Continuar Trazo"
+			 	}else{
+			 		draw.continueDraw();
+			 		document.getElementById('stop').value = "Detener Trazo"
+			 		start = 1;
+			 	}
+		});
+		 $_.addEvent('blur',document.getElementById('imagen'),function (){
+			draw.loadPicture(document.getElementById('imagen').value,
+					{posx:0,posy:0,swidth:100,sheight:100},function(img){
+						alert(img);
+					}); 
+		 });
+	});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>Ancho de Linea: </td><td><input type="text" id="width" /></td></tr>
+<tr><td>Color: </td><td><input type="text" id="color" /></td></tr>
+<tr><td>Imagen: </td><td><input type="text" id="imagen" /></td></tr>
+<tr><td colspan="2">
+<input type="button" id="guardar" value="Guardar"/>&nbsp;<input type="button" id="limpiar" value="Limpiar" />&nbsp;
+<input type="button" id="ajustar" value="Ajustar"/>
+<input type="button" id="stop" value="Detener Trazo"/>
+</td></tr>
+</table>
+<canvas id="canvas" width="1000px" height="800px" style="border: red 1px solid">
+</canvas>
+</body>
+</html>
