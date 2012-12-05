@@ -23,7 +23,7 @@ donovosoft.fn = donovosoft.prototype = {
 	 * @property version
 	 * @type {String}
 	 */
-	version : "1.2.1",
+	version : "1.2.5",
 	// reserved space for global vars
 	globals : {},
 	/**
@@ -183,12 +183,12 @@ donovosoft.fn = donovosoft.prototype = {
 		var limit = params.limit;
 		var times = 0;
 		function timed() {
-			work.call(null);
 			times++;
 			if (limit > 0 && times == limit) {
 				clearTimeout(t);
 			} else {
 				t = setTimeout(function() {
+					work.call(null);
 					timed();
 				}, delay * 1000);
 			}
@@ -515,6 +515,8 @@ donovosoft.fn = donovosoft.prototype = {
 		var lineColor = params.lineColor;
 		var lineWidth = params.lineWidth;
 		var angle = 0;
+		var loadedImage = null;
+		
 		function position(e) {
 			var x;
 			var y;
@@ -534,6 +536,7 @@ donovosoft.fn = donovosoft.prototype = {
 		}
 		var mousemove = null;
 		var listener = null;
+		var mouseup = null;
 		function init() {
 			var added = null;
 			mousemove = function(event) {
@@ -553,14 +556,15 @@ donovosoft.fn = donovosoft.prototype = {
 				}
 				added = "yes";
 			};
-			$_.addEvent("mousedown", params.element, listener);
-			$_.addEvent("mouseup", params.element, function(event) {
+			mouseup = function(event) {
 				event.preventDefault();
 				added = null;
 				ctx.stroke();
 				ctx.closePath();
 				$_.removeEvent("mousemove", params.element, mousemove);
-			});
+			};
+			$_.addEvent("mousedown", params.element, listener);
+			$_.addEvent("mouseup", params.element,mouseup);
 		}
 		init();
 
@@ -571,12 +575,28 @@ donovosoft.fn = donovosoft.prototype = {
 			 *            {Function}
 			 */
 			clear : function(funcion) {
-				ctx
-						.clearRect(0, 0, params.element.width,
+				ctx.clearRect(0, 0, params.element.width,
 								params.element.height);
+				if(loadedImage != null){
+					ctx.drawImage(loadedImage, 0, 0,
+							loadedImage.width, loadedImage.height);
+				}
 				if (funcion != null && typeof funcion == 'function') {
 					funcion.call();
 				}
+			},
+			stop: function(funcion){
+				$_.removeEvent("mousemove", params.element, mousemove);
+				$_.removeEvent("mouseup",params.element,mouseup);
+				$_.removeEvent("mousedown", params.element, listener);
+				ctx = null;
+				if (funcion != null && typeof funcion == 'function') {
+					funcion.call();
+				}
+			},
+			continueDraw : function(funcion){
+				ctx = params.element.getContext("2d");
+				init();
 			},
 			/**
 			 * 
@@ -587,15 +607,14 @@ donovosoft.fn = donovosoft.prototype = {
 			 *            {Function}
 			 */
 			save : function(format, funcion) {
-				if (format.toLower() != 'png' && format.toLower() != "jpg"
-						&& format.toLower() != 'gif')
+				if (format.toLowerCase() != 'png' && format.toLowerCase() != "jpg"
+						&& format.toLowerCase() != 'gif')
 					return;
 				var image = params.element.toDataURL("image/" + format
 						+ ";base64");
 				if (funcion != null && typeof funcion == 'function') {
-					funcion.call(image, null);
+					funcion.call(null,image);
 				}
-				// window.open(image);
 			},
 			getAngle : function(){
 				return angle;
@@ -617,19 +636,27 @@ donovosoft.fn = donovosoft.prototype = {
 			/**
 			 * 
 			 * @param src
-			 *            {Element}
+			 *            {String}
 			 * @param properties
 			 *            {Object}
 			 * @param funcion
 			 *            {Function}
 			 */
 			loadPicture : function(src, properties, funcion) {
-				var obj = ctx.drawImage(src, properties.posx, properties.posy,
-						properties.swidth, properties.shieght);
-				if (funcion != null && typeof funcion == 'function')
-					funcion.call(obj, null);
+				var img=new Image();
+				img.onload=function(){
+					ctx.drawImage(img, properties.posx, properties.posy,
+							img.width, img.height);
+					if (funcion != null && typeof funcion == 'function'){
+						funcion.call(null,img);
+					}
+				};
+				loadedImage = img;
+				img.src = src;
 			},
-
+			getImages : function(){
+				return loadedImages;
+			},
 			setProperties : function(param) {
 				lineWidth = param.lineWidth;
 				lineColor = param.lineColor;
@@ -1008,7 +1035,7 @@ donovosoft.fn = donovosoft.prototype = {
 		Array.prototype.inArray = function(object) {
 			var i;
 			for (i = 0; i < this.length; i++) {
-				if (this[i] === value) {
+				if (this[i] === object) {
 					return true;
 				}
 			}
@@ -1017,7 +1044,6 @@ donovosoft.fn = donovosoft.prototype = {
 		/**
 		 * Returns the position of the argument on the array or -1 if the
 		 * argument is not present
-		 * 
 		 * @param object
 		 * @returns {Number}
 		 */
@@ -1028,6 +1054,19 @@ donovosoft.fn = donovosoft.prototype = {
 			return -1;
 		};
 		/**
+		 *  Delete 
+		 * 
+		 */
+		Array.prototype.remove = function(s){
+			var _arr = new Array();
+			for(var i=0;i<this.length;i++){
+				if(this[i] != s){
+					_arr.push(this[i]);
+				}
+			}
+			return _arr;
+		};
+		/**
 		 * Join an array to the current array, it joins the new array at the end
 		 * of the current array
 		 * 
@@ -1036,12 +1075,10 @@ donovosoft.fn = donovosoft.prototype = {
 		 */
 		Array.prototype.merge = function(added) {
 			var i = this.length, j = 0;
-
 			if (typeof added.length === "number") {
 				for ( var l = added.length; j < l; j++) {
 					this[i++] = added[j];
 				}
-
 			} else {
 				while (added[j] !== undefined) {
 					this[i++] = added[j++];
@@ -1065,7 +1102,6 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 			return ret;
 		};
-
 		this.globals["doAjaxStart"] = this.registerEvent('doAjaxStart');
 		this.globals["doAjaxFinish"] = this.registerEvent('doAjaxFinish');
 	},
@@ -1232,23 +1268,20 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 		}
 	},
-	cookie : function(params) {
-		var name = params.name;
-		var value = params.value;
-		var domain = params.domain;
+	cookie : function() {
 		var _cookie = {
-			getCookies : function() {
+			gets : function() {
 				if (typeof document.cookie != "undefined") {
 					var cookies = new Array();
 					if (new String(document.cookie).contains(';')) {
 						var items = document.cookie.split(";");
 						$_.forEach(items, function(item, index) {
-							var cookie = document.cookie.split("=");
-							this.cookie = {
+							var cookie = item.split("=");
+							var mycookie = {
 								name : cookie[0],
 								value : cookie[1]
 							};
-							cookies.push(this.cookie);
+							cookies.push(mycookie);
 						});
 					} else {
 						var galleta = document.cookie.split("=");
@@ -1263,18 +1296,23 @@ donovosoft.fn = donovosoft.prototype = {
 					return null;
 				}
 			},
-			getCookie : function(name) {
-				$_.forEach(this.getCookies(), function(cookie, pos) {
-					if (name == cookie.name) {
-						return cookie;
+			get : function(name) {
+				var coo = null;
+				$_.forEach(this.gets(), function(cookie, pos) {
+					if (name == cookie.name.trim()) {
+						coo = cookie;
 					}
 				});
+				return coo;
 			},
-			setCookie : function(name, value, exp) {
+			set : function(name, value, exp) {
 				var exdate = new Date();
 				exdate.setDate(exdate.getDate() + exp);
-				var c_value = escape(value);
+				var c_value = value.trim();
 				document.cookie = name + "=" + c_value;
+			},
+			unset : function(name){
+				this.set(name,'',-1);
 			}
 		};
 		return _cookie;
@@ -1509,7 +1547,6 @@ donovosoft.fn = donovosoft.prototype = {
 			element = document;
 		$_.addEvent('keyup', element, function(event) {
 			var nav4 = window.Event ? true : false;
-			// NOTE: Backspace = 8, Enter = 13, '0' = 48, '9' = 57
 			var key = nav4 ? event.which : event.keyCode;
 			if (key == keycode) {
 				funcion.call(this);
@@ -1552,7 +1589,8 @@ donovosoft.fn = donovosoft.prototype = {
 		if (document.createEvent) {
 			document.dispatchEvent(this.globals[event]);
 		} else {
-			document.fireEvent("on" + event.toLowerCase(), this.globals[event]);
+			this.globals[event].call(null);
+			//document.fireEvent(event.toLowerCase());
 		}
 	},
 	/**
