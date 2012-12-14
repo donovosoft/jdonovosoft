@@ -1,5 +1,5 @@
 /*!
- * doNovoSoft JavaScript Library v1.2.1
+ * doNovoSoft JavaScript Library v1.2.4
  * http://www.donovosoft.com/
  *
  * Copyright 2011, Mauricio Barrera
@@ -516,7 +516,7 @@ donovosoft.fn = donovosoft.prototype = {
 		var lineWidth = params.lineWidth;
 		var angle = 0;
 		var loadedImage = null;
-		
+
 		function position(e) {
 			var x;
 			var y;
@@ -564,7 +564,7 @@ donovosoft.fn = donovosoft.prototype = {
 				$_.removeEvent("mousemove", params.element, mousemove);
 			};
 			$_.addEvent("mousedown", params.element, listener);
-			$_.addEvent("mouseup", params.element,mouseup);
+			$_.addEvent("mouseup", params.element, mouseup);
 		}
 		init();
 
@@ -575,26 +575,27 @@ donovosoft.fn = donovosoft.prototype = {
 			 *            {Function}
 			 */
 			clear : function(funcion) {
-				ctx.clearRect(0, 0, params.element.width,
+				ctx
+						.clearRect(0, 0, params.element.width,
 								params.element.height);
-				if(loadedImage != null){
-					ctx.drawImage(loadedImage, 0, 0,
-							loadedImage.width, loadedImage.height);
+				if (loadedImage != null) {
+					ctx.drawImage(loadedImage, 0, 0, loadedImage.width,
+							loadedImage.height);
 				}
 				if (funcion != null && typeof funcion == 'function') {
 					funcion.call();
 				}
 			},
-			stop: function(funcion){
+			stop : function(funcion) {
 				$_.removeEvent("mousemove", params.element, mousemove);
-				$_.removeEvent("mouseup",params.element,mouseup);
+				$_.removeEvent("mouseup", params.element, mouseup);
 				$_.removeEvent("mousedown", params.element, listener);
 				ctx = null;
 				if (funcion != null && typeof funcion == 'function') {
 					funcion.call();
 				}
 			},
-			continueDraw : function(funcion){
+			continueDraw : function(funcion) {
 				ctx = params.element.getContext("2d");
 				init();
 			},
@@ -607,16 +608,17 @@ donovosoft.fn = donovosoft.prototype = {
 			 *            {Function}
 			 */
 			save : function(format, funcion) {
-				if (format.toLowerCase() != 'png' && format.toLowerCase() != "jpg"
+				if (format.toLowerCase() != 'png'
+						&& format.toLowerCase() != "jpg"
 						&& format.toLowerCase() != 'gif')
 					return;
 				var image = params.element.toDataURL("image/" + format
 						+ ";base64");
 				if (funcion != null && typeof funcion == 'function') {
-					funcion.call(null,image);
+					funcion.call(null, image);
 				}
 			},
-			getAngle : function(){
+			getAngle : function() {
 				return angle;
 			},
 			/**
@@ -627,8 +629,8 @@ donovosoft.fn = donovosoft.prototype = {
 			 *            {Function}
 			 */
 			rotate : function(angle, funcion) {
-				//angle = new Number(angle);
-				
+				// angle = new Number(angle);
+
 				ctx.rotate(new Number(angle).toRad());
 				if (funcion != null && typeof funcion == 'function')
 					funcion.call(null);
@@ -643,18 +645,18 @@ donovosoft.fn = donovosoft.prototype = {
 			 *            {Function}
 			 */
 			loadPicture : function(src, properties, funcion) {
-				var img=new Image();
-				img.onload=function(){
+				var img = new Image();
+				img.onload = function() {
 					ctx.drawImage(img, properties.posx, properties.posy,
 							img.width, img.height);
-					if (funcion != null && typeof funcion == 'function'){
-						funcion.call(null,img);
+					if (funcion != null && typeof funcion == 'function') {
+						funcion.call(null, img);
 					}
 				};
 				loadedImage = img;
 				img.src = src;
 			},
-			getImages : function(){
+			getImages : function() {
 				return loadedImages;
 			},
 			setProperties : function(param) {
@@ -678,6 +680,19 @@ donovosoft.fn = donovosoft.prototype = {
 		if (array.length != null && typeof funcion == 'function') {
 			for ( var x = 0; x < array.length; x++) {
 				funcion.call(null, array[x], x);
+			}
+		}
+	},
+	/**
+	 * Repeat 'funcion' n times, receive the current index and the number of
+	 * times to be executed on the function args
+	 * @param times {Number}
+	 * @param funcion {Function}
+	 */
+	repeat : function(n, funcion) {
+		if (n > 0) {
+			for ( var i = 0; i < n; i++) {
+				funcion.call(null,i,n);
 			}
 		}
 	},
@@ -745,6 +760,22 @@ donovosoft.fn = donovosoft.prototype = {
 
 		};
 		/**
+		 * Return the Capitalized version of the String, the first letter to Upper Case
+		 * and the rest of the string to lowercase,always
+		 * Example:
+		 * 
+		 * HELLO  = Hello
+		 * wORLD = World
+		 * 
+		 * @returns {String}
+		 */
+		String.prototype.capitalize = function(){
+			var s = this.toLowerCase();
+			var c = s.charAt(0).toUpperCase();
+			return c+s.substring(1, s.length);
+		};
+		
+		/**
 		 * Delete any space,tab or new line character on the left and the right
 		 * of the string
 		 * 
@@ -780,7 +811,7 @@ donovosoft.fn = donovosoft.prototype = {
 			return this.regex(pattern);
 		};
 		/**
-		 * Replace html characters from the string
+		 * Return the String with Replaced html characters from it
 		 * 
 		 * @method escapeHTML
 		 */
@@ -788,6 +819,15 @@ donovosoft.fn = donovosoft.prototype = {
 			return this.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 					/>/g, '&gt;');
 		};
+		/**
+		 * Replace html characters from the string
+		 * 
+		 * @method escapeHTML
+		 */
+		String.prototype.escapeHTML$ = function() {
+			this.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+		};
+		
 		/**
 		 * Turn the string into an array of characters
 		 * 
@@ -798,13 +838,22 @@ donovosoft.fn = donovosoft.prototype = {
 			return this.split('');
 		};
 		/**
-		 * Clean html content from the string
+		 * Clean html content from the string and return it
 		 * 
 		 * @method stripTags
 		 * @returns {String}
 		 */
 		String.prototype.stripTags = function() {
 			return this.replace(/<([^>]+)>/g, '');
+		};
+		/**
+		 * Clean html content from the string
+		 * 
+		 * @method stripTags
+		 * @returns {String}
+		 */
+		String.prototype.stripTags$ = function() {
+			this.replace(/<([^>]+)>/g, '');
 		};
 		/**
 		 * Return true if the text exists on the string
@@ -891,6 +940,21 @@ donovosoft.fn = donovosoft.prototype = {
 			var end = this.substring(position + 1, -1);
 			return cadena + newChar + end;
 		};
+		/**
+		 * @method reverse
+		 * @param
+		 * @returns {String}
+		 */
+		String.prototype.reverse = function() {
+			var cadena = "";
+			for ( var i = this.length; i > 0; i--) {
+				cadena += this.charAt(i);
+			}
+			return cadena;
+		};
+		String.prototype.lines = function() {
+			return this.split('\\r');
+		};
 		// //////Number extend//////
 		/**
 		 * Round the number according to the round from the Math Object
@@ -957,8 +1021,14 @@ donovosoft.fn = donovosoft.prototype = {
 				}
 				return fact;
 			}
-
 		};
+		Number.prototype.abs = function(){
+			if(this < 0){
+				return this*-1;
+			}
+			return this;
+		};
+		
 		// ///// Date Object Extend /////////
 		/**
 		 * Add days to the Date expressed in the argument
@@ -1001,6 +1071,7 @@ donovosoft.fn = donovosoft.prototype = {
 		Array.prototype.size = function() {
 			return this.length;
 		};
+		
 		/**
 		 * Set the same value to every property on the elements of the array
 		 * 
@@ -1044,6 +1115,7 @@ donovosoft.fn = donovosoft.prototype = {
 		/**
 		 * Returns the position of the argument on the array or -1 if the
 		 * argument is not present
+		 * 
 		 * @param object
 		 * @returns {Number}
 		 */
@@ -1054,14 +1126,90 @@ donovosoft.fn = donovosoft.prototype = {
 			return -1;
 		};
 		/**
-		 *  Delete 
+		 * Delete
 		 * 
 		 */
-		Array.prototype.remove = function(s){
+		Array.prototype.remove = function(s) {
+			var _arr = new Array();
+			for ( var i = 0; i < this.length; i++) {
+				if (this[i] != s) {
+					_arr.push(this[i]);
+				}
+			}
+			return _arr;
+		};
+		/**
+		 * 
+		 * @returns {Array}
+		 */
+		Array.prototype.compact = function(){
 			var _arr = new Array();
 			for(var i=0;i<this.length;i++){
-				if(this[i] != s){
+				if(this[i] != null){
 					_arr.push(this[i]);
+				}
+			}
+			return _arr;
+		};
+		/**
+		 * Returns the number of non-null elements in array
+		 * @returns {Number}
+		 */
+		Array.prototype.items = function(){
+			return this.compact().length;
+		};
+		/**
+		 * Returns the first element of the Array, alias for Array[0]
+		 * @returns {Object}
+		 */
+		Array.prototype.first = function(){
+			return this[0];
+		};
+		/**
+		 * Returns the last element of the array, alias for Array[Array.length - 1]
+		 * @returns {Object}
+		 */
+		Array.prototype.last = function(){
+			return this[this.length-1];
+		};
+		/**
+		 * Returns a new array that is a one-dimensional flattening of 
+		 * this array (recursively). That is, for every element that is an array, 
+		 * extract its elements into the new array.
+		 * @returns {Array}
+		 */
+		Array.prototype.flatten = function(){
+			var _arr = new Array();
+			for(var i = 0;i<this.length;i++){
+				if(typeof(this[i]) == 'Array' && this[i] != null){
+					for(var j=0;j<this[i].length;j++){
+						_arr.push(this[i][j]);
+					}
+				}else{
+					_arr.push(this[i]);
+				}
+			}
+			return _arr;
+		};
+		/**
+		 * Returns a new array consisting of elements at the given indices. 
+		 * May insert null for indices out of range.
+		 * @param arr {Array#Number}
+		 * @returns {Array}
+		 */
+		Array.prototype.indexes = function(arr){
+			var _arr = new Array();
+			if(typeof(arr) == 'Array' && arr != null){
+				for(var i=0;i<arr.length;i++){
+					if(typeof(arr[i]) == 'Number'){
+						if(arr[i] != null){
+							_arr.push(this.at(arr[i]));
+						}else{
+							_arr.push(null);
+						}
+					}else{
+						_arr.push(null);
+					}
 				}
 			}
 			return _arr;
@@ -1101,6 +1249,10 @@ donovosoft.fn = donovosoft.prototype = {
 				}
 			}
 			return ret;
+		};
+		
+		Array.prototype.at = function(pos){
+			return this[pos];
 		};
 		this.globals["doAjaxStart"] = this.registerEvent('doAjaxStart');
 		this.globals["doAjaxFinish"] = this.registerEvent('doAjaxFinish');
@@ -1311,8 +1463,8 @@ donovosoft.fn = donovosoft.prototype = {
 				var c_value = value.trim();
 				document.cookie = name + "=" + c_value;
 			},
-			unset : function(name){
-				this.set(name,'',-1);
+			unset : function(name) {
+				this.set(name, '', -1);
 			}
 		};
 		return _cookie;
@@ -1590,9 +1742,33 @@ donovosoft.fn = donovosoft.prototype = {
 			document.dispatchEvent(this.globals[event]);
 		} else {
 			this.globals[event].call(null);
-			//document.fireEvent(event.toLowerCase());
+			// document.fireEvent(event.toLowerCase());
 		}
 	},
+	geo : ({
+		azimuth : 6371,
+		distance : function(lat1, lon1, lat2, lon2) {
+			var dLat = (lat2 - lat1).toRad();
+			var dLon = (lon2 - lon1).toRad();
+			var lat1 = lat1.toRad();
+			var lat2 = lat2.toRad();
+			var a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+					+ Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1)
+					* Math.cos(lat2);
+			return geo.azimuth
+					* (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+		},
+		spherical : function(lat1, lon1, lat2, lon2) {
+			return Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1)
+					* Math.cos(lat2) * Math.cos(lon2 - lon1))
+					* geo.azimuth;
+		},
+		equirectangular : function(lat1, lat2, lat1, lat2) {
+			var x = (lon2 - lon1) * Math.cos((lat1 + lat2) / 2);
+			var y = (lat2 - lat1);
+			return Math.sqrt(x * x + y * y) * this.azimuth;
+		}
+	}),
 	/**
 	 * Execute a function when the browser is load the entire page
 	 * 
@@ -1629,10 +1805,14 @@ donovosoft.fn = donovosoft.prototype = {
 		var object = {};
 		function extend(obj) {
 			var newobj = {};
-			newobj.prototype = obj;
-			newobj.constructor = newobj;
-			for ( var key in obj) {
-				newobj[key] = obj[key];
+			try {
+				newobj.prototype = obj;
+				newobj.constructor = newobj;
+				for ( var key in obj) {
+					newobj[key] = obj[key];
+				}
+			} catch (e) {
+
 			}
 			return newobj;
 		}
