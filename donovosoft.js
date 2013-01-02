@@ -1,5 +1,5 @@
 /*!
- * doNovoSoft JavaScript Library v1.2.4
+ * doNovoSoft JavaScript Library v1.4.4
  * http://www.donovosoft.com/
  *
  * Copyright 2011, Mauricio Barrera
@@ -1741,17 +1741,68 @@ donovosoft.fn = donovosoft.prototype = {
 		if (document.createEvent) {
 			document.dispatchEvent(this.globals[event]);
 		} else {
-			this.globals[event].call(null);
-			// document.fireEvent(event.toLowerCase());
+			var evt = document.createEventObject(window.event);
+			document.fireEvent(event.toLowerCase(),evt);
 		}
+	},
+	/***
+	 * Options : 
+	 * 	   element = (Object) A Text field to add the listeners
+	 * 	   preview = (Object) Optional Element to place the link's preview
+	 *     url = (String) Url of the server's algorithm (Javascript can't handle this thats why it needs a server side script)
+	 *     data = (Object) optional extra data for the ajax request
+	 *     sendType = (String) Send type for the request (POST, GET, PUT) default GET
+	 *     callback = (Function) Optional function for a custom callback after the response of the server side script
+	 *     
+	 * @method linkPreview 
+	 */
+	linkPreview : function(options){
+		var urlRegex = /(https?\:\/\/|\s)[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})(\/+[a-z0-9_.\:\;-]*)*(\?[\&\%\|\+a-z0-9_=,\.\:\;-]*)?([\&\%\|\+&a-z0-9_=,\:\;\.-]*)([\!\#\/\&\%\|\+a-z0-9_=,\:\;\.-]*)}*/i;
+		var preview = false;
+		if(options.sendType == null){
+			options.sendType = 'get';
+		}
+		var _preview = {
+			init: function(){
+				$_.addEvent('keyup',options.element,function(e){
+					if((e.which == 13 || e.which == 32 || e.which == 17) && new String(options.element.value).trim() != "")
+						_preview.fetch();
+				});
+			},
+			fetch : function(){
+				var text = new String(""+options.element.value);
+				if(text.regex(urlRegex)){
+					$.ajax({
+						url: options.url+"?text="+text,
+						data: options.data,
+						dataType:'json',
+						type:options.sendType,
+						success:function(data){
+							preview = true;
+							if(options.callback == null || typeof(options.callback) != 'function')
+								_preview.defaultPreview(data);
+							else{
+								options.callback.call(null,data);
+							}
+						}
+					});
+				}
+			},
+			defaultPreview : function(answer){
+				preview = true;
+				options.preview.innerHTML = answer;
+			}
+		};
+		_preview.init();
+		return _preview;
 	},
 	geo : ({
 		azimuth : 6371,
 		distance : function(lat1, lon1, lat2, lon2) {
 			var dLat = (lat2 - lat1).toRad();
 			var dLon = (lon2 - lon1).toRad();
-			var lat1 = lat1.toRad();
-			var lat2 = lat2.toRad();
+			lat1 = lat1.toRad();
+			lat2 = lat2.toRad();
 			var a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
 					+ Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1)
 					* Math.cos(lat2);
@@ -1829,8 +1880,7 @@ donovosoft.fn = donovosoft.prototype = {
 				ret = element.getAttributeNode(attr);
 			}
 			return ret;
-		}
-		;
+		};
 		function _setAttribute(element, key, value) {
 			if (element.setAttribute) {
 				element.setAttribute(key, value);
@@ -1888,16 +1938,17 @@ donovosoft.fn = donovosoft.prototype = {
 				object.prototype.addRow = function(fields, funcion) {
 					$_.addRow(object, fields, funcion);
 				};
-				object.prototype.deleteRow = function(rowIndex, funcion) {
-					$_.deleteRow(object, rowIndex, funcion, this);
-				};
+				/*object.prototype.deleteRow = function(rowIndex, funcion) {
+					$_.deleteRow(tmp, rowIndex, funcion, this);
+				};*/
 				object.prototype.deleteLastRow = function(funcion) {
 					$_.deleteRow(object, (object.rows.length - 1), funcion,
 							this);
 				};
+				/*
 				object.prototype.rows = function() {
 					return object.rows;
-				};
+				};*/
 				object.prototype.rowSize = function() {
 					return object.rows.length;
 				};
