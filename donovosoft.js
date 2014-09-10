@@ -1,5 +1,5 @@
 /*!
- * doNovoSoft JavaScript Library v1.4.4
+ * doNovoSoft JavaScript Library v1.5.4
  * http://www.donovosoft.com/
  *
  * Copyright 2011, Mauricio Barrera
@@ -239,6 +239,89 @@ donovosoft.fn = donovosoft.prototype = {
 			elements[x][property] = value;
 		}
 	},
+	/**
+	 * Function to make an object draggable TODO: 1) Make object only draggable
+	 * inside the parent object 2) Make the object droppable only inside another
+	 * object
+	 * 
+	 * @param params
+	 *            {Object}
+	 * 
+	 * Example:
+	 * $_.draggable({'element':$_.findElement('drag'),'onmove':function(event){},'ondrop':function(event){}});
+	 * 
+	 */
+	draggable : (function(params) {
+		var _startX = 0;
+		var _startY = 0;
+		var _offsetX = 0;
+		var _offsetY = 0;
+		var _dragElement = null;
+		var _oldZIndex = 0;
+		init();
+		function init() {
+			params.element.style.position = 'relative';
+			params.element.style.zIndex = 100000000;
+			params.element.onmousedown = mousedown;
+			params.element.onmouseup = mouseup;
+			params.element.onmouseover = mouseover;
+		}
+		function extractNumber(value) {
+			var n = parseInt(value);
+			return n == null || isNaN(n) ? 0 : n;
+		}
+		function mouseover(e) {
+			params.element.style.cursor = 'move';
+		}
+		function mousedown(e) {
+			if (e == null)
+				e = window.event;
+			var target = e.target != null ? e.target : e.srcElement;
+			if ((e.button == 1 && window.event != null || e.button == 0)) {
+				_startX = e.clientX;
+				_startY = e.clientY;
+				_offsetX = extractNumber(target.style.left);
+				_offsetY = extractNumber(target.style.top);
+				_oldZIndex = target.style.zIndex;
+				target.style.zIndex = 100000000;
+				_dragElement = target;
+				params.element.onmousemove = mousemove;
+				document.body.focus();
+				document.onselectstart = function() {
+					return false;
+				};
+				target.ondragstart = function() {
+					return false;
+				};
+				return false;
+			}
+		}
+
+		function mousemove(e) {
+			if (e == null)
+				var e = window.event;
+			_dragElement.style.left = (_offsetX + e.clientX - _startX) + 'px';
+			_dragElement.style.top = (_offsetY + e.clientY - _startY) + 'px';
+			if (params.onmove != null && typeof (params.onmove) == 'function') {
+				params.onmove.call(null, e);
+			}
+		}
+
+		function mouseup(e) {
+			if (_dragElement != null) {
+				_dragElement.style.zIndex = _oldZIndex;
+				params.element.onmousemove = null;
+				params.element.onselectstart = null;
+				_dragElement.ondragstart = null;
+				_dragElement = null;
+				if (params.ondrop != null
+						&& typeof (params.ondrop) == 'function') {
+					params.ondrop.call(null, e);
+				}
+			}
+		}
+	}),
+
 	/**
 	 * The Effects object
 	 * 
@@ -499,8 +582,23 @@ donovosoft.fn = donovosoft.prototype = {
 			return null;
 		}
 	},
+	ul : (function(element) {
+		var list = element;
+		var _ul = {
+			clear : function() {
+				var len = list.getElementsByTagName('li').length;
+				while (len--) {
+					list.removeChild(list.getElementsByTagName('li')[len]);
+				}
+			},
+			add : function(properties) {
+				$_.append(list, 'li', properties);
+			}
+		};
+		return _ul;
+	}),
 	/***************************************************************************
-	 * Beta Drawing ;) Inspired by Eve
+	 * Alpha Drawing ;) Inspired by Eve
 	 * 
 	 * how to use it, html5 support is needed (So...IE sucks!): var draw =
 	 * $_.Drawing({ element: document.getElementById("canvas"), lineWidth: 10,
@@ -518,8 +616,8 @@ donovosoft.fn = donovosoft.prototype = {
 		var loadedImage = null;
 
 		function position(e) {
-			var x;
-			var y;
+			var x,y;
+			var obj = params.element;
 			if (e.pageX || e.pageY) {
 				x = e.pageX;
 				y = e.pageY;
@@ -530,8 +628,14 @@ donovosoft.fn = donovosoft.prototype = {
 						+ document.documentElement.scrollTop;
 			}
 			// Convert to coordinates relative to the canvas
-			x -= params.element.offsetLeft;
-			y -= params.element.offsetTop;
+			while(obj.offsetParent){ 
+				if(obj==document.getElementsByTagName('body')[0]){break;} 
+				else{ 
+				x-=obj.offsetParent.offsetLeft; 
+				y-=obj.offsetParent.offsetTop; 
+				obj=obj.offsetParent; 
+				} 
+			} 
 			return [ x, y ];
 		}
 		var mousemove = null;
@@ -686,13 +790,16 @@ donovosoft.fn = donovosoft.prototype = {
 	/**
 	 * Repeat 'funcion' n times, receive the current index and the number of
 	 * times to be executed on the function args
-	 * @param times {Number}
-	 * @param funcion {Function}
+	 * 
+	 * @param times
+	 *            {Number}
+	 * @param funcion
+	 *            {Function}
 	 */
 	repeat : function(n, funcion) {
 		if (n > 0) {
 			for ( var i = 0; i < n; i++) {
-				funcion.call(null,i,n);
+				funcion.call(null, i, n);
 			}
 		}
 	},
@@ -760,21 +867,19 @@ donovosoft.fn = donovosoft.prototype = {
 
 		};
 		/**
-		 * Return the Capitalized version of the String, the first letter to Upper Case
-		 * and the rest of the string to lowercase,always
-		 * Example:
+		 * Return the Capitalized version of the String, the first letter to
+		 * Upper Case and the rest of the string to lowercase,always Example:
 		 * 
-		 * HELLO  = Hello
-		 * wORLD = World
+		 * HELLO = Hello wORLD = World
 		 * 
 		 * @returns {String}
 		 */
-		String.prototype.capitalize = function(){
+		String.prototype.capitalize = function() {
 			var s = this.toLowerCase();
 			var c = s.charAt(0).toUpperCase();
-			return c+s.substring(1, s.length);
+			return c + s.substring(1, s.length);
 		};
-		
+
 		/**
 		 * Delete any space,tab or new line character on the left and the right
 		 * of the string
@@ -825,9 +930,10 @@ donovosoft.fn = donovosoft.prototype = {
 		 * @method escapeHTML
 		 */
 		String.prototype.escapeHTML$ = function() {
-			this.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+			this.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g,
+					'&gt;');
 		};
-		
+
 		/**
 		 * Turn the string into an array of characters
 		 * 
@@ -877,53 +983,24 @@ donovosoft.fn = donovosoft.prototype = {
 		 * @returns {String}
 		 */
 		String.prototype.encode = function() {
-			var string = this.replace(/\r\n/g, "\n");
-			var utftext = "";
-			for ( var n = 0; n < string.length; n++) {
-
-				var c = string.charCodeAt(n);
-
-				if (c < 128) {
-					utftext += String.fromCharCode(c);
-				} else if ((c > 127) && (c < 2048)) {
-					utftext += String.fromCharCode((c >> 6) | 192);
-					utftext += String.fromCharCode((c & 63) | 128);
-				} else {
-					utftext += String.fromCharCode((c >> 12) | 224);
-					utftext += String.fromCharCode(((c >> 6) & 63) | 128);
-					utftext += String.fromCharCode((c & 63) | 128);
-				}
-
-			}
-			return string;
+			var s = this;
+			 for(var c, i = -1, l = (s = s.split("")).length, o = String.fromCharCode; ++i < l;
+	            s[i] = (c = s[i].charCodeAt(0)) >= 127 ? o(0xc0 | (c >>> 6)) + o(0x80 | (c & 0x3f)) : s[i]
+	        );
+	        return s.join("");
 		};
 		/**
 		 * @method decode
 		 * @returns {String}
 		 */
 		String.prototype.decode = function() {
-			var string = "";
-			var i = 0;
-			var c = c1 = c2 = 0;
-			var utftext = this;
-			while (i < utftext.length) {
-				c = utftext.charCodeAt(i);
-				if (c < 128) {
-					string += String.fromCharCode(c);
-					i++;
-				} else if ((c > 191) && (c < 224)) {
-					c2 = utftext.charCodeAt(i + 1);
-					string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
-					i += 2;
-				} else {
-					c2 = utftext.charCodeAt(i + 1);
-					c3 = utftext.charCodeAt(i + 2);
-					string += String.fromCharCode(((c & 15) << 12)
-							| ((c2 & 63) << 6) | (c3 & 63));
-					i += 3;
-				}
-			}
-			return string;
+			var s = this;
+			  for(var a, b, i = -1, l = (s = s.split("")).length, o = String.fromCharCode, c = "charCodeAt"; ++i < l;
+	            ((a = s[i][c](0)) & 0x80) &&
+	            (s[i] = (a & 0xfc) == 0xc0 && ((b = s[i + 1][c](0)) & 0xc0) == 0x80 ?
+	            o(((a & 0x03) << 6) + (b & 0x3f)) : o(128), s[++i] = "")
+	        );
+	        return s.join("");
 
 		};
 		/**
@@ -954,6 +1031,19 @@ donovosoft.fn = donovosoft.prototype = {
 		};
 		String.prototype.lines = function() {
 			return this.split('\\r');
+		};
+		String.prototype.replaceAll = function(token, newToken, ignoreCase) {
+			var str, i = -1, _token;
+			if ((str = this.toString()) && typeof token === "string") {
+				_token = ignoreCase === true ? token.toLowerCase() : undefined;
+				while ((i = (_token !== undefined ? str.toLowerCase().indexOf(
+						_token, i >= 0 ? i + newToken.length : 0) : str
+						.indexOf(token, i >= 0 ? i + newToken.length : 0))) !== -1) {
+					str = str.substring(0, i).concat(newToken).concat(
+							str.substring(i + token.length));
+				}
+			}
+			return str;
 		};
 		// //////Number extend//////
 		/**
@@ -1022,13 +1112,29 @@ donovosoft.fn = donovosoft.prototype = {
 				return fact;
 			}
 		};
-		Number.prototype.abs = function(){
-			if(this < 0){
-				return this*-1;
+		Number.prototype.abs = function() {
+			if (this < 0) {
+				return this * -1;
 			}
 			return this;
 		};
 		
+		/**
+		 * Number.prototype.format(n, x, s, c)
+		 * 
+		 * @param integer n: length of decimal
+		 * @param integer x: length of whole part
+		 * @param mixed   s: sections delimiter
+		 * @param mixed   c: decimal delimiter
+		 */
+		Number.prototype.format = function(n, x, s, c) {
+		    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+		        num = this.toFixed(Math.max(0, ~~n));
+		    
+		    return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+		};
+
+
 		// ///// Date Object Extend /////////
 		/**
 		 * Add days to the Date expressed in the argument
@@ -1071,7 +1177,14 @@ donovosoft.fn = donovosoft.prototype = {
 		Array.prototype.size = function() {
 			return this.length;
 		};
-		
+
+		Array.prototype.parseString = function(sep){
+			var ret="";
+			for(var i=0;i<this.length;i++){
+				ret += this[i]+sep;
+			}
+			return ret.substring(0,ret.length-sep.length);
+		};
 		/**
 		 * Set the same value to every property on the elements of the array
 		 * 
@@ -1112,6 +1225,46 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 			return false;
 		};
+		
+		/**
+		 * Returns an array of unique objects in this array
+		 * @returns {Array}
+		 */
+		Array.prototype.unique = function(){
+			var _tmp = new Array();
+			_tmp[0] = this[0];
+			for(var i = 1;i<this.length;i++){
+				if(!_tmp.inArray(this[i])){
+					_tmp.push(this[i]);
+				}
+			}
+			return _tmp;
+		};
+		/**
+		 * Return an Object if exists in array according with the property if
+		 * there is more than one object with this property and the same value
+		 * it will return return the first one and its position in the array
+		 * 
+		 * @param object
+		 * @param property
+		 */
+		Array.prototype.find = function(property, value) {
+			var obj = null;
+			var x = -1;
+			for ( var i = 0; i < this.length; i++) {
+				if (typeof (this[i]) == 'object') {
+					if (this[i][property] == value) {
+						obj = this[i];
+						x = i;
+						break;
+					}
+				}
+			}
+			return {
+				pos : x,
+				element : obj
+			};
+		};
 		/**
 		 * Returns the position of the argument on the array or -1 if the
 		 * argument is not present
@@ -1142,10 +1295,10 @@ donovosoft.fn = donovosoft.prototype = {
 		 * 
 		 * @returns {Array}
 		 */
-		Array.prototype.compact = function(){
+		Array.prototype.compact = function() {
 			var _arr = new Array();
-			for(var i=0;i<this.length;i++){
-				if(this[i] != null){
+			for ( var i = 0; i < this.length; i++) {
+				if (this[i] != null) {
 					_arr.push(this[i]);
 				}
 			}
@@ -1153,61 +1306,68 @@ donovosoft.fn = donovosoft.prototype = {
 		};
 		/**
 		 * Returns the number of non-null elements in array
+		 * 
 		 * @returns {Number}
 		 */
-		Array.prototype.items = function(){
+		Array.prototype.items = function() {
 			return this.compact().length;
 		};
 		/**
 		 * Returns the first element of the Array, alias for Array[0]
+		 * 
 		 * @returns {Object}
 		 */
-		Array.prototype.first = function(){
+		Array.prototype.first = function() {
 			return this[0];
 		};
 		/**
-		 * Returns the last element of the array, alias for Array[Array.length - 1]
+		 * Returns the last element of the array, alias for Array[Array.length -
+		 * 1]
+		 * 
 		 * @returns {Object}
 		 */
-		Array.prototype.last = function(){
-			return this[this.length-1];
+		Array.prototype.last = function() {
+			return this[this.length - 1];
 		};
 		/**
-		 * Returns a new array that is a one-dimensional flattening of 
-		 * this array (recursively). That is, for every element that is an array, 
+		 * Returns a new array that is a one-dimensional flattening of this
+		 * array (recursively). That is, for every element that is an array,
 		 * extract its elements into the new array.
+		 * 
 		 * @returns {Array}
 		 */
-		Array.prototype.flatten = function(){
+		Array.prototype.flatten = function() {
 			var _arr = new Array();
-			for(var i = 0;i<this.length;i++){
-				if(typeof(this[i]) == 'Array' && this[i] != null){
-					for(var j=0;j<this[i].length;j++){
+			for ( var i = 0; i < this.length; i++) {
+				if (typeof (this[i]) == 'Array' && this[i] != null) {
+					for ( var j = 0; j < this[i].length; j++) {
 						_arr.push(this[i][j]);
 					}
-				}else{
+				} else {
 					_arr.push(this[i]);
 				}
 			}
 			return _arr;
 		};
 		/**
-		 * Returns a new array consisting of elements at the given indices. 
-		 * May insert null for indices out of range.
-		 * @param arr {Array#Number}
+		 * Returns a new array consisting of elements at the given indices. May
+		 * insert null for indices out of range.
+		 * 
+		 * @param arr
+		 *            {Array#Number}
 		 * @returns {Array}
 		 */
-		Array.prototype.indexes = function(arr){
+		Array.prototype.indexes = function(arr) {
 			var _arr = new Array();
-			if(typeof(arr) == 'Array' && arr != null){
-				for(var i=0;i<arr.length;i++){
-					if(typeof(arr[i]) == 'Number'){
-						if(arr[i] != null){
+			if (typeof (arr) == 'Array' && arr != null) {
+				for ( var i = 0; i < arr.length; i++) {
+					if (typeof (arr[i]) == 'Number') {
+						if (arr[i] != null) {
 							_arr.push(this.at(arr[i]));
-						}else{
+						} else {
 							_arr.push(null);
 						}
-					}else{
+					} else {
 						_arr.push(null);
 					}
 				}
@@ -1250,8 +1410,13 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 			return ret;
 		};
-		
-		Array.prototype.at = function(pos){
+		Array.prototype.each = function(funcion) {
+			for ( var i = 0; i < this.length; i++) {
+				funcion.call(this, this[i], i);
+			}
+		};
+
+		Array.prototype.at = function(pos) {
 			return this[pos];
 		};
 		this.globals["doAjaxStart"] = this.registerEvent('doAjaxStart');
@@ -1404,6 +1569,13 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 		}
 		return arreglo;
+	},
+	append : function(element, tag, properties) {
+		var dd = document.createElement(tag);
+		for ( var key in properties) {
+			dd[key] = properties[key];
+		}
+		element.appendChild(dd);
 	},
 	checkAll : function(bool, filter) {
 		var checks = null;
@@ -1582,14 +1754,24 @@ donovosoft.fn = donovosoft.prototype = {
 	 * @returns
 	 */
 	addCell : function(row, properties, funcion) {
-		var td = row.insertCell(-1);
+		var td;
+		if (properties['type'] != null && properties['type'] == 'th') {
+			td = document.createElement('th');
+		} else {
+			td = row.insertCell(-1);
+		}
 		for ( var key in properties) {
 			td[key] = properties[key];
 		}
+		if (properties['type'] != null && properties['type'] == 'th') {
+			row.appendChild(td);
+		}
+
 		if (funcion != null && typeof funcion == 'function')
 			funcion.call(null, td);
 		return td;
 	},
+	
 	deleteRow : function(table, rowIndex, funcion, ref) {
 		var row = table.rows[rowIndex];
 		if (ref != null) {
@@ -1599,6 +1781,9 @@ donovosoft.fn = donovosoft.prototype = {
 		}
 		if (funcion != null)
 			funcion.call(null, row);
+	},
+	getRow : function(table,rowIndex){
+		return table.rows[rowIndex];
 	},
 	/**
 	 * Add a row to the table setting its celds with the argument fields the
@@ -1630,6 +1815,13 @@ donovosoft.fn = donovosoft.prototype = {
 				table.deleteRow(x);
 			}
 		}
+	},
+	clearCells : function(row,functi) {
+		while(row.cells.length > 0){
+			row.deleteCell(-1);
+		}
+		if (functi != null && typeof functi == 'function')
+			functi.call(null, row);
 	},
 	/**
 	 * 
@@ -1694,6 +1886,12 @@ donovosoft.fn = donovosoft.prototype = {
 			$_.addEvent('click', element, funcion);
 		}
 	},
+	/**
+	 * 
+	 * @param element
+	 * @param keycode
+	 * @param funcion
+	 */
 	addKeyEvent : function(element, keycode, funcion) {
 		if (element == null)
 			element = document;
@@ -1705,6 +1903,11 @@ donovosoft.fn = donovosoft.prototype = {
 			}
 		});
 	},
+	/**
+	 * 
+	 * @param element
+	 * @param funcion
+	 */
 	enter : function(element, funcion) {
 		if (funcion != null && typeof funcion == 'function') {
 			if (element == null)
@@ -1742,53 +1945,57 @@ donovosoft.fn = donovosoft.prototype = {
 			document.dispatchEvent(this.globals[event]);
 		} else {
 			var evt = document.createEventObject(window.event);
-			document.fireEvent(event.toLowerCase(),evt);
+			document.fireEvent(event.toLowerCase(), evt);
 		}
 	},
-	/***
-	 * Options : 
-	 * 	   element = (Object) A Text field to add the listeners
-	 * 	   preview = (Object) Optional Element to place the link's preview
-	 *     url = (String) Url of the server's algorithm (Javascript can't handle this thats why it needs a server side script)
-	 *     data = (Object) optional extra data for the ajax request
-	 *     sendType = (String) Send type for the request (POST, GET, PUT) default GET
-	 *     callback = (Function) Optional function for a custom callback after the response of the server side script
-	 *     
-	 * @method linkPreview 
+	/***************************************************************************
+	 * Beta linkPreview
+	 * 
+	 * Options : element = (Object) A Text field to add the listeners preview =
+	 * (Object) Optional Element to place the link's preview url = (String) Url
+	 * of the server's algorithm (Javascript can't handle this thats why it
+	 * needs a server side script) data = (Object) optional extra data for the
+	 * ajax request sendType = (String) Send type for the request (POST, GET,
+	 * PUT) default GET callback = (Function) Optional function for a custom
+	 * callback after the response of the server side script
+	 * 
+	 * @method linkPreview
 	 */
-	linkPreview : function(options){
+	linkPreview : function(options) {
 		var urlRegex = /(https?\:\/\/|\s)[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})(\/+[a-z0-9_.\:\;-]*)*(\?[\&\%\|\+a-z0-9_=,\.\:\;-]*)?([\&\%\|\+&a-z0-9_=,\:\;\.-]*)([\!\#\/\&\%\|\+a-z0-9_=,\:\;\.-]*)}*/i;
 		var preview = false;
-		if(options.sendType == null){
+		if (options.sendType == null) {
 			options.sendType = 'get';
 		}
 		var _preview = {
-			init: function(){
-				$_.addEvent('keyup',options.element,function(e){
-					if((e.which == 13 || e.which == 32 || e.which == 17) && new String(options.element.value).trim() != "")
+			init : function() {
+				$_.addEvent('keyup', options.element, function(e) {
+					if ((e.which == 13 || e.which == 32 || e.which == 17)
+							&& new String(options.element.value).trim() != "")
 						_preview.fetch();
 				});
 			},
-			fetch : function(){
-				var text = new String(""+options.element.value);
-				if(text.regex(urlRegex)){
+			fetch : function() {
+				var text = new String("" + options.element.value);
+				if (text.regex(urlRegex)) {
 					$.ajax({
-						url: options.url+"?text="+text,
-						data: options.data,
-						dataType:'json',
-						type:options.sendType,
-						success:function(data){
+						url : options.url + "?text=" + text,
+						data : options.data,
+						dataType : 'json',
+						type : options.sendType,
+						success : function(data) {
 							preview = true;
-							if(options.callback == null || typeof(options.callback) != 'function')
+							if (options.callback == null
+									|| typeof (options.callback) != 'function')
 								_preview.defaultPreview(data);
-							else{
-								options.callback.call(null,data);
+							else {
+								options.callback.call(null, data);
 							}
 						}
 					});
 				}
 			},
-			defaultPreview : function(answer){
+			defaultPreview : function(answer) {
 				preview = true;
 				options.preview.innerHTML = answer;
 			}
@@ -1880,7 +2087,8 @@ donovosoft.fn = donovosoft.prototype = {
 				ret = element.getAttributeNode(attr);
 			}
 			return ret;
-		};
+		}
+		;
 		function _setAttribute(element, key, value) {
 			if (element.setAttribute) {
 				element.setAttribute(key, value);
@@ -1916,6 +2124,9 @@ donovosoft.fn = donovosoft.prototype = {
 			object.prototype.glow = function(params) {
 				$_.Effects.glow(object, params);
 			};
+			object.prototype.append = function(tag, properties) {
+				$_.append(object, tag, properties);
+			};
 			/*
 			 * if (tmp.nodeName.toLowerCase() != "form") {
 			 * object.prototype.getAttribute = function(attr) { return
@@ -1938,17 +2149,17 @@ donovosoft.fn = donovosoft.prototype = {
 				object.prototype.addRow = function(fields, funcion) {
 					$_.addRow(object, fields, funcion);
 				};
-				/*object.prototype.deleteRow = function(rowIndex, funcion) {
-					$_.deleteRow(tmp, rowIndex, funcion, this);
-				};*/
+				/*
+				 * object.prototype.deleteRow = function(rowIndex, funcion) {
+				 * $_.deleteRow(tmp, rowIndex, funcion, this); };
+				 */
 				object.prototype.deleteLastRow = function(funcion) {
 					$_.deleteRow(object, (object.rows.length - 1), funcion,
 							this);
 				};
 				/*
-				object.prototype.rows = function() {
-					return object.rows;
-				};*/
+				 * object.prototype.rows = function() { return object.rows; };
+				 */
 				object.prototype.rowSize = function() {
 					return object.rows.length;
 				};
@@ -1957,7 +2168,7 @@ donovosoft.fn = donovosoft.prototype = {
 		return object.prototype;
 	},
 	/**
-	 * Ajax Function
+	 * Ajax Function Beta
 	 */
 	ajax : function(object) {
 		// Creando objeto ajax
@@ -1981,42 +2192,56 @@ donovosoft.fn = donovosoft.prototype = {
 		if (object.method.toLowerCase() == 'get') {
 			object.url = object.url + "?";
 			for ( var key in object.data) {
-				object.url += key + "=" + object.data[key] + "&";
+				object.url += key + "=" + encodeURIComponent(object.data[key])
+						+ "&";
 			}
 		} else {
 			params = new String("");
 			for ( var key in object.data) {
-				params += key + "=" + object.data[key] + "&";
+				params += key + "=" + encodeURIComponent(object.data[key])
+						+ "&";
 				contenido++;
 			}
 		}
 		objectAjax.open(object.method, object.url);
 		// definiendo un content type default
-		if (object.contentType != null) {
-			objectAjax.setRequestHeader('Content-Type', object.contentType);
-		} else {
+		if (object.method.toLowerCase() == 'post') {
+			var charset = "";
+			if (object.charset != null) {
+				charset = "charset=" + object.charset;
+			}
 			objectAjax.setRequestHeader('Content-Type',
-					"application/x-www-form-urlencoded; charset=UTF-8");
+					"application/x-www-form-urlencoded;" + charset);
 		}
-		if (contenido > 0) {
-			objectAjax.setRequestHeader("Content-length", contenido);
-			objectAjax.setRequestHeader("Connection", "close");
-		}
+		/*
+		 * if (contenido > 0) { objectAjax.setRequestHeader("Content-length",
+		 * contenido); objectAjax.setRequestHeader("Connection", "close"); }
+		 */
 		objectAjax.onreadystatechange = function() {
 			$_.trigger("doAjaxStart", null);
-			if (objectAjax.readyState == 4 && objectAjax.status == 200) {
-				if (objectAjax.responseText) {
-					$_.trigger("doAjaxFinish", null);
-					var arg = objectAjax.responseText;
-					if (object.dataType != null && object.dataType == 'json') {
-						arg = $_.toJSON(objectAjax.responseText);
+			if (objectAjax.readyState == 4) {
+				if (objectAjax.status == 200) {
+					if (objectAjax.responseText) {
+						$_.trigger("doAjaxFinish", null);
+						var arg = objectAjax.responseText;
+						if (object.dataType != null
+								&& object.dataType == 'json') {
+							arg = $_.toJSON(objectAjax.responseText);
+						}
+						object.success.call(null, arg);
+					} else {
+						$_.trigger("doAjaxFail", null);
 					}
-					object.success.call(null, arg);
 				} else {
-					$_.trigger("doAjaxFail", null);
+					object.error.call(null, objectAjax.status,
+							objectAjax.statusText);
 				}
 			}
 		};
+		if (object.beforeSend != null
+				&& typeof (object.beforeSend) == 'function') {
+			object.beforeSend.call(null);
+		}
 		objectAjax.send(params);
 	}
 
