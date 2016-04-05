@@ -4,7 +4,7 @@
  *
  * Copyright 2011, Mauricio Barrera
  * Dual licensed under the MIT or GPL Version 2 licenses.
- * Date: Tue Oct 18 2011
+ * Date: Tue Apr 5 2016
  * 
  *@autor Mauricio Barrera 
  */
@@ -23,7 +23,7 @@ donovosoft.fn = donovosoft.prototype = {
 	 * @property version
 	 * @type {String}
 	 */
-	version : "1.2.5",
+	version : "1.5.4",
 	// reserved space for global vars
 	globals : {},
 	/**
@@ -2213,10 +2213,7 @@ donovosoft.fn = donovosoft.prototype = {
 			objectAjax.setRequestHeader('Content-Type',
 					"application/x-www-form-urlencoded;" + charset);
 		}
-		/*
-		 * if (contenido > 0) { objectAjax.setRequestHeader("Content-length",
-		 * contenido); objectAjax.setRequestHeader("Connection", "close"); }
-		 */
+		
 		objectAjax.onreadystatechange = function() {
 			$_.trigger("doAjaxStart", null);
 			if (objectAjax.readyState == 4) {

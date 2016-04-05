@@ -17,4 +17,9 @@ Objects:
 	 delay : Number of seconds to execute function 'work'
 	 work: functin to execute after delay
 	 times: Number of time that the function 'work' will be repeated
+- Draggable
+	
+	Properties:
+
+	
 
