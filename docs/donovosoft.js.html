@@ -1,0 +1,3806 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" charset="utf-8">
+    <title>jDonovosoft</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/cayman.min.css">
+    <link rel="stylesheet" href="css/prism.min.css">
+    <link rel="stylesheet" href="css/index.min.css">
+    <link rel="stylesheet" href="css/docs.min.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+  </head>
+  <body data-spy="scroll" data-target=".scrollspy">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container"><a class="brand">Mr. Doc</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right sponsored"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <header id="overview" class="jumbotron subhead">
+      <div class="container">
+        <h1>jDonovosoft</h1>
+        <p class="lead"></p>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="span3 bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav affix-top">
+            <li><a href="index.html">Main</a></li>
+            <li class="active"><a href="donovosoft.js.html">donovosoft.js</a></li>
+          </ul>
+          <div class="scrollspy">
+            <ul class="nav nav-list bs-docs-sidenav affix-top">
+              <li><a href="#version"><i class="alert alert-success"></i><span>version</span></a>
+              </li>
+              <li><a href="#browser"><i class="alert alert-success"></i><span>browser</span></a>
+              </li>
+              <li><a href="#supportHTML5"><i class="alert alert-info"></i><span>supportHTML5</span></a>
+              </li>
+              <li><a href="#size"><i class="alert alert-info"></i><span>size</span></a>
+              </li>
+              <li><a href="#supportGPS"><i class="alert alert-info"></i><span>supportGPS</span></a>
+              </li>
+              <li><a href="#supportCanvas"><i class="alert alert-info"></i><span>supportCanvas</span></a>
+              </li>
+              <li><a href="#isIE"><i class="alert alert-info"></i><span>isIE</span></a>
+              </li>
+              <li><a href="#online"><i class="alert alert-info"></i><span>online</span></a>
+              </li>
+              <li><a href="#url"><i class="alert alert-info"></i><span>url</span></a>
+              </li>
+              <li><a href="#position"><i class="alert alert-info"></i><span>position</span></a>
+              </li>
+              <li><a href="#scroll"><i class="alert alert-info"></i><span>scroll</span></a>
+              </li>
+              <li><a href="#setHomePage"><i class="alert alert-info"></i><span>setHomePage</span></a>
+              </li>
+              <li><a href="#findPosition"><i class="alert alert-info"></i><span>findPosition</span></a>
+              </li>
+              <li><a href="#crono"><i class="alert alert-info"></i><span>crono</span></a>
+              </li>
+              <li><a href="#isRunning"><i class="alert alert-info"></i><span>isRunning</span></a>
+              </li>
+              <li><a href="#start"><i class="alert alert-info"></i><span>start</span></a>
+              </li>
+              <li><a href="#stop"><i class="alert alert-info"></i><span>stop</span></a>
+              </li>
+              <li><a href="#set"><i class="alert alert-info"></i><span>set</span></a>
+              </li>
+              <li><a href="#draggable"><i class="alert alert-success"></i><span>draggable</span></a>
+              </li>
+              <li><a href="#effects"><i class="alert alert-success"></i><span>effects</span></a>
+              </li>
+              <li><a href="#glow"><i class="alert alert-info"></i><span>glow</span></a>
+              </li>
+              <li><a href="#fadeOut"><i class="alert alert-info"></i><span>fadeOut</span></a>
+              </li>
+              <li><a href="#easing"><i class="alert alert-info"></i><span>easing</span></a>
+              </li>
+              <li><a href="#animateResize"><i class="alert alert-info"></i><span>animateResize</span></a>
+              </li>
+              <li><a href="#expand"><i class="alert alert-info"></i><span>expand</span></a>
+              </li>
+              <li><a href="#reduce"><i class="alert alert-info"></i><span>reduce</span></a>
+              </li>
+              <li><a href="#dissapear"><i class="alert alert-info"></i><span>dissapear</span></a>
+              </li>
+              <li><a href="#toJSON"><i class="alert alert-info"></i><span>toJSON</span></a>
+              </li>
+              <li><a href="#ul"><i class="alert alert-success"></i><span>ul</span></a>
+              </li>
+              <li><a href="#drawing"><i class="alert alert-success"></i><span>drawing</span></a>
+              </li>
+              <li><a href="#clear"><i class="alert alert-info"></i><span>clear</span></a>
+              </li>
+              <li><a href="#save"><i class="alert alert-info"></i><span>save</span></a>
+              </li>
+              <li><a href="#rotate"><i class="alert alert-info"></i><span>rotate</span></a>
+              </li>
+              <li><a href="#loadPicture"><i class="alert alert-info"></i><span>loadPicture</span></a>
+              </li>
+              <li><a href="#forEach"><i class="alert alert-info"></i><span>forEach</span></a>
+              </li>
+              <li><a href="#repeat"><i class="alert alert-info"></i><span>repeat</span></a>
+              </li>
+              <li><a href="#toggle"><i class="alert alert-info"></i><span>toggle</span></a>
+              </li>
+              <li><a href="#toogleRead"><i class="alert alert-info"></i><span>toogleRead</span></a>
+              </li>
+              <li><a href="#ltrim"><i class="alert alert-info"></i><span>ltrim</span></a>
+              </li>
+              <li><a href="#rtrim"><i class="alert alert-info"></i><span>rtrim</span></a>
+              </li>
+              <li><a href="#capitalize"><i class="alert alert-info"></i><span>capitalize</span></a>
+              </li>
+              <li><a href="#trim"><i class="alert alert-info"></i><span>trim</span></a>
+              </li>
+              <li><a href="#regex"><i class="alert alert-info"></i><span>regex</span></a>
+              </li>
+              <li><a href="#isEmail"><i class="alert alert-info"></i><span>isEmail</span></a>
+              </li>
+              <li><a href="#escapeHTML"><i class="alert alert-info"></i><span>escapeHTML</span></a>
+              </li>
+              <li><a href="#escapeHTML$"><i class="alert alert-info"></i><span>escapeHTML$</span></a>
+              </li>
+              <li><a href="#toArray"><i class="alert alert-info"></i><span>toArray</span></a>
+              </li>
+              <li><a href="#stripTags"><i class="alert alert-info"></i><span>stripTags</span></a>
+              </li>
+              <li><a href="#stripTags$"><i class="alert alert-info"></i><span>stripTags$</span></a>
+              </li>
+              <li><a href="#contains"><i class="alert alert-info"></i><span>contains</span></a>
+              </li>
+              <li><a href="#encode"><i class="alert alert-info"></i><span>encode</span></a>
+              </li>
+              <li><a href="#decode"><i class="alert alert-info"></i><span>decode</span></a>
+              </li>
+              <li><a href="#replaceChar"><i class="alert alert-info"></i><span>replaceChar</span></a>
+              </li>
+              <li><a href="#reverse"><i class="alert alert-info"></i><span>reverse</span></a>
+              </li>
+              <li><a href="#round"><i class="alert alert-info"></i><span>round</span></a>
+              </li>
+              <li><a href="#toRad"><i class="alert alert-info"></i><span>toRad</span></a>
+              </li>
+              <li><a href="#toDeg"><i class="alert alert-info"></i><span>toDeg</span></a>
+              </li>
+              <li><a href="#toBrng"><i class="alert alert-info"></i><span>toBrng</span></a>
+              </li>
+              <li><a href="#roundTo"><i class="alert alert-info"></i><span>roundTo</span></a>
+              </li>
+              <li><a href="#factorial"><i class="alert alert-info"></i><span>factorial</span></a>
+              </li>
+              <li><a href="#format"><i class="alert alert-info"></i><span>format</span></a>
+              </li>
+              <li><a href="#addDay"><i class="alert alert-info"></i><span>addDay</span></a>
+              </li>
+              <li><a href="#addMonth"><i class="alert alert-info"></i><span>addMonth</span></a>
+              </li>
+              <li><a href="#addYear"><i class="alert alert-info"></i><span>addYear</span></a>
+              </li>
+              <li><a href="#now"><i class="alert alert-info"></i><span>now</span></a>
+              </li>
+              <li><a href="#size"><i class="alert alert-info"></i><span>size</span></a>
+              </li>
+              <li><a href="#parseString"><i class="alert alert-info"></i><span>parseString</span></a>
+              </li>
+              <li><a href="#set"><i class="alert alert-info"></i><span>set</span></a>
+              </li>
+              <li><a href="#get"><i class="alert alert-info"></i><span>get</span></a>
+              </li>
+              <li><a href="#inArray"><i class="alert alert-info"></i><span>inArray</span></a>
+              </li>
+              <li><a href="#unique"><i class="alert alert-info"></i><span>unique</span></a>
+              </li>
+              <li><a href="#find"><i class="alert alert-info"></i><span>find</span></a>
+              </li>
+              <li><a href="#indexOf"><i class="alert alert-info"></i><span>indexOf</span></a>
+              </li>
+              <li><a href="#remove"><i class="alert alert-info"></i><span>remove</span></a>
+              </li>
+              <li><a href="#compact"><i class="alert alert-info"></i><span>compact</span></a>
+              </li>
+              <li><a href="#items"><i class="alert alert-info"></i><span>items</span></a>
+              </li>
+              <li><a href="#first"><i class="alert alert-info"></i><span>first</span></a>
+              </li>
+              <li><a href="#last"><i class="alert alert-info"></i><span>last</span></a>
+              </li>
+              <li><a href="#flatten"><i class="alert alert-info"></i><span>flatten</span></a>
+              </li>
+              <li><a href="#indexes"><i class="alert alert-info"></i><span>indexes</span></a>
+              </li>
+              <li><a href="#merge"><i class="alert alert-info"></i><span>merge</span></a>
+              </li>
+              <li><a href="#grep"><i class="alert alert-info"></i><span>grep</span></a>
+              </li>
+              <li><a href="#addClass"><i class="alert alert-info"></i><span>addClass</span></a>
+              </li>
+              <li><a href="#hasClass"><i class="alert alert-info"></i><span>hasClass</span></a>
+              </li>
+              <li><a href="#removeClass"><i class="alert alert-info"></i><span>removeClass</span></a>
+              </li>
+              <li><a href="#replaceClass"><i class="alert alert-info"></i><span>replaceClass</span></a>
+              </li>
+              <li><a href="#children"><i class="alert alert-info"></i><span>children</span></a>
+              </li>
+              <li><a href="#validForm"><i class="alert alert-info"></i><span>validForm</span></a>
+              </li>
+              <li><a href="#$$_"><i class="alert alert-info"></i><span>$$_</span></a>
+              </li>
+              <li><a href="#addCell"><i class="alert alert-info"></i><span>addCell</span></a>
+              </li>
+              <li><a href="#addRow"><i class="alert alert-info"></i><span>addRow</span></a>
+              </li>
+              <li><a href="#addEvent"><i class="alert alert-info"></i><span>addEvent</span></a>
+              </li>
+              <li><a href="#rightClick"><i class="alert alert-info"></i><span>rightClick</span></a>
+              </li>
+              <li><a href="#click"><i class="alert alert-info"></i><span>click</span></a>
+              </li>
+              <li><a href="#addKeyEvent"><i class="alert alert-info"></i><span>addKeyEvent</span></a>
+              </li>
+              <li><a href="#enter"><i class="alert alert-info"></i><span>enter</span></a>
+              </li>
+              <li><a href="#linkPreview"><i class="alert alert-info"></i><span>linkPreview</span></a>
+              </li>
+              <li><a href="#onLoad"><i class="alert alert-info"></i><span>onLoad</span></a>
+              </li>
+              <li><a href="#findElement"><i class="alert alert-info"></i><span>findElement</span></a>
+              </li>
+              <li><a href="#ajax"><i class="alert alert-info"></i><span>ajax</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="span9">
+          <section id="version">
+            <h1>version</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>&nbsp;</span><span>version</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Readonly version , just informative</p></div>
+          <pre><code class="language-javascript">version : &quot;1.5.4&quot;,
+// reserved space for global vars
+globals : {},</code></pre>
+          <section id="browser">
+            <h1>browser</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>&nbsp;</span><span>browser</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Browser object extending more functions and info of your browser</p></div>
+          <pre><code class="language-javascript">browser : ({
+	
+	title : navigator.appName,
+	cookies : navigator.cookieEnabled,</code></pre>
+          <section id="supportHTML5">
+            <h1>supportHTML5</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>supportHTML5()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>True if the current browser supports HTML5 functions</p></div>
+          <pre><code class="language-javascript">supportHTML5 : function() {
+	if (this.supportGPS())
+		return true;
+},</code></pre>
+          <section id="size">
+            <h1>size</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>size()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Return the size of your current window</p></div>
+          <pre><code class="language-javascript">size : function() {
+	return &quot;[&quot; + window.screen.width + &quot;,&quot; + window.screen.height + &quot;]&quot;;
+},</code></pre>
+          <section id="supportGPS">
+            <h1>supportGPS</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>supportGPS()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Check if your browser has location support</p></div>
+          <pre><code class="language-javascript">supportGPS : function() {
+	if (window.navigator != null) {
+		return true;
+	} else
+		return false;
+},</code></pre>
+          <section id="supportCanvas">
+            <h1>supportCanvas</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>supportCanvas()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Returns true if you browser supports canvas</p></div>
+          <pre><code class="language-javascript">supportCanvas : function() {
+	if (window.canvas != null) {
+		return true;
+	} else {
+		return false;
+	}
+},</code></pre>
+          <section id="isIE">
+            <h1>isIE</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>isIE()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Returns true if your browser is any version of IE</p></div>
+          <pre><code class="language-javascript">isIE : function() {
+	var a = this.title.split(' ');
+	for ( var x = 0; x &lt; a.length; x++) {
+		if (a[x] == 'Explorer') {
+			return true;
+		}
+	}
+	return false;
+},</code></pre>
+          <section id="online">
+            <h1>online</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>online()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Return true if the browser detects an Internet Connection</p></div>
+          <pre><code class="language-javascript">online : function() {
+	return window.navigator.onLine;
+},</code></pre>
+          <section id="url">
+            <h1>url</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>url()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Return the current location of the page</p></div>
+          <pre><code class="language-javascript">url : function() {
+	return location.href;
+},</code></pre>
+          <section id="position">
+            <h1>position</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>position()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Gets the current position of the page inside the window</p></div>
+          <pre><code class="language-javascript">position : function() {
+	var top = 0, left = 0;
+	if (window.screenTop != null) {
+		top = window.screenTop;
+		left = window.screenLeft;
+	} else {
+		top = window.screenY;
+		left = window.screenX;
+	}
+	return {
+		top : top,
+		left : left
+	};
+},</code></pre>
+          <section id="scroll">
+            <h1>scroll</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>scroll()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Object</td>
+                <td>Object</td>
+                <td><p>with left,top values</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Scroll page to a position</p></div>
+          <pre><code class="language-javascript">scroll : function(position) {
+	window.scrollBy(position.left, position.top);
+},</code></pre>
+          <section id="setHomePage">
+            <h1>setHomePage</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>setHomePage()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Url</td>
+                <td>String</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Set the especified url as home page on any browser</p></div>
+          <pre><code class="language-javascript">setHomePage : function(url) {
+	if (url == null) {
+		url = this.url();
+	}
+	if (document.all) {
+		document.body.style.behavior = 'url(#default#homepage)';
+		document.body.setHomePage(url);
+	} else if (window.sidebar) {
+		if (window.netscape) {
+			try {
+				netscape.security.PrivilegeManager
+						.enablePrivilege(&quot;UniversalXPConnect&quot;);
+			} catch (e) {
+			}
+		}
+		var prefs = Components.classes['@mozilla.org/preferences-service;1']
+				.getService(Components.interfaces.nsIPrefBranch);
+		prefs.setCharPref('browser.startup.homepage', url);
+	}
+}
+	}),</code></pre>
+          <section id="findPosition">
+            <h1>findPosition</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>findPosition()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>HttmlElement</td>
+                <td>Object</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Find a position of the element</p></div>
+          <pre><code class="language-javascript">findPosition : function(element) {
+	var curtop = 0;
+	if (element.offsetParent) {
+		do {
+			curtop += element.offsetTop;
+		} while (obj = element.offsetParent);
+		return [ curtop ];
+	}
+},</code></pre>
+          <section id="crono">
+            <h1>crono</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>crono()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td>Object</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>Object</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>A cronometer params accepted: delay: the time in seconds to execute the<br />function work: the function to call</p><p>Return the object crono without activity use: var cron =<br />$_.crono({delay:10,work:function(){alert(&#39;Some&#39;)}}); cron.start() // To<br />start the service cron.isRunning() // returns true if the cron is<br />actually running cron.stop() // stop the service</p></div>
+          <pre><code class="language-javascript">crono : function(params) {
+	var t = null;
+	var delay = params.delay;
+	var work = params.work;
+	var limit = params.limit;
+	var times = 0;
+	function timed() {
+		times++;
+		if (limit &gt; 0 &amp;&amp; times == limit) {
+			clearTimeout(t);
+		} else {
+			t = setTimeout(function() {
+				work.call(null);
+				timed();
+			}, delay * 1000);
+		}
+	}
+	var _crono = {</code></pre>
+          <section id="isRunning">
+            <h1>isRunning</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>isRunning()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Returns true if the Crono instance is active or is actually<br />running</p></div>
+          <pre><code class="language-javascript">isRunning : function() {
+	if (t != null) {
+		return true;
+	} else {
+		return false;
+	}
+},</code></pre>
+          <section id="start">
+            <h1>start</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>start()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Start the activity of the Crono object</p></div>
+          <pre><code class="language-javascript">start : function() {
+	timed();
+},</code></pre>
+          <section id="stop">
+            <h1>stop</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>stop()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Stop the activity of the current cron obect</p></div>
+          <pre><code class="language-javascript">stop : function() {
+	clearTimeout(t);
+}
+		};
+		return _crono;
+	},</code></pre>
+          <section id="set">
+            <h1>set</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>set()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td>String</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>String</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Array</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Function that set a property with the value specified in an array of<br />elements</p></div>
+          <pre><code class="language-javascript">set : function(property, value, elements) {
+	for ( var x = 0; x &lt; elements.length; x++) {
+		elements[x][property] = value;
+	}
+},</code></pre>
+          <section id="draggable">
+            <h1>draggable</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>&nbsp;</span><span>draggable</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td>Object</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Function to make an object draggable TODO: 1) Make object only draggable<br />inside the parent object 2) Make the object droppable only inside another<br />object</p></div>
+          <pre><code class="language-javascript">draggable : (function(params) {
+	var _startX = 0;
+	var _startY = 0;
+	var _offsetX = 0;
+	var _offsetY = 0;
+	var _dragElement = null;
+	var _oldZIndex = 0;
+	init();
+	function init() {
+		params.element.style.position = 'relative';
+		params.element.style.zIndex = 100000000;
+		params.element.onmousedown = mousedown;
+		params.element.onmouseup = mouseup;
+		params.element.onmouseover = mouseover;
+	}
+	function extractNumber(value) {
+		var n = parseInt(value);
+		return n == null || isNaN(n) ? 0 : n;
+	}
+	function mouseover(e) {
+		params.element.style.cursor = 'move';
+	}
+	function mousedown(e) {
+		if (e == null)
+			e = window.event;
+		var target = e.target != null ? e.target : e.srcElement;
+		if ((e.button == 1 &amp;&amp; window.event != null || e.button == 0)) {
+			_startX = e.clientX;
+			_startY = e.clientY;
+			_offsetX = extractNumber(target.style.left);
+			_offsetY = extractNumber(target.style.top);
+			_oldZIndex = target.style.zIndex;
+			target.style.zIndex = 100000000;
+			_dragElement = target;
+			params.element.onmousemove = mousemove;
+			document.body.focus();
+			document.onselectstart = function() {
+				return false;
+			};
+			target.ondragstart = function() {
+				return false;
+			};
+			return false;
+		}
+	}
+
+	function mousemove(e) {
+		if (e == null)
+			var e = window.event;
+		_dragElement.style.left = (_offsetX + e.clientX - _startX) + 'px';
+		_dragElement.style.top = (_offsetY + e.clientY - _startY) + 'px';
+		if (params.onmove != null &amp;&amp; typeof (params.onmove) == 'function') {
+			params.onmove.call(null, e);
+		}
+	}
+
+	function mouseup(e) {
+		if (_dragElement != null) {
+			_dragElement.style.zIndex = _oldZIndex;
+			params.element.onmousemove = null;
+			params.element.onselectstart = null;
+			_dragElement.ondragstart = null;
+			_dragElement = null;
+			if (params.ondrop != null
+					&amp;&amp; typeof (params.ondrop) == 'function') {
+				params.ondrop.call(null, e);
+			}
+		}
+	}
+}),</code></pre>
+          <section id="effects">
+            <h1>effects</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>&nbsp;</span><span>effects</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>The Effects object</p></div>
+          <pre><code class="language-javascript">effects : ({</code></pre>
+          <section id="glow">
+            <h1>glow</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>glow()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td>Element</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Object</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Glow the element according to the params the properties accepted are:</p><p>property: The property of the object to glow speed: The time of the<br />event in milisecs firstColor: set the init color of the element<br />before glowing it lastColor: the color of the element after the glow<br />success: function to execute when the event finish</p><p>Example:</p><p>var element = document.getElementById(&#39;element&#39;);<br />$_.Effects.glow(element,{speed:1000:success:function(){alert<br />(&#39;OK&#39;);}});</p></div>
+          <pre><code class="language-javascript">glow : function(element, params) {
+	if (element != null) {
+		element.style[params.property] = params.lastColor;
+		i=0
+		do{
+			params.success = function(){
+				element.style[params.property] = params.firstColor;	
+			};
+			$_.effects.fadeOut(element,params);
+			params.success = function(){
+				element.style[params.property] = params.lastColor;	
+			};
+			$_.effects.fadeOut(element,params);
+			i++;
+		}while(i&lt;params.times);
+	}
+},</code></pre>
+          <section id="fadeOut">
+            <h1>fadeOut</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>fadeOut()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td>HtmlElement</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Object</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><hr>
+<p>Make a fade to the element</p></div>
+          <pre><code class="language-javascript">fadeOut : function(element, params) {
+	// Private function to animate
+	function animateFade(lastTick) {
+		var curTick = new Date().getTime();
+		var elapsedTicks = curTick - lastTick;
+		if (element.FadeTimeLeft &lt;= elapsedTicks) {
+			element.style.opacity = element.FadeState == 1 ? '1' : '0';
+			element.style.filter = 'alpha(opacity = '
+					+ (element.FadeState == 1 ? '100' : '0') + ')';
+			element.FadeState = element.FadeState == 1 ? 2 : -2;
+			params.success.call(null);
+			return;
+		}
+
+		element.FadeTimeLeft -= elapsedTicks;
+		var newOpVal = element.FadeTimeLeft / params.speed;
+		if (element.FadeState == 1)
+			newOpVal = 1 - newOpVal;
+
+		element.style.opacity = newOpVal;
+		element.style.filter = 'alpha(opacity = ' + (newOpVal * 100)
+				+ ')';
+		setTimeout(function() {
+			animateFade(curTick);
+		}, 33);
+	}
+
+	if (element.FadeState == null) {
+		if (element.style.opacity == null
+				|| element.style.opacity == ''
+				|| element.style.opacity == '1') {
+			element.FadeState = 2;
+		} else {
+			element.FadeState = -2;
+		}
+	}
+
+	if (element.FadeState == 1 || element.FadeState == -1) {
+		element.FadeState = element.FadeState == 1 ? -1 : 1;
+		element.FadeTimeLeft = params.speed - element.FadeTimeLeft;
+	} else {
+		element.FadeState = element.FadeState == 2 ? -1 : 1;
+		element.FadeTimeLeft = params.speed;
+		setTimeout(function() {
+			animateFade(new Date().getTime());
+		}, 33);
+	}
+},</code></pre>
+          <section id="easing">
+            <h1>easing</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>easing()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>minValue</td>
+                <td>Number</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>maxValue</td>
+                <td>Number</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>totalSteps</td>
+                <td>Number</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>actualStep</td>
+                <td>Number</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>powrr</td>
+                <td>Number</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>Number</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Easing effect to the element</p></div>
+          <pre><code class="language-javascript">easing : function(minValue, maxValue, totalSteps, actualStep, powrr) {
+	var delta = maxValue - minValue;
+	var stepp = minValue
+			+ (Math.pow(((1 / totalSteps) * actualStep), powrr) * delta);
+	return Math.ceil(stepp);
+},</code></pre>
+          <section id="animateResize">
+            <h1>animateResize</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>animateResize()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td>Element</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>params</td>
+                <td>Object</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Animating resize of an element</p></div>
+          <pre><code class="language-javascript">animateResize : function(element, params) {
+	var changeInterval = null;
+	if (changeInterval) {
+		window.clearInterval(changeInterval);
+	}
+	var actStep = 0;
+	var steps = params.steps;
+	var intervals = params.intervals;
+	var startWidth = params.start;
+	var endWidth = params.end;
+	var powr = params.powr;
+	var attrModify = params.attribute;
+	changeInterval = window.setInterval(function() {
+		element.setAttribute(attrModify, $_.effects.easing(startWidth,
+				endWidth, steps, actStep, powr));
+		element.style[attrModify] = element.getAttribute(attrModify)
+				+ &quot;px&quot;;
+		actStep++;
+		if (actStep &gt; steps)
+			window.clearInterval(changeInterval);
+	}, intervals);
+},</code></pre>
+          <section id="expand">
+            <h1>expand</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>expand()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td></td>
+                <td><pre><code>       {Element}
+</code></pre></td>
+              </tr>
+              <tr>
+                <td>params</td>
+                <td></td>
+                <td><pre><code>       {Object}
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"></div>
+          <pre><code class="language-javascript">expand : function(element, params) {
+	if (element != null) {
+		$_.effects.animateResize(element, {
+			start : params.start,
+			end : params.start * params.expand,
+			steps : params.speed,
+			powr : 0.5,
+			attribute : params.attribute,
+			intervals : 10
+		});
+	}
+},</code></pre>
+          <section id="reduce">
+            <h1>reduce</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>reduce()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td></td>
+                <td><pre><code>       {Element}
+</code></pre></td>
+              </tr>
+              <tr>
+                <td>params</td>
+                <td></td>
+                <td><pre><code>       {Object}
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"></div>
+          <pre><code class="language-javascript">reduce : function(element, params) {
+	if (element != null) {
+		$_.effects.animateResize(element, {
+			startWidth : element.width,
+			endWidth : element.width / params.collapse,
+			steps : params.speed,
+			powr : 0.5,
+			attribute : params.attribute,
+			intervals : 10
+		});
+	}
+},</code></pre>
+          <section id="dissapear">
+            <h1>dissapear</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>dissapear()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td>Element</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>params</td>
+                <td>Object</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Animate an object until it hides with this properties: {attribute:<br />width/height,speed:seconds}</p></div>
+          <pre><code class="language-javascript">dissapear : function(element, params) {
+	if (element != null) {
+		$_.effects.animateResize(element, {
+			startWidth : element[params.attribute],
+			endWidth : 0,
+			steps : params.speed,
+			powr : 0.5,
+			attribute : params.attribute,
+			intervals : 10
+		});
+	}
+}
+	}),</code></pre>
+          <section id="toJSON">
+            <h1>toJSON</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>toJSON()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>strobj</td>
+                <td>String</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>Object</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Try to create a JSON object from a string</p></div>
+          <pre><code class="language-javascript">toJSON : function(strobj) {
+	if (typeof cadena == &quot;string&quot;) {
+		var obj = null;
+		cadena = cadena.trim();
+		if (window.JSON &amp;&amp; window.JSON.parse) {
+			obj = window.JSON.parse(cadena);
+		}
+		return obj;
+	} else {
+		return null;
+	}
+},</code></pre>
+          <section id="ul">
+            <h1>ul</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>&nbsp;</span><span>ul</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"></div>
+          <pre><code class="language-javascript">ul : (function(element) {
+	var list = element;
+	var _ul = {
+		clear : function() {
+			var len = list.getElementsByTagName('li').length;
+			while (len--) {
+				list.removeChild(list.getElementsByTagName('li')[len]);
+			}
+		},
+		add : function(properties) {
+			$_.append(list, 'li', properties);
+		}
+	};
+	return _ul;
+}),</code></pre>
+          <section id="drawing">
+            <h1>drawing</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>&nbsp;</span><span>drawing</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td>Object</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><hr>
+<p>Alpha Drawing ;) Inspired by Eve</p><p>how to use it, html5 support is needed (So...IE sucks!): var draw =<br />$_.drawing({ element: document.getElementById(&quot;canvas&quot;), lineWidth: 10,<br />lineColor: #FFFFFFF });</p></div>
+          <pre><code class="language-javascript">drawing : (function(params) {
+	var ctx = params.element.getContext(&quot;2d&quot;);
+	var lineColor = params.lineColor;
+	var lineWidth = params.lineWidth;
+	var angle = 0;
+	var loadedImage = null;
+
+	function position(e) {
+		var x,y;
+		var obj = params.element;
+		if (e.pageX || e.pageY) {
+			x = e.pageX;
+			y = e.pageY;
+		} else {
+			x = e.clientX + document.body.scrollLeft
+					+ document.documentElement.scrollLeft;
+			y = e.clientY + document.body.scrollTop
+					+ document.documentElement.scrollTop;
+		}
+		// Convert to coordinates relative to the canvas
+		while(obj.offsetParent){ 
+			if(obj==document.getElementsByTagName('body')[0]){break;} 
+			else{ 
+			x-=obj.offsetParent.offsetLeft; 
+			y-=obj.offsetParent.offsetTop; 
+			obj=obj.offsetParent; 
+			} 
+		} 
+		return [ x, y ];
+	}
+	var mousemove = null;
+	var listener = null;
+	var mouseup = null;
+	function init() {
+		var added = null;
+		mousemove = function(event) {
+			event.preventDefault();
+			added = &quot;yes&quot;;
+			var pos = position(event);
+			ctx.lineTo(pos[0], pos[1]);
+			ctx.stroke();
+		};
+		listener = function(e) {
+			e.preventDefault();
+			ctx.beginPath();
+			ctx.lineWidth = lineWidth;
+			ctx.strokeStyle = lineColor;
+			if (added == null) {
+				$_.addEvent(&quot;mousemove&quot;, params.element, mousemove);
+			}
+			added = &quot;yes&quot;;
+		};
+		mouseup = function(event) {
+			event.preventDefault();
+			added = null;
+			ctx.stroke();
+			ctx.closePath();
+			$_.removeEvent(&quot;mousemove&quot;, params.element, mousemove);
+		};
+		$_.addEvent(&quot;mousedown&quot;, params.element, listener);
+		$_.addEvent(&quot;mouseup&quot;, params.element, mouseup);
+	}
+	init();
+
+	var _draw = {</code></pre>
+          <section id="clear">
+            <h1>clear</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>clear()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>funcion</td>
+                <td></td>
+                <td><pre><code>       {Function}
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"></div>
+          <pre><code class="language-javascript">clear : function(funcion) {
+	ctx
+			.clearRect(0, 0, params.element.width,
+					params.element.height);
+	if (loadedImage != null) {
+		ctx.drawImage(loadedImage, 0, 0, loadedImage.width,
+				loadedImage.height);
+	}
+	if (funcion != null &amp;&amp; typeof funcion == 'function') {
+		funcion.call();
+	}
+},
+stop : function(funcion) {
+	$_.removeEvent(&quot;mousemove&quot;, params.element, mousemove);
+	$_.removeEvent(&quot;mouseup&quot;, params.element, mouseup);
+	$_.removeEvent(&quot;mousedown&quot;, params.element, listener);
+	ctx = null;
+	if (funcion != null &amp;&amp; typeof funcion == 'function') {
+		funcion.call();
+	}
+},
+continueDraw : function(funcion) {
+	ctx = params.element.getContext(&quot;2d&quot;);
+	init();
+},</code></pre>
+          <section id="save">
+            <h1>save</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>save()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>format</td>
+                <td></td>
+                <td><pre><code>       image format (PNG,JPG,GIF)
+</code></pre></td>
+              </tr>
+              <tr>
+                <td>funcion</td>
+                <td></td>
+                <td><pre><code>       {Function}
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"></div>
+          <pre><code class="language-javascript">save : function(format, funcion) {
+	if (format.toLowerCase() != 'png'
+			&amp;&amp; format.toLowerCase() != &quot;jpg&quot;
+			&amp;&amp; format.toLowerCase() != 'gif')
+		return;
+	var image = params.element.toDataURL(&quot;image/&quot; + format
+			+ &quot;;base64&quot;);
+	if (funcion != null &amp;&amp; typeof funcion == 'function') {
+		funcion.call(null, image);
+	}
+},
+getAngle : function() {
+	return angle;
+},</code></pre>
+          <section id="rotate">
+            <h1>rotate</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>rotate()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>angle</td>
+                <td></td>
+                <td><pre><code>       {Number}
+</code></pre></td>
+              </tr>
+              <tr>
+                <td>funcion</td>
+                <td></td>
+                <td><pre><code>       {Function}
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"></div>
+          <pre><code class="language-javascript">rotate : function(angle, funcion) {
+	// angle = new Number(angle);
+
+	ctx.rotate(new Number(angle).toRad());
+	if (funcion != null &amp;&amp; typeof funcion == 'function')
+		funcion.call(null);
+},</code></pre>
+          <section id="loadPicture">
+            <h1>loadPicture</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>loadPicture()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>src</td>
+                <td></td>
+                <td><pre><code>       {String}
+</code></pre></td>
+              </tr>
+              <tr>
+                <td>properties</td>
+                <td></td>
+                <td><pre><code>       {Object}
+</code></pre></td>
+              </tr>
+              <tr>
+                <td>funcion</td>
+                <td></td>
+                <td><pre><code>       {Function}
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"></div>
+          <pre><code class="language-javascript">loadPicture : function(src, properties, funcion) {
+	var img = new Image();
+	img.onload = function() {
+		ctx.drawImage(img, properties.posx, properties.posy,
+				img.width, img.height);
+		if (funcion != null &amp;&amp; typeof funcion == 'function') {
+			funcion.call(null, img);
+		}
+	};
+	loadedImage = img;
+	img.src = src;
+},
+getImages : function() {
+	return loadedImages;
+},
+setProperties : function(param) {
+	lineWidth = param.lineWidth;
+	lineColor = param.lineColor;
+}
+
+		};
+		return _draw;
+	}),</code></pre>
+          <section id="forEach">
+            <h1>forEach</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>forEach()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>array</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>funcion</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Loop for each element in the array and execute the function expressed the<br />first argument is the element in the array and the second argument is the<br />position of the element on the array.</p></div>
+          <pre><code class="language-javascript">forEach : function(array, funcion) {
+	if (array.length != null &amp;&amp; typeof funcion == 'function') {
+		for ( var x = 0; x &lt; array.length; x++) {
+			funcion.call(null, array[x], x);
+		}
+	}
+},</code></pre>
+          <section id="repeat">
+            <h1>repeat</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>repeat()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>times</td>
+                <td></td>
+                <td><pre><code>       {Number}
+</code></pre></td>
+              </tr>
+              <tr>
+                <td>funcion</td>
+                <td></td>
+                <td><pre><code>       {Function}
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Repeat &#39;funcion&#39; n times, receive the current index and the number of<br />times to be executed on the function args</p></div>
+          <pre><code class="language-javascript">repeat : function(n, funcion) {
+	if (n &gt; 0) {
+		for ( var i = 0; i &lt; n; i++) {
+			funcion.call(null, i, n);
+		}
+	}
+},</code></pre>
+          <section id="toggle">
+            <h1>toggle</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>toggle()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Toggle the element&#39;s visibility from hidden to visible or from visible to<br />hidden</p></div>
+          <pre><code class="language-javascript">toggle : function(element) {
+	if (element.style.display != 'none') {
+		element.style.display = 'none';
+	} else {
+		element.style.display = '';
+	}
+},</code></pre>
+          <section id="toogleRead">
+            <h1>toogleRead</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>toogleRead()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Toggle the element&#39;s access from readonly to normal or viceversa</p></div>
+          <pre><code class="language-javascript">toogleRead : function(element) {
+	if (element.readOnly == true) {
+		element.readonly = false;
+	} else {
+		element.readonly = true;
+	}
+},
+init : function() {
+	// Extending native objects...</code></pre>
+          <section id="ltrim">
+            <h1>ltrim</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>String.prototype.ltrim()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Delete any space,tab or new line character on the left of the string</p></div>
+          <pre><code class="language-javascript">String.prototype.ltrim = function() {
+	var whitespace = new String(&quot; \t\n\r&quot;);
+	var s = new String(this);
+	if (whitespace.indexOf(s.charAt(0)) != -1) {
+		var j = 0, i = s.length;
+		while (j &lt; i &amp;&amp; whitespace.indexOf(s.charAt(j)) != -1)
+			j++;
+		s = s.substring(j, i);
+	}
+	return s;
+};</code></pre>
+          <section id="rtrim">
+            <h1>rtrim</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>String.prototype.rtrim()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Delete any space,tab or new line character on the right of the string</p></div>
+          <pre><code class="language-javascript">String.prototype.rtrim = function() {
+	var whitespace = new String(&quot; \t\n\r&quot;);
+	var s = new String(this);
+	if (whitespace.indexOf(s.charAt(s.length - 1)) != -1) {
+		var i = s.length - 1; // Get length of string
+		while (i &gt;= 0 &amp;&amp; whitespace.indexOf(s.charAt(i)) != -1)
+			i--;
+		s = s.substring(0, i + 1);
+	}
+	return s;
+
+};</code></pre>
+          <section id="capitalize">
+            <h1>capitalize</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>String.prototype.capitalize()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Return the Capitalized version of the String, the first letter to<br />Upper Case and the rest of the string to lowercase,always Example:</p><p>HELLO = Hello wORLD = World</p></div>
+          <pre><code class="language-javascript">String.prototype.capitalize = function() {
+	var s = this.toLowerCase();
+	var c = s.charAt(0).toUpperCase();
+	return c + s.substring(1, s.length);
+};</code></pre>
+          <section id="trim">
+            <h1>trim</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>String.prototype.trim()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Delete any space,tab or new line character on the left and the right<br />of the string</p></div>
+          <pre><code class="language-javascript">String.prototype.trim = function() {
+	return this.ltrim().rtrim();
+};</code></pre>
+          <section id="regex">
+            <h1>regex</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>String.prototype.regex()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"></div>
+          <pre><code class="language-javascript">String.prototype.regex = function(exp) {
+	var regex = null;
+	if (exp != null) {
+		if (typeof (exp) == 'string')
+			regex = new RegExp(exp);
+		else {
+			regex = exp;
+			return regex.test(this);
+		}
+	} else {
+		return null;
+	}
+};</code></pre>
+          <section id="isEmail">
+            <h1>isEmail</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>String.prototype.isEmail()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Return true if the String is representing an email address</p></div>
+          <pre><code class="language-javascript">String.prototype.isEmail = function() {
+	var pattern = &quot;^[\\w-_\.]*[\\w-_\.]\@[\\w]\.+[\\w]+[\\w]$&quot;;
+	return this.regex(pattern);
+};</code></pre>
+          <section id="escapeHTML">
+            <h1>escapeHTML</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>String.prototype.escapeHTML()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Return the String with Replaced html characters from it</p></div>
+          <pre><code class="language-javascript">String.prototype.escapeHTML = function() {
+	return this.replace(/&amp;/g, '&amp;amp;').replace(/&lt;/g, '&amp;lt;').replace(
+			/&gt;/g, '&amp;gt;');
+};</code></pre>
+          <section id="escapeHTML$">
+            <h1>escapeHTML$</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>String.prototype.escapeHTML$()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Replace html characters from the string</p></div>
+          <pre><code class="language-javascript">String.prototype.escapeHTML$ = function() {
+	this.replace(/&amp;/g, '&amp;amp;').replace(/&lt;/g, '&amp;lt;').replace(/&gt;/g,
+			'&amp;gt;');
+};</code></pre>
+          <section id="toArray">
+            <h1>toArray</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>String.prototype.toArray()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Turn the string into an array of characters</p></div>
+          <pre><code class="language-javascript">String.prototype.toArray = function() {
+	return this.split('');
+};</code></pre>
+          <section id="stripTags">
+            <h1>stripTags</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>String.prototype.stripTags()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Clean html content from the string and return it</p></div>
+          <pre><code class="language-javascript">String.prototype.stripTags = function() {
+	return this.replace(/&lt;([^&gt;]+)&gt;/g, '');
+};</code></pre>
+          <section id="stripTags$">
+            <h1>stripTags$</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>String.prototype.stripTags$()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Clean html content from the string</p></div>
+          <pre><code class="language-javascript">String.prototype.stripTags$ = function() {
+	this.replace(/&lt;([^&gt;]+)&gt;/g, '');
+};</code></pre>
+          <section id="contains">
+            <h1>contains</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>String.prototype.contains()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>text</td>
+                <td></td>
+                <td><pre><code>       {String}
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Return true if the text exists on the string</p></div>
+          <pre><code class="language-javascript">String.prototype.contains = function(text) {
+	var a = this.toArray();
+	for ( var x = 0; x &lt; a.length; x++) {
+		if (a[x] == text) {
+			return true;
+		}
+	}
+	return false;
+};</code></pre>
+          <section id="encode">
+            <h1>encode</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>String.prototype.encode()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"></div>
+          <pre><code class="language-javascript">String.prototype.encode = function() {
+	var s = this;
+	 for(var c, i = -1, l = (s = s.split(&quot;&quot;)).length, o = String.fromCharCode; ++i &lt; l;
+	            s[i] = (c = s[i].charCodeAt(0)) &gt;= 127 ? o(0xc0 | (c &gt;&gt;&gt; 6)) + o(0x80 | (c &amp; 0x3f)) : s[i]
+	        );
+	        return s.join(&quot;&quot;);
+};</code></pre>
+          <section id="decode">
+            <h1>decode</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>String.prototype.decode()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"></div>
+          <pre><code class="language-javascript">String.prototype.decode = function() {
+	var s = this;
+	  for(var a, b, i = -1, l = (s = s.split(&quot;&quot;)).length, o = String.fromCharCode, c = &quot;charCodeAt&quot;; ++i &lt; l;
+	            ((a = s[i][c](0)) &amp; 0x80) &amp;&amp;
+	            (s[i] = (a &amp; 0xfc) == 0xc0 &amp;&amp; ((b = s[i + 1][c](0)) &amp; 0xc0) == 0x80 ?
+	            o(((a &amp; 0x03) &lt;&lt; 6) + (b &amp; 0x3f)) : o(128), s[++i] = &quot;&quot;)
+	        );
+	        return s.join(&quot;&quot;);
+
+};</code></pre>
+          <section id="replaceChar">
+            <h1>replaceChar</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>String.prototype.replaceChar()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>position</td>
+                <td></td>
+                <td><pre><code>       {String}
+</code></pre></td>
+              </tr>
+              <tr>
+                <td>newChar</td>
+                <td></td>
+                <td><pre><code>       {String}
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"></div>
+          <pre><code class="language-javascript">String.prototype.replaceChar = function(position, newChar) {
+	var cadena = this.substring(0, position);
+	var end = this.substring(position + 1, -1);
+	return cadena + newChar + end;
+};</code></pre>
+          <section id="reverse">
+            <h1>reverse</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>String.prototype.reverse()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"></div>
+          <pre><code class="language-javascript">String.prototype.reverse = function() {
+	var cadena = &quot;&quot;;
+	for ( var i = this.length; i &gt; 0; i--) {
+		cadena += this.charAt(i);
+	}
+	return cadena;
+};
+String.prototype.lines = function() {
+	return this.split('\\r');
+};
+String.prototype.replaceAll = function(token, newToken, ignoreCase) {
+	var str, i = -1, _token;
+	if ((str = this.toString()) &amp;&amp; typeof token === &quot;string&quot;) {
+		_token = ignoreCase === true ? token.toLowerCase() : undefined;
+		while ((i = (_token !== undefined ? str.toLowerCase().indexOf(
+				_token, i &gt;= 0 ? i + newToken.length : 0) : str
+				.indexOf(token, i &gt;= 0 ? i + newToken.length : 0))) !== -1) {
+			str = str.substring(0, i).concat(newToken).concat(
+					str.substring(i + token.length));
+		}
+	}
+	return str;
+};
+// //////Number extend//////</code></pre>
+          <section id="round">
+            <h1>round</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Number.prototype.round()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Round the number according to the round from the Math Object</p></div>
+          <pre><code class="language-javascript">Number.prototype.round = function() {
+	return Math.round(this);
+};</code></pre>
+          <section id="toRad">
+            <h1>toRad</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Number.prototype.toRad()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Return the number expressed on Rad</p></div>
+          <pre><code class="language-javascript">Number.prototype.toRad = function() {
+	return this * Math.PI / 180;
+};</code></pre>
+          <section id="toDeg">
+            <h1>toDeg</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Number.prototype.toDeg()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Return the number expressed on Deg</p></div>
+          <pre><code class="language-javascript">Number.prototype.toDeg = function() {
+	return this * 180 / Math.PI;
+};</code></pre>
+          <section id="toBrng">
+            <h1>toBrng</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Number.prototype.toBrng()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Return the number expressed on Brng</p></div>
+          <pre><code class="language-javascript">Number.prototype.toBrng = function() {
+	return (this.toDeg() + 360) % 360;
+};</code></pre>
+          <section id="roundTo">
+            <h1>roundTo</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Number.prototype.roundTo()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Format the number to express the number with the decimals expressed</p></div>
+          <pre><code class="language-javascript">Number.prototype.roundTo = function(decimals) {
+	var format = '1';
+	for ( var x = 0; x &lt; decimals; x++) {
+		format += '0';
+	}
+	return Math.round(this * format) / format;
+};</code></pre>
+          <section id="factorial">
+            <h1>factorial</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Number.prototype.factorial()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Return the factorial of the number</p></div>
+          <pre><code class="language-javascript">Number.prototype.factorial = function() {
+	if (this &lt;= 1) {
+		return 1;
+	} else {
+		var fact = 1;
+		for ( var n = this; n &gt; 1; n--) {
+			fact *= n;
+		}
+		return fact;
+	}
+};
+Number.prototype.abs = function() {
+	if (this &lt; 0) {
+		return this * -1;
+	}
+	return this;
+};</code></pre>
+          <section id="format">
+            <h1>format</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Number.prototype.format()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>integer</td>
+                <td></td>
+                <td><p>n: length of decimal</p></td>
+              </tr>
+              <tr>
+                <td>integer</td>
+                <td></td>
+                <td><p>x: length of whole part</p></td>
+              </tr>
+              <tr>
+                <td>mixed</td>
+                <td></td>
+                <td><p>s: sections delimiter</p></td>
+              </tr>
+              <tr>
+                <td>mixed</td>
+                <td></td>
+                <td><p>c: decimal delimiter</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Number.prototype.format(n, x, s, c)</p></div>
+          <pre><code class="language-javascript">Number.prototype.format = function(n, x, s, c) {
+    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n &gt; 0 ? '\\D' : '$') + ')',
+        num = this.toFixed(Math.max(0, ~~n));
+    
+    return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&amp;' + (s || ','));
+};
+
+
+// ///// Date Object Extend /////////</code></pre>
+          <section id="addDay">
+            <h1>addDay</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Date.prototype.addDay()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>days</td>
+                <td></td>
+                <td><pre><code>       {Number}
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Add days to the Date expressed in the argument</p></div>
+          <pre><code class="language-javascript">Date.prototype.addDay = function(days) {
+	if (!isNaN(days)) {
+		this.setDate(this.getDate() + days);
+	}
+};</code></pre>
+          <section id="addMonth">
+            <h1>addMonth</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Date.prototype.addMonth()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>months</td>
+                <td>Number</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Add months to the Date expressed in the argument</p></div>
+          <pre><code class="language-javascript">Date.prototype.addMonth = function(months) {
+	if (!isNaN(months)) {
+		this.setMonth(this.getMonth() + months);
+	}
+};</code></pre>
+          <section id="addYear">
+            <h1>addYear</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Date.prototype.addYear()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>years</td>
+                <td>Number</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Add years to the Date expressed in the argument</p></div>
+          <pre><code class="language-javascript">Date.prototype.addYear = function(years) {
+	if (!isNaN(months)) {
+		this.setYear(this.getYear() + years);
+	}
+};</code></pre>
+          <section id="now">
+            <h1>now</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Date.prototype.now()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Returns the current browser&#39;s time</p></div>
+          <pre><code class="language-javascript">Date.prototype.now = function() {
+	return new Date().getTime();
+};
+// ////// Array Object Extend ////////////////</code></pre>
+          <section id="size">
+            <h1>size</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.size()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Alias function to retrive the length of the array</p></div>
+          <pre><code class="language-javascript">Array.prototype.size = function() {
+	return this.length;
+};</code></pre>
+          <section id="parseString">
+            <h1>parseString</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.parseString()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>sep</td>
+                <td>String</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>String</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Convert an array into a String, separated by sep</p></div>
+          <pre><code class="language-javascript">Array.prototype.parseString = function(sep){
+	var ret=&quot;&quot;;
+	for(var i=0;i&lt;this.length;i++){
+		ret += this[i]+sep;
+	}
+	return ret.substring(0,ret.length-sep.length);
+};</code></pre>
+          <section id="set">
+            <h1>set</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.set()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>property</td>
+                <td>String</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>value</td>
+                <td>String</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Set the same value to every property on the elements of the array</p></div>
+          <pre><code class="language-javascript">Array.prototype.set = function(property, value) {
+	for ( var i = 0; i &lt; this.length; i++) {
+		this[i][property] = value;
+	}
+};</code></pre>
+          <section id="get">
+            <h1>get</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.get()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td>Object</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>Array</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Get all propoerties of a dict or array</p></div>
+          <pre><code class="language-javascript">Array.prototype.get = function(property) {
+	var _array = new Array();
+	for ( var i = 0; i &lt; this.length; i++) {
+		_array.push(this[i][property]);
+	}
+	return _array;
+};</code></pre>
+          <section id="inArray">
+            <h1>inArray</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.inArray()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td>Object</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>Boolean</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Determines if an object is present on the array</p></div>
+          <pre><code class="language-javascript">Array.prototype.inArray = function(object) {
+	var i;
+	for (i = 0; i &lt; this.length; i++) {
+		if (this[i] === object) {
+			return true;
+		}
+	}
+	return false;
+};</code></pre>
+          <section id="unique">
+            <h1>unique</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.unique()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Returns an array of unique objects in this array</p></div>
+          <pre><code class="language-javascript">Array.prototype.unique = function(){
+	var _tmp = new Array();
+	_tmp[0] = this[0];
+	for(var i = 1;i&lt;this.length;i++){
+		if(!_tmp.inArray(this[i])){
+			_tmp.push(this[i]);
+		}
+	}
+	return _tmp;
+};</code></pre>
+          <section id="find">
+            <h1>find</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.find()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>property</td>
+                <td>String</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>value</td>
+                <td>String</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>Object</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Return an Object if exists in array according with the property if<br />there is more than one object with this property and the same value<br />it will return return the first one and its position in the array</p></div>
+          <pre><code class="language-javascript">Array.prototype.find = function(property, value) {
+	var obj = null;
+	var x = -1;
+	for ( var i = 0; i &lt; this.length; i++) {
+		if (typeof (this[i]) == 'object') {
+			if (this[i][property] == value) {
+				obj = this[i];
+				x = i;
+				break;
+			}
+		}
+	}
+	return {
+		pos : x,
+		element : obj
+	};
+};</code></pre>
+          <section id="indexOf">
+            <h1>indexOf</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.indexOf()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td>Object</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>Number</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Returns the position of the argument on the array or -1 if the<br />argument is not present</p></div>
+          <pre><code class="language-javascript">Array.prototype.indexOf = function(s) {
+	for ( var x = 0; x &lt; this.length; x++)
+		if (this[x] == s)
+			return x;
+	return -1;
+};</code></pre>
+          <section id="remove">
+            <h1>remove</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.remove()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td>Object</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>Array</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Remove item from array which is equal to s</p></div>
+          <pre><code class="language-javascript">Array.prototype.remove = function(s) {
+	var _arr = new Array();
+	for ( var i = 0; i &lt; this.length; i++) {
+		if (this[i] != s) {
+			_arr.push(this[i]);
+		}
+	}
+	return _arr;
+};</code></pre>
+          <section id="compact">
+            <h1>compact</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.compact()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"></div>
+          <pre><code class="language-javascript">Array.prototype.compact = function() {
+	var _arr = new Array();
+	for ( var i = 0; i &lt; this.length; i++) {
+		if (this[i] != null) {
+			_arr.push(this[i]);
+		}
+	}
+	return _arr;
+};</code></pre>
+          <section id="items">
+            <h1>items</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.items()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Returns the number of non-null elements in array</p></div>
+          <pre><code class="language-javascript">Array.prototype.items = function() {
+	return this.compact().length;
+};</code></pre>
+          <section id="first">
+            <h1>first</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.first()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Returns the first element of the Array, alias for Array[0]</p></div>
+          <pre><code class="language-javascript">Array.prototype.first = function() {
+	return this[0];
+};</code></pre>
+          <section id="last">
+            <h1>last</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.last()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Returns the last element of the array, alias for Array[Array.length -<br />1]</p></div>
+          <pre><code class="language-javascript">Array.prototype.last = function() {
+	return this[this.length - 1];
+};</code></pre>
+          <section id="flatten">
+            <h1>flatten</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.flatten()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Returns a new array that is a one-dimensional flattening of this<br />array (recursively). That is, for every element that is an array,<br />extract its elements into the new array.</p></div>
+          <pre><code class="language-javascript">Array.prototype.flatten = function() {
+	var _arr = new Array();
+	for ( var i = 0; i &lt; this.length; i++) {
+		if (typeof (this[i]) == 'Array' &amp;&amp; this[i] != null) {
+			for ( var j = 0; j &lt; this[i].length; j++) {
+				_arr.push(this[i][j]);
+			}
+		} else {
+			_arr.push(this[i]);
+		}
+	}
+	return _arr;
+};</code></pre>
+          <section id="indexes">
+            <h1>indexes</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.indexes()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td>Array</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>Array</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Returns a new array consisting of elements at the given indices. May<br />insert null for indices out of range.</p></div>
+          <pre><code class="language-javascript">Array.prototype.indexes = function(arr) {
+	var _arr = new Array();
+	if (typeof (arr) == 'Array' &amp;&amp; arr != null) {
+		for ( var i = 0; i &lt; arr.length; i++) {
+			if (typeof (arr[i]) == 'Number') {
+				if (arr[i] != null) {
+					_arr.push(this.at(arr[i]));
+				} else {
+					_arr.push(null);
+				}
+			} else {
+				_arr.push(null);
+			}
+		}
+	}
+	return _arr;
+};</code></pre>
+          <section id="merge">
+            <h1>merge</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.merge()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>added</td>
+                <td>Number</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>Number</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Join an array to the current array, it joins the new array at the end<br />of the current array</p></div>
+          <pre><code class="language-javascript">Array.prototype.merge = function(added) {
+	var i = this.length, j = 0;
+	if (typeof added.length === &quot;number&quot;) {
+		for ( var l = added.length; j &lt; l; j++) {
+			this[i++] = added[j];
+		}
+	} else {
+		while (added[j] !== undefined) {
+			this[i++] = added[j++];
+		}
+	}
+	return this.length;
+};</code></pre>
+          <section id="grep">
+            <h1>grep</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>Array.prototype.grep()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>callback</td>
+                <td>Function</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>Array</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Create a new array from the element of current array that executes<br />the callback function successfully</p></div>
+          <pre><code class="language-javascript">Array.prototype.grep = function(callback) {
+	var ret = new Array();
+	for ( var i = 0; i &lt; this.length; i++) {
+		if (callback.call(this, this[i], i)) {
+			ret.push(this[i]);
+		}
+	}
+	return ret;
+};
+Array.prototype.each = function(funcion) {
+	for ( var i = 0; i &lt; this.length; i++) {
+		funcion.call(this, this[i], i);
+	}
+};
+
+Array.prototype.at = function(pos) {
+	return this[pos];
+};
+this.globals[&quot;doAjaxStart&quot;] = this.registerEvent('doAjaxStart');
+this.globals[&quot;doAjaxFinish&quot;] = this.registerEvent('doAjaxFinish');
+	},</code></pre>
+          <section id="addClass">
+            <h1>addClass</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>addClass()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>clasz</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Add a class style to the element</p></div>
+          <pre><code class="language-javascript">addClass : function(element, clasz) {
+	element.className += &quot; &quot; + clasz;
+},</code></pre>
+          <section id="hasClass">
+            <h1>hasClass</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>hasClass()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>clasz</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Return true if the expressed class is in the element</p></div>
+          <pre><code class="language-javascript">hasClass : function(element, clasz) {
+	if (new String(element.className).regex('(\\s|^)' + clasz + '(\\s|$)') != null) {
+		return true;
+	}
+	return false;
+},</code></pre>
+          <section id="removeClass">
+            <h1>removeClass</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>removeClass()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>clasz</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Tries to remove the class from the element</p></div>
+          <pre><code class="language-javascript">removeClass : function(element, clasz) {
+	if ($_.hasClass(element, clasz)) {
+		var reg = new RegExp('(\\s|^)' + clasz + '(\\s|$)');
+		element.className = element.className.replace(reg, ' ');
+	}
+},</code></pre>
+          <section id="replaceClass">
+            <h1>replaceClass</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>replaceClass()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>clasz</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Replace the class expressed in clasz with the newclasz on the element</p></div>
+          <pre><code class="language-javascript">replaceClass : function(element, clasz, newclasz) {
+	this.removeClass(element, clasz);
+	this.addClass(element, newclasz);
+},</code></pre>
+          <section id="children">
+            <h1>children</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>children()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"></div>
+          <pre><code class="language-javascript">children : function(element) {
+	var array = new Array();
+	if (element.hasChildNodes()) {
+		if (new String(element.tagName).toLowerCase() != 'form') {
+			var nodes = element.childNodes;
+			for ( var i = 0; i &lt; nodes.length; i++) {
+				array.push($_.findElement(nodes.item(i)));
+			}
+		} else {
+			for ( var i = 0; i &lt; element.elements.length; i++) {
+				array.push($_.findElement(element.elements[i]));
+			}
+		}
+	}
+	return array;
+},</code></pre>
+          <section id="validForm">
+            <h1>validForm</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>validForm()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>form</td>
+                <td>Element</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"></div>
+          <pre><code class="language-javascript">validForm : function(form) {
+	var bad = new Array();
+	function isEmpty(element) {
+		if (element.value == '' || element.value.length &lt; 1)
+			return true;
+		else
+			return false;
+	}
+	;
+	for ( var i = 0; i &lt; form.elements.length; i++) {
+		var error = 0;
+		var item = $_.findElement(form.elements[i]);
+		if (item.getAttribute(&quot;notEmpty&quot;) != null
+				&amp;&amp; item.getAttribute(&quot;notEmpty&quot;) == '1') {
+			if (isEmpty(item)) {
+				error = 1;
+			}
+		}
+		if (item.getAttribute(&quot;match&quot;) != null
+				&amp;&amp; item.getAttribute(&quot;match&quot;) != '') {
+			if (item.getAttribute(&quot;match&quot;) == 'email') {
+				if (!(new String(item.value).isEmail())) {
+					error = 1;
+				}
+			} else {
+				if (!(new String(item.value).regex(item
+						.getAttribute(&quot;match&quot;)))) {
+					error = 1;
+				}
+			}
+		}
+		if (item.getAttribute(&quot;notEqual&quot;) != null
+				&amp;&amp; item.getAttribute(&quot;notEqual&quot;) != '') {
+			if (item.value == item.getAttribute(&quot;notEqual&quot;)) {
+				error = 1;
+			}
+		}
+		if (item.getAttribute(&quot;equalElement&quot;) != null
+				&amp;&amp; item.getAttribute(&quot;equalElement&quot;) != '') {
+			if (item.value != $_.findElement(item
+					.getAttribute(&quot;equalElement&quot;)).value) {
+				error = 1;
+			}
+		}
+		if (error &gt; 0) {
+			bad.push(item);
+		}
+		error = 0;
+	}
+	return bad;
+},</code></pre>
+          <section id="$$_">
+            <h1>$$_</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>$$_()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>tag</td>
+                <td>String</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>filtro</td>
+                <td>String</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"></div>
+          <pre><code class="language-javascript">$$_ : function(tag, filtro) {
+	var arreglo = new Array();
+	var nodes = (document.all) ? document.all : document
+			.getElementsByTagName(tag);
+	for ( var x = 0; x &lt; nodes.length; x++) {
+		if (filtro == null) {
+			arreglo.push(nodes[x]);
+		} else {
+			var t;
+			for ( var key in filtro) {
+				if (nodes[x][key] != null &amp;&amp; nodes[x][key] == filtro[key]) {
+					t = true;
+				} else
+					t = false;
+			}
+			if (t)
+				arreglo.push(nodes[x]);
+		}
+	}
+	return arreglo;
+},
+append : function(element, tag, properties) {
+	var dd = document.createElement(tag);
+	for ( var key in properties) {
+		dd[key] = properties[key];
+	}
+	element.appendChild(dd);
+},
+checkAll : function(bool, filter) {
+	var checks = null;
+	if (filter == null)
+		checks = this.$$_(&quot;input&quot;, {
+			type : &quot;checkbox&quot;
+		});
+	else {
+		checks = this.$$_(&quot;input&quot;, filter);
+	}
+	for ( var x = 0; x &lt; checks.length; x++) {
+		if (checks[x].checked != null) {
+			checks[x].checked = bool;
+		}
+	}
+},
+cookie : function() {
+	var _cookie = {
+		gets : function() {
+			if (typeof document.cookie != &quot;undefined&quot;) {
+				var cookies = new Array();
+				if (new String(document.cookie).contains(';')) {
+					var items = document.cookie.split(&quot;;&quot;);
+					$_.forEach(items, function(item, index) {
+						var cookie = item.split(&quot;=&quot;);
+						var mycookie = {
+							name : cookie[0],
+							value : cookie[1]
+						};
+						cookies.push(mycookie);
+					});
+				} else {
+					var galleta = document.cookie.split(&quot;=&quot;);
+					var mycookie = {
+						name : galleta[0],
+						value : galleta[1]
+					};
+					cookies.push(mycookie);
+				}
+				return cookies;
+			} else {
+				return null;
+			}
+		},
+		get : function(name) {
+			var coo = null;
+			$_.forEach(this.gets(), function(cookie, pos) {
+				if (name == cookie.name.trim()) {
+					coo = cookie;
+				}
+			});
+			return coo;
+		},
+		set : function(name, value, exp) {
+			var exdate = new Date();
+			exdate.setDate(exdate.getDate() + exp);
+			var c_value = value.trim();
+			document.cookie = name + &quot;=&quot; + c_value;
+		},
+		unset : function(name) {
+			this.set(name, '', -1);
+		}
+	};
+	return _cookie;
+},
+clearCombo : function(combobox, limit) {
+	for ( var i = combobox.length - 1; i &gt;= limit; i--) {
+		combobox.remove(i);
+	}
+},
+comboAddOption : function(combobox, properties) {
+	var elOptNew = document.createElement('option');
+	elOptNew.text = properties.label;
+	elOptNew.value = properties.value;
+	try {
+		combobox.add(elOptNew, null);
+	} catch (ex) {
+		combobox.add(elOptNew);
+	}
+},
+colors : {
+	aqua : [ 0, 255, 255 ],
+	azure : [ 240, 255, 255 ],
+	beige : [ 245, 245, 220 ],
+	black : [ 0, 0, 0 ],
+	blue : [ 0, 0, 255 ],
+	brown : [ 165, 42, 42 ],
+	cyan : [ 0, 255, 255 ],
+	darkblue : [ 0, 0, 139 ],
+	darkcyan : [ 0, 139, 139 ],
+	darkgrey : [ 169, 169, 169 ],
+	darkgreen : [ 0, 100, 0 ],
+	darkkhaki : [ 189, 183, 107 ],
+	darkmagenta : [ 139, 0, 139 ],
+	darkolivegreen : [ 85, 107, 47 ],
+	darkorange : [ 255, 140, 0 ],
+	darkorchid : [ 153, 50, 204 ],
+	darkred : [ 139, 0, 0 ],
+	darksalmon : [ 233, 150, 122 ],
+	darkviolet : [ 148, 0, 211 ],
+	fuchsia : [ 255, 0, 255 ],
+	gold : [ 255, 215, 0 ],
+	green : [ 0, 128, 0 ],
+	indigo : [ 75, 0, 130 ],
+	khaki : [ 240, 230, 140 ],
+	lightblue : [ 173, 216, 230 ],
+	lightcyan : [ 224, 255, 255 ],
+	lightgreen : [ 144, 238, 144 ],
+	lightgrey : [ 211, 211, 211 ],
+	lightpink : [ 255, 182, 193 ],
+	lightyellow : [ 255, 255, 224 ],
+	lime : [ 0, 255, 0 ],
+	magenta : [ 255, 0, 255 ],
+	maroon : [ 128, 0, 0 ],
+	navy : [ 0, 0, 128 ],
+	olive : [ 128, 128, 0 ],
+	orange : [ 255, 165, 0 ],
+	pink : [ 255, 192, 203 ],
+	purple : [ 128, 0, 128 ],
+	violet : [ 128, 0, 128 ],
+	red : [ 255, 0, 0 ],
+	silver : [ 192, 192, 192 ],
+	white : [ 255, 255, 255 ],
+	yellow : [ 255, 255, 0 ],
+	transparent : [ 255, 255, 255 ]
+},
+keys : {
+	backspace : 8,
+	tab : 9,
+	enter : 13,
+	shift : 16,
+	ctrl : 17,
+	alt : 18,
+	pause : 19,
+	capslock : 20,
+	escape : 27,
+	pageup : 33,
+	pagedown : 34,
+	end : 35,
+	home : 36,
+	leftarrow : 37,
+	uparrow : 38,
+	rightarrow : 39,
+	downarrow : 40,
+	insert : 45,
+	del : 46,
+	f1 : 112,
+	f2 : 113,
+	f3 : 114,
+	f4 : 115,
+	f5 : 116,
+	f6 : 117,
+	f7 : 118,
+	f8 : 119,
+	f9 : 120,
+	f10 : 121,
+	f11 : 122,
+	f12 : 123,
+	zero : 48,
+	one : 49,
+	two : 50,
+	three : 51,
+	four : 52,
+	five : 53,
+	six : 54,
+	seven : 55,
+	eight : 56,
+	nine : 57
+},</code></pre>
+          <section id="addCell">
+            <h1>addCell</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>addCell()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>row</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>properties</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>funcion</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Add a cell on the row and with the properties expressed</p></div>
+          <pre><code class="language-javascript">addCell : function(row, properties, funcion) {
+	var td;
+	if (properties['type'] != null &amp;&amp; properties['type'] == 'th') {
+		td = document.createElement('th');
+	} else {
+		td = row.insertCell(-1);
+	}
+	for ( var key in properties) {
+		td[key] = properties[key];
+	}
+	if (properties['type'] != null &amp;&amp; properties['type'] == 'th') {
+		row.appendChild(td);
+	}
+
+	if (funcion != null &amp;&amp; typeof funcion == 'function')
+		funcion.call(null, td);
+	return td;
+},
+
+deleteRow : function(table, rowIndex, funcion, ref) {
+	var row = table.rows[rowIndex];
+	if (ref != null) {
+		table.deleteRow.call(ref, rowIndex);
+	} else {
+		table.deleteRow(rowIndex);
+	}
+	if (funcion != null)
+		funcion.call(null, row);
+},
+getRow : function(table,rowIndex){
+	return table.rows[rowIndex];
+},</code></pre>
+          <section id="addRow">
+            <h1>addRow</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>addRow()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>table</td>
+                <td>Element</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>fields</td>
+                <td>Array</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>funcion</td>
+                <td>Function</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>Object</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Add a row to the table setting its celds with the argument fields the<br />param fields is expressed like an object with the td properties like:<br />fields: {innerHTML:&#39;content&#39;,width:&#39;20%&#39;} If funcion is setted it calls<br />after adding the new row</p></div>
+          <pre><code class="language-javascript">addRow : function(table, fields, funcion) {
+	var row = table.insertRow(table.rows.length);
+	$_.forEach(fields, function(field, index) {
+		$_.addCell(row, field);
+	});
+	if (funcion != null &amp;&amp; typeof funcion == 'function')
+		funcion.call(null, row);
+	return row;
+},
+clearRows : function(table, ref) {
+	var x = table.rows.length;
+	while (x &gt; 0) {
+		x--;
+		if (ref != null) {
+			table.deleteRow.call(ref, x);
+		} else {
+			table.deleteRow(x);
+		}
+	}
+},
+clearCells : function(row,functi) {
+	while(row.cells.length &gt; 0){
+		row.deleteCell(-1);
+	}
+	if (functi != null &amp;&amp; typeof functi == 'function')
+		functi.call(null, row);
+},</code></pre>
+          <section id="addEvent">
+            <h1>addEvent</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>addEvent()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>name</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>element</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>funcion</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"></div>
+          <pre><code class="language-javascript">addEvent : function(name, element, funcion) {
+	if (funcion != null &amp;&amp; typeof funcion == 'function') {
+		if (element.addEventListener) {
+			element.addEventListener(name, funcion, false);
+			return;
+		} else if (element.attachEvent) {
+			element.attachEvent('on' + name, funcion);
+			return;
+		} else {
+			element['on' + name] = funcion;
+			return;
+		}
+	}
+},
+removeEvent : function(name, element, funcion) {
+	if (element.removeEventListener) {
+		element.removeEventListener(name, funcion);
+		return;
+	} else if (element.dettachEvent) {
+		element.dettachEvent('on' + name, funcion);
+		return;
+	} else {
+		element['on' + name] = null;
+		return;
+	}
+},</code></pre>
+          <section id="rightClick">
+            <h1>rightClick</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>rightClick()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>funcion</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Perform a function when the user made a rightclick over the element<br />especified if no element was especified the event will be added to the<br />whole page.</p></div>
+          <pre><code class="language-javascript">rightClick : function(element, funcion) {
+	if (funcion == null &amp;&amp; typeof funcion == 'function') {
+		if (element == null)
+			element = document;
+		$_.addEvent('mousedown', element, function(event) {
+			if ((event.button == 2) || (event.button == 3)) {
+				funcion.call(this);
+			}
+		});
+	}
+},</code></pre>
+          <section id="click">
+            <h1>click</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>click()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>funcion</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"></div>
+          <pre><code class="language-javascript">click : function(element, funcion) {
+	if (funcion == null &amp;&amp; typeof funcion == 'function') {
+		if (element == null)
+			element = document;
+		$_.addEvent('click', element, funcion);
+	}
+},</code></pre>
+          <section id="addKeyEvent">
+            <h1>addKeyEvent</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>addKeyEvent()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>keycode</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>funcion</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"></div>
+          <pre><code class="language-javascript">addKeyEvent : function(element, keycode, funcion) {
+	if (element == null)
+		element = document;
+	$_.addEvent('keyup', element, function(event) {
+		var nav4 = window.Event ? true : false;
+		var key = nav4 ? event.which : event.keyCode;
+		if (key == keycode) {
+			funcion.call(this);
+		}
+	});
+},</code></pre>
+          <section id="enter">
+            <h1>enter</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>enter()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>funcion</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"></div>
+          <pre><code class="language-javascript">enter : function(element, funcion) {
+	if (funcion != null &amp;&amp; typeof funcion == 'function') {
+		if (element == null)
+			element = document;
+		$_.addKeyEvent(element, $_.keys.enter, funcion);
+	}
+},
+addElement : function(tag, properties, parentNode, ref) {
+	if (parentNode == null) {
+		parentNode = document;
+	}
+	var element = document.createElement(tag);
+	for ( var key in properties) {
+		element[key] = properties[key];
+	}
+
+	if (ref != null &amp;&amp; $_.browser.isIE() == false) {
+		parentNode.appendChild.call(ref, element);
+	} else {
+		parentNode.appendChild(element);
+	}
+},
+registerEvent : function(name) {
+	var event;
+	if (document.createEvent) {
+		event = document.createEvent('Events');
+		event.initEvent(name, true, true);
+	} else {
+		event = document.createEventObject();
+	}
+	return event;
+},
+trigger : function(event, params) {
+	if (document.createEvent) {
+		document.dispatchEvent(this.globals[event]);
+	} else {
+		var evt = document.createEventObject(window.event);
+		document.fireEvent(event.toLowerCase(), evt);
+	}
+},</code></pre>
+          <section id="linkPreview">
+            <h1>linkPreview</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>linkPreview()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><hr>
+<p>Beta linkPreview</p><p>Options : element = (Object) A Text field to add the listeners preview =<br />(Object) Optional Element to place the link&#39;s preview url = (String) Url<br />of the server&#39;s algorithm (Javascript can&#39;t handle this thats why it<br />needs a server side script) data = (Object) optional extra data for the<br />ajax request sendType = (String) Send type for the request (POST, GET,<br />PUT) default GET callback = (Function) Optional function for a custom<br />callback after the response of the server side script</p></div>
+          <pre><code class="language-javascript">linkPreview : function(options) {
+	var urlRegex = /(https?\:\/\/|\s)[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})(\/+[a-z0-9_.\:\;-]*)*(\?[\&amp;\%\|\+a-z0-9_=,\.\:\;-]*)?([\&amp;\%\|\+&amp;a-z0-9_=,\:\;\.-]*)([\!\#\/\&amp;\%\|\+a-z0-9_=,\:\;\.-]*)}*/i;
+	var preview = false;
+	if (options.sendType == null) {
+		options.sendType = 'get';
+	}
+	var _preview = {
+		init : function() {
+			$_.addEvent('keyup', options.element, function(e) {
+				if ((e.which == 13 || e.which == 32 || e.which == 17)
+						&amp;&amp; new String(options.element.value).trim() != &quot;&quot;)
+					_preview.fetch();
+			});
+		},
+		fetch : function() {
+			var text = new String(&quot;&quot; + options.element.value);
+			if (text.regex(urlRegex)) {
+				$.ajax({
+					url : options.url + &quot;?text=&quot; + text,
+					data : options.data,
+					dataType : 'json',
+					type : options.sendType,
+					success : function(data) {
+						preview = true;
+						if (options.callback == null
+								|| typeof (options.callback) != 'function')
+							_preview.defaultPreview(data);
+						else {
+							options.callback.call(null, data);
+						}
+					}
+				});
+			}
+		},
+		defaultPreview : function(answer) {
+			preview = true;
+			options.preview.innerHTML = answer;
+		}
+	};
+	_preview.init();
+	return _preview;
+},
+geo : ({
+	azimuth : 6371,
+	distance : function(lat1, lon1, lat2, lon2) {
+		var dLat = (lat2 - lat1).toRad();
+		var dLon = (lon2 - lon1).toRad();
+		lat1 = lat1.toRad();
+		lat2 = lat2.toRad();
+		var a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+				+ Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1)
+				* Math.cos(lat2);
+		return geo.azimuth
+				* (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+	},
+	spherical : function(lat1, lon1, lat2, lon2) {
+		return Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1)
+				* Math.cos(lat2) * Math.cos(lon2 - lon1))
+				* geo.azimuth;
+	},
+	equirectangular : function(lat1, lat2, lat1, lat2) {
+		var x = (lon2 - lon1) * Math.cos((lat1 + lat2) / 2);
+		var y = (lat2 - lat1);
+		return Math.sqrt(x * x + y * y) * this.azimuth;
+	}
+}),</code></pre>
+          <section id="onLoad">
+            <h1>onLoad</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>onLoad()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>funct</td>
+                <td>Function</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Execute a function when the browser is load the entire page</p></div>
+          <pre><code class="language-javascript">onLoad : function(funct) {
+	window.onload = funct;
+},</code></pre>
+          <section id="findElement">
+            <h1>findElement</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>findElement()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>jdoNovosoft</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Search an element identified by the ID and return a jdoNovoSoft object</p></div>
+          <pre><code class="language-javascript">findElement : function(element) {
+	var tmp = null;
+	if (typeof element == 'string') {
+		if (new String(element).contains(&quot;#&quot;)) {
+			var ele = new String(element).replace(&quot;#&quot;, '');
+			var nodes = (document.all) ? document.all : document
+					.getElementsByTagName(&quot;*&quot;);
+			for ( var x = 0; x &lt; nodes.length; x++) {
+				if (nodes[x].className == ele) {
+					tmp = nodes[x];
+					break;
+				}
+			}
+		} else {
+			tmp = document.getElementById(new String(element).toString());
+		}
+	} else {
+		tmp = element;
+	}
+	var object = {};
+	function extend(obj) {
+		var newobj = {};
+		try {
+			newobj.prototype = obj;
+			newobj.constructor = newobj;
+			for ( var key in obj) {
+				newobj[key] = obj[key];
+			}
+		} catch (e) {
+
+		}
+		return newobj;
+	}
+	;
+	// Fixing IE6/7 functions
+	function _getAttribute(element, attr) {
+		var ret = null;
+		if (element.getAttribute) {
+			ret = element.getAttribute(attr);
+			if (ret == null || ret == undefined) {
+				ret = element[attr];
+			}
+		} else {
+			ret = element.getAttributeNode(attr);
+		}
+		return ret;
+	}
+	;
+	function _setAttribute(element, key, value) {
+		if (element.setAttribute) {
+			element.setAttribute(key, value);
+		} else {
+			var ret = elem.getAttributeNode(key);
+			if (!ret) {
+				ret = document.createAttribute(key);
+				elem.setAttributeNode(ret);
+			}
+			ret.nodeValue = value + &quot;&quot;;
+		}
+	}
+	if (tmp != null) {
+		object = extend(tmp);
+		object.prototype.addClass = function(clasz) {
+			$_.addClass(this, clasz);
+		};
+		object.prototype.hasClass = function(clasz) {
+			return $_.hasClass(this, clasz);
+		};
+		object.prototype.removeClass = function(clasz) {
+			$_.removeClass(this, clasz);
+		};
+		object.prototype.addElement = function(tag, properties) {
+			$_.addElement(tag, properties, object, this);
+		};
+		object.prototype.click = function(funcion) {
+			$_.click(this, funcion);
+		};
+		object.prototype.position = function() {
+			$_.findPosition(this);
+		};
+		object.prototype.glow = function(params) {
+			$_.effects.glow(object, params);
+		};
+		object.prototype.append = function(tag, properties) {
+			$_.append(object, tag, properties);
+		};
+		
+
+		if (tmp.nodeName.toLowerCase() == &quot;select&quot;) {
+			object.prototype.clear = function(limit) {
+				$_.clearCombo(tmp, limit);
+			};
+			object.prototype.addOption = function(properties) {
+				$_.comboAddOption(tmp, properties);
+			};
+		} else if (tmp.nodeName.toLowerCase() == &quot;tbody&quot;
+				|| tmp.nodeName.toLowerCase() == &quot;thead&quot;
+				|| tmp.nodeName.toLowerCase() == &quot;table&quot;) {
+			object.prototype.clear = function() {
+				$_.clearRows(tmp, this);
+			};
+			object.prototype.addRow = function(fields, funcion) {
+				$_.addRow(object, fields, funcion);
+			};
+			
+			object.prototype.deleteLastRow = function(funcion) {
+				$_.deleteRow(object, (object.rows.length - 1), funcion,
+						this);
+			};
+			
+			object.prototype.rowSize = function() {
+				return object.rows.length;
+			};
+		}
+	}
+	return object.prototype;
+},</code></pre>
+          <section id="ajax">
+            <h1>ajax</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>&nbsp;</span><span>ajax()</span><span>&nbsp;</span>
+            </p>
+          </section>
+          <div class="description"><p>Ajax Function Beta</p></div>
+          <pre><code class="language-javascript">ajax : function(object) {
+	// Creando objeto ajax
+	var objectAjax = null;
+	var params = null;
+	// Para IE
+	try {
+		objetoAjax = new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);
+	} catch (e) {
+		try {
+			objetoAjax = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+		} catch (E) {
+			objetoAjax = false;
+		}
+	}
+	var contenido = 0;
+	// Para todos los demas
+	if (!objectAjax &amp;&amp; typeof XMLHttpRequest != 'undefined') {
+		objectAjax = new XMLHttpRequest();
+	}
+	if (object.method.toLowerCase() == 'get') {
+		object.url = object.url + &quot;?&quot;;
+		for ( var key in object.data) {
+			object.url += key + &quot;=&quot; + encodeURIComponent(object.data[key])
+					+ &quot;&amp;&quot;;
+		}
+	} else {
+		params = new String(&quot;&quot;);
+		for ( var key in object.data) {
+			params += key + &quot;=&quot; + encodeURIComponent(object.data[key])
+					+ &quot;&amp;&quot;;
+			contenido++;
+		}
+	}
+	objectAjax.open(object.method, object.url);
+	// definiendo un content type default
+	if (object.method.toLowerCase() == 'post') {
+		var charset = &quot;&quot;;
+		if (object.charset != null) {
+			charset = &quot;charset=&quot; + object.charset;
+		}
+		objectAjax.setRequestHeader('Content-Type',
+				&quot;application/x-www-form-urlencoded;&quot; + charset);
+	}
+	
+	objectAjax.onreadystatechange = function() {
+		$_.trigger(&quot;doAjaxStart&quot;, null);
+		if (objectAjax.readyState == 4) {
+			if (objectAjax.status == 200) {
+				if (objectAjax.responseText) {
+					$_.trigger(&quot;doAjaxFinish&quot;, null);
+					var arg = objectAjax.responseText;
+					if (object.dataType != null
+							&amp;&amp; object.dataType == 'json') {
+						arg = $_.toJSON(objectAjax.responseText);
+					}
+					object.success.call(null, arg);
+				} else {
+					$_.trigger(&quot;doAjaxFail&quot;, null);
+				}
+			} else {
+				object.error.call(null, objectAjax.status,
+						objectAjax.statusText);
+			}
+		}
+	};
+	if (object.beforeSend != null
+			&amp;&amp; typeof (object.beforeSend) == 'function') {
+		object.beforeSend.call(null);
+	}
+	objectAjax.send(params);
+}
+
+};
+donovosoft.fn.init();
+var $_ = donovosoft.fn;
+var $$_ = donovosoft.fn.$$_;</code></pre>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p>Documentation generated with <a href="https://github.com/mr-doc/mr-doc">Mr. Doc </a> created by <a href="https://twitter.com/FGRibreau" data-show-count="false" class="twitter-follow-button">Francois-Guillaume Ribreau </a></p>
+        <p>Mr. Doc is sponsored by <a href="http://bringr.net/?btt" title="Outil d'analyse des réseaux sociaux" class="bringr">Bringr </a> and <a href="https://redsmin.com/?btt" title="Full Redis GUI" class="redsmin">Redsmin</a></p>
+        <p>Theme borrowed from Twitter Bootstrap</p>
+      </div>
+    </footer>
+    <script src="js/twitter-widget.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap-transition.min.js"></script>
+    <script src="js/bootstrap-scrollspy.min.js"></script>
+    <script src="js/bootstrap-dropdown.min.js"></script>
+    <script src="js/bootstrap-collapse.min.js"></script>
+    <script src="js/bootstrap-affix.min.js"></script>
+    <script src="js/prism.min.js"></script>
+    <script src="js/index.min.js"></script>
+  </body>
+</html>

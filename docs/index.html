@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" charset="utf-8">
+    <title>jDonovosoft</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/cayman.min.css">
+    <link rel="stylesheet" href="css/prism.min.css">
+    <link rel="stylesheet" href="css/index.min.css">
+    <link rel="stylesheet" href="css/docs.min.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+  </head>
+  <body data-spy="scroll" data-target=".scrollspy">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container"><a class="brand">Mr. Doc</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right sponsored"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <header id="overview" class="jumbotron subhead">
+      <div class="container">
+        <h1>jDonovosoft</h1>
+        <p class="lead"></p>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="span3 bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav affix-top">
+            <li class="active"><a href="index.html">Main</a></li>
+            <li><a href="donovosoft.js.html">donovosoft.js</a></li>
+          </ul>
+          <div class="scrollspy">
+            <ul class="nav nav-list bs-docs-sidenav affix-top">
+            </ul>
+          </div>
+        </div>
+        <div class="span9">
+          <section id="Main" class="readme"><h1>jDonovosoft</h1>
+<p>jDonovosoft is a Javascript Library collecting all the functions commonly used for donovosoft web projects</p>
+<h2>Getting Started</h2>
+<p>Just <code>git clone</code> and start to code!!</p>
+<h3>Prerequisities</h3>
+<p>Most of the functions have better performance on Mozilla and Chrome browsers, IE :(</p>
+<h3>Installing</h3>
+<p>Just copy script file in your assets directory and add <code>&lt;script&gt;</code> line in your pages</p>
+<p>IMPORTANT: Needs jquery.js &gt;= 1.4 to work</p>
+<h2>Running the tests</h2>
+<p>If you want to make sure that the library is available in your page you can make a simple function call</p>
+<pre><code>&lt;head&gt;
+&lt;script src=&quot;assets/donovosoft.js&quot; /&gt;
+
+$_.onLoad(function(){
+	alert($_.version)
+});
+&lt;/head&gt;
+</code></pre>
+<h2>Usage Examples</h2>
+<p>###Crono Object
+This object can be use to perform functions in a specific time
+####Properties:
+<strong>delay</strong> : Number of seconds to execute function 'work' <br />
+<strong>work</strong>: function to execute after delay <br />
+<strong>times</strong>: Number of time that the function 'work' will be repeated <br />
+####Methods:
+<strong>isRunning()</strong>: True if the crono object is active<br />
+<strong>start()</strong>: Start the cron function inside the object<br />
+<strong>stop()</strong>:  Stop the cron function to be executed<br />
+####Example:</p>
+<pre><code>  $_.onLoad(function(){
+		var setTime = function(){
+			var date = new Date();
+			$_.findElement(&quot;hour&quot;).innerHTML = date.getHours();
+			$_.findElement(&quot;min&quot;).innerHTML = date.getMinutes()
+			$_.findElement(&quot;sec&quot;).innerHTML = date.getSeconds();
+		}
+		//Crono object refresh time after 1 second
+		var cron = $_.crono({
+			delay:1,
+			work:setTime
+		}); 
+		cron.start();
+	});
+</code></pre>
+<p>###Draw Object
+Transforms a CANVAS tag into a freehand editor, should be used on a browser with HTML5 support .
+####Properties:
+<strong>element</strong>: The object canvas<br />
+<strong>lineWidth</strong>: Anchor of the drawing line<br />
+<strong>lineColor</strong>: Color of the drawing line <br />
+####Methods:
+<strong>clear(function)</strong>: Clear complete draw in the canvas<br />
+<strong>save(format,function)</strong>: Save current draw and call the function argument after save it, current supported formats: 						jpg,gif<br />
+<strong>loadPicture(src, properties, function)</strong>: Load an image to the current draw from <em>src</em> and some <em>properties</em><br /></p>
+<p>####Example:</p>
+<pre><code>$_.onLoad(function(){
+		 var draw = $_.drawing({
+			 		element: document.getElementById(&quot;canvas&quot;),
+			 		lineWidth: 1,
+			 		lineColor: '#FFFFFFF'
+		});
+		 $_.addEvent('click',document.getElementById(&quot;limpiar&quot;),function(){
+			draw.clear(); 
+		 });
+		 $_.addEvent('click',document.getElementById('ajustar'),function(){
+			 draw.setProperties({
+			 		lineWidth: document.getElementById('width').value,
+			 		lineColor: document.getElementById('color').value
+			  });
+		 });
+		 $_.addEvent('click',document.getElementById('guardar'),function(){
+			draw.save('gif',function(image){
+				window.open(image);
+			}); 
+		 });
+		var start = 1;
+		 $_.addEvent('click',document.getElementById('stop'),function(){
+			 	if(start == 1){
+					draw.stop();
+					start = 0
+					document.getElementById('stop').value = &quot;Continuar Trazo&quot;
+			 	}else{
+			 		draw.continueDraw();
+			 		document.getElementById('stop').value = &quot;Detener Trazo&quot;
+			 		start = 1;
+			 	}
+		});
+		 
+	});
+</code></pre>
+<h2>Contributing</h2>
+<p>Feel free to contribute to this project or distribute it</p>
+<h2>Versioning</h2>
+<p>https://github.com/donovosoft/jdonovosoft</p>
+<p>Please use a new branch to bug fixes or development branch to new features</p>
+<h2>Authors</h2>
+<ul>
+<li><strong>Mauricio Barrera mauricio.barrerag@gmail.com</strong></li>
+</ul>
+<p>See also the list of <a href="https://github.com/donovosoft/jdonovosoft/graphs/contributors">contributors</a> who participated in this project.</p>
+<h2>License</h2>
+<p>This project is licensed under the MIT License</p>
+<h2>Acknowledgments</h2>
+<ul>
+<li>This is not a replacement of any important library</li>
+<li>Inspired by the every day hard work since 2010 and intended to simplify coding</li>
+<li>Report any issue through Github or send it to donovosoft@gmail.com</li>
+</ul>
+</section>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p>Documentation generated with <a href="https://github.com/mr-doc/mr-doc">Mr. Doc </a> created by <a href="https://twitter.com/FGRibreau" data-show-count="false" class="twitter-follow-button">Francois-Guillaume Ribreau </a></p>
+        <p>Mr. Doc is sponsored by <a href="http://bringr.net/?btt" title="Outil d'analyse des réseaux sociaux" class="bringr">Bringr </a> and <a href="https://redsmin.com/?btt" title="Full Redis GUI" class="redsmin">Redsmin</a></p>
+        <p>Theme borrowed from Twitter Bootstrap</p>
+      </div>
+    </footer>
+    <script src="js/twitter-widget.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap-transition.min.js"></script>
+    <script src="js/bootstrap-scrollspy.min.js"></script>
+    <script src="js/bootstrap-dropdown.min.js"></script>
+    <script src="js/bootstrap-collapse.min.js"></script>
+    <script src="js/bootstrap-affix.min.js"></script>
+    <script src="js/prism.min.js"></script>
+    <script src="js/index.min.js"></script>
+  </body>
+</html>
