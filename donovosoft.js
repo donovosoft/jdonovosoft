@@ -991,7 +991,7 @@ donovosoft.fn = donovosoft.prototype = {
 		};
 		// //////Number extend//////
 		/**
-		 * Round the number according to the round from the Math Object
+		 * Round the number according to the round method from the Math Object
 		 * 
 		 * @method round
 		 * @returns {Number}
@@ -999,6 +999,16 @@ donovosoft.fn = donovosoft.prototype = {
 		Number.prototype.round = function() {
 			return Math.round(this);
 		};
+		/**
+		 * Round the number according to the floor method from the Math Object
+		 * 
+		 * @method round
+		 * @returns {Number}
+		 */
+		Number.prototype.floor = function(){
+			return Math.floor(this)
+		};
+
 		/**
 		 * Return the number expressed on Rad
 		 * 
@@ -1110,6 +1120,16 @@ donovosoft.fn = donovosoft.prototype = {
 				this.setYear(this.getYear() + years);
 			}
 		};
+
+		/**
+
+		*/
+
+		Date.prototype.diff = function(date){
+			return date.getTime() - this.getTime();
+		}
+
+
 		/**
 		 * Returns the current browser's time
 		 * @return {Date}
